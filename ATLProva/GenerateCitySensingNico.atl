@@ -18,7 +18,8 @@ helper context SocialResource!Post def: isInDistrict(d : City!District) : Boolea
 	endif;
 
 helper context SocialResource!Post def: isInPlace(d : City!Place) : Boolean =
-	if self.place.location.name = d.name
+	--- If the place's name is in the location or it's in the tags
+	if self.place.location.name = d.name or self.text.tags -> select(p | p.text = d.name).size() > 0
 	then
 		true
 	else
@@ -52,12 +53,11 @@ helper context SocialResource!Post def: hasLocation(): Boolean =
 helper context City!District def: countPostsDistrict(mr : SocialResource!SocialMediaResource) : Real =
 	let lp : OrderedSet(SocialResource!Post) = 
 		mr.posts -> select(p | p.hasCoordinates())
+	in let
+		tp : OrderedSet(SocialResource!Post) = 
+		mr.posts -> select(p | not p.hasCoordinates() and p.text.tags.notEmpty()) 
 	in
-		if lp -> select(e | e.isInDistrict(self)).isEmpty() then
-			0
-		else
-			lp -> select(e | e.isInDistrict(self)).size()
-		endif;
+		lp -> select(e | e.isInDistrict(self)).union(tp -> select(w | w.text.tags.text = self.name)).size();
 		
 helper context City!Place def: countPostsPlace(mr : SocialResource!SocialMediaResource) : Real =
 	let lp : OrderedSet(SocialResource!Post) = 
@@ -74,7 +74,7 @@ helper context SocialResource!Post def: hasPicture(): Boolean =
 	endif;
 
 --- Actually, it's posts with at least 1 picture, not total of pictures
-helper context City!District def: countPictures(mr : SocialResource!SocialMediaResource) : Real =
+helper context City!District def: countPicturesDistrict(mr : SocialResource!SocialMediaResource) : Real =
 	let pp : OrderedSet(SocialResource!Post) = 
 		mr.posts -> select(p | p.hasPicture() and p.hasCoordinates())
 	in
@@ -224,7 +224,7 @@ lazy rule Post2NumPhotoDist {
 	to
 		t: CitySensing!NumPhoto (
 			name <- '#Pictures',
-			metric <- s.countPictures(p).longValue()
+			metric <- s.countPicturesDistrict(p).longValue()
 		)
 	
 }
