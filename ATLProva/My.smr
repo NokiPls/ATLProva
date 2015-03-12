@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smr:SocialMediaResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:smr="http://smr/1.0" name="SMRName">
+  <posts id="1" sourcesn="porcabbestia" language="LassaSta">
+    <place>
+      <coordinates name="Cooooord" coordx="0.5" coordy="0.5"/>
+    </place>
+    <pictures name="hehehe"/>
+  </posts>
+  <posts id="2" sourcesn="a saperlo" language="English">
+    <place>
+      <coordinates name="asd" coordx="0.2" coordy="0.2"/>
+    </place>
+  </posts>
+  <posts id="3" sourcesn="asd" language="LassaSta">
+    <place>
+      <coordinates coordx="1.2" coordy="1.2"/>
+    </place>
+  </posts>
+</smr:SocialMediaResource>
