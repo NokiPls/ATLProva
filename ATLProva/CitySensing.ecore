@@ -88,8 +88,8 @@
     <eAnnotations source="gmf.node">
       <details key="label" value="name"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeSlot" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="postsPerTimeSlot" upperBound="-1"
+        eType="#//MapPostTimeSlot" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Languages">
     <eLiterals name="Spanish" value="1" literal="Spanish"/>
@@ -99,5 +99,18 @@
   <eClassifiers xsi:type="ecore:EClass" name="NumPostLang" eSuperTypes="#//Statistic">
     <eStructuralFeatures xsi:type="ecore:EReference" name="langNumber" upperBound="-1"
         eType="#//MapPostLang" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MapPostTimeSlot" instanceClassName="java.util.Map$Entry">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="#//TimeSlots"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TimeSlots">
+    <eLiterals name="Morning" value="1" literal="Morning"/>
+    <eLiterals name="Afternoon" value="2" literal="Afternoon"/>
+    <eLiterals name="Evening" value="3" literal="Evening"/>
+    <eLiterals name="Night" value="4" literal="Night"/>
   </eClassifiers>
 </ecore:EPackage>
