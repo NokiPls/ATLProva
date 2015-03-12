@@ -122,13 +122,21 @@ helper context City!District def : countPostTimeSlotDistrict(mr : SocialResource
 rule City2MonitoredCity {
 	
 	from
-		s: City!City
+		s: City!City,
+		p: SocialResource!SocialMediaResource
 		
 	to 
 		t: CitySensing!MonitoredCity (
 			name <- s.name,
-			districts <- s.districts
-			--- stats <-
+			districts <- s.districts,
+			
+				--- LEO: Crea nuove rule che si chiamano come quelle nella sequence e operano a livello di city
+				--- tipo: lazy rule Post2NumPostsCity{ from... to... }
+				--- praticamente copia gli equivalenti a livello district e cambia le condizioni qua e là
+				
+			stats <- Sequence{thisModule.Post2NumPostsCity(s, p)} --- Parti da questa
+			---		, thisModule.Post2NumPhotoCity(s, p), thisModule.Post2NumPostLangCity(s, p),
+			---	thisModule.Post2NumPostTimeSlotCity(s, p)}
 		)
 	
 }
