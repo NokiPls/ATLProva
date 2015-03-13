@@ -17,7 +17,7 @@ helper context SocialResource!Post def: isInDistrict(d : City!District) : Boolea
 		false
 	endif;
 
-helper context SocialResource!Post def: isInPlace(d : City!Place) : Boolean =
+helper context SocialResource!Post def: isInLocation(d : City!Place) : Boolean =
 	--- If the place's name is in the location or it's in the tags
 	if self.place.location.name = d.name or self.text.tags -> select(p | p.text = d.name).size() > 0
 	then
@@ -51,7 +51,15 @@ helper context SocialResource!Post def: hasTime(): Boolean =
 	endif;
 
 helper context SocialResource!Post def: hasLocation(): Boolean =
-	if self.place.location -> size() > 0
+	if not self.place.location.oclIsUndefined()
+	then
+		true
+	else
+		false
+	endif;
+
+helper context SocialResource!Post def: hasPlace(): Boolean =
+	if not self.place.oclIsUndefined()
 	then
 		true
 	else
@@ -68,10 +76,8 @@ helper context City!District def: countPostsDistrict(mr : SocialResource!SocialM
 		lp -> select(e | e.isInDistrict(self)).union(tp -> select(w | w.text.tags.text = self.name)).size();
 		
 helper context City!Place def: countPostsPlace(mr : SocialResource!SocialMediaResource) : Real =
-	let lp : OrderedSet(SocialResource!Post) = 
-		mr.posts -> select(p | p.hasLocation())
-	in
-		lp -> select(e | e.isInPlace(self)).size();
+	mr.posts -> select(p | p.hasPlace()) -> select(p | p.hasLocation())
+		-> select(e | e.isInLocation(self)).size();
 
 helper context SocialResource!Post def: hasPicture(): Boolean =
 	if self.pictures -> size() > 0
@@ -88,11 +94,8 @@ helper context City!District def: countPicturesDistrict(mr : SocialResource!Soci
 	in
 		pp -> select(e | e.isInDistrict(self)).size();
 
-helper context City!Place def: countPictures(mr : SocialResource!SocialMediaResource) : Real =
-	let pp : OrderedSet(SocialResource!Post) = 
-		mr.posts -> select(p | p.hasPicture() and p.hasLocation())
-	in
-		pp -> select(e | e.isInPlace(self)).size();
+helper context City!Place def: countPicturesPlace(mr : SocialResource!SocialMediaResource) : Real =
+	mr.posts -> select(p | p.hasPlace()) -> select(p | p.hasPicture() and p.hasLocation()) -> select(e | e.isInLocation(self)).size();
 
 		
 helper context City!District def : countPostLangDistrict(mr : SocialResource!SocialMediaResource, l : SocialResource!Languages) : Integer =
@@ -177,8 +180,8 @@ rule Place2MonitoredPlace {
 		
 	to
 		t: CitySensing!Place (
-			name <- s.name
-	---		stats <- Sequence{thisModule.Post2NumPostsPlace(s, p), thisModule.Post2NumPhotoPlace(s, p), thisModule.Post2NumPostLangPlace(s, p)
+			name <- s.name,
+			stats <- Sequence{thisModule.Post2NumPostsPlace(s, p), thisModule.Post2NumPhotoPlace(s, p)}---, thisModule.Post2NumPostLangPlace(s, p)
 				--- thisModule.Post2MorningPostDist()
 			---	}
 		)
@@ -227,12 +230,12 @@ lazy rule Post2NumPhotoDist {
 lazy rule Post2NumPhotoPlace {
 	
 	from
-		s: City!District,
+		s: City!Place,
 		p: SocialResource!SocialMediaResource
 	to
 		t: CitySensing!NumPhoto (
 			name <- '#Pictures',
-			metric <- s.countPictures(p).longValue()
+			metric <- s.countPicturesPlace(p).longValue()
 		)
 	
 }
@@ -245,7 +248,8 @@ lazy rule Post2NumPostTimeSlotDist {
 	to
 		t: CitySensing!NumPostTimeSlot (
 			name <- '#Posts per time slot',
-			postsPerTimeSlot <- CitySensing!TimeSlots.eLiterals -> collect(l | thisModule.Post2MapPostTimeSlotDistrict(s, p, l))
+			postsPerTimeSlot <- CitySensing!TimeSlots.eLiterals 
+								-> collect(l | thisModule.Post2MapPostTimeSlotDistrict(s, p, l))
 		)
 			
 }
@@ -272,7 +276,8 @@ lazy rule Post2NumPostLangDist {
 	to
 		t: CitySensing!NumPostLang (
 			name <- '#Posts per language',
-			langNumber <- SocialResource!Languages.eLiterals -> collect(l | thisModule.Post2MapPostLangDistrict(s, p, l))
+			langNumber <- SocialResource!Languages.eLiterals 
+						-> collect(l | thisModule.Post2MapPostLangDistrict(s, p, l))
 		)
 			
 }

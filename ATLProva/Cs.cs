@@ -136,5 +136,8 @@
       <postsPerTimeSlot key="Night" value="0"/>
     </stats>
   </cs:District>
-  <cs:Place name="Gelateria Finocchi"/>
+  <cs:Place name="Gelateria Finocchi">
+    <stats xsi:type="cs:NumPost" name="#Posts"/>
+    <stats xsi:type="cs:NumPhoto" name="#Pictures"/>
+  </cs:Place>
 </xmi:XMI>
