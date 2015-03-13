@@ -44,7 +44,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="coordEy" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="Categories"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="Categories">
+    <eLiterals name="Culture" value="1" literal="Culture"/>
+    <eLiterals name="Food" value="2" literal="Food"/>
+    <eLiterals name="Fun" value="3" literal="Fun"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CityModel">
     <eAnnotations source="gmf.diagram"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="cities" lowerBound="1"

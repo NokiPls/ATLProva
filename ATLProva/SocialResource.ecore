@@ -78,8 +78,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//Categories"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Categories">
-    <eLiterals name="Fun"/>
-    <eLiterals name="Food" value="1"/>
+    <eLiterals name="Culture" value="1" literal="Culture"/>
+    <eLiterals name="Food" value="2" literal="Food"/>
+    <eLiterals name="Fun" value="3" literal="Fun"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Location">
     <eAnnotations source="gmf.node">

@@ -9,8 +9,8 @@ create OUT: CitySensing from IN: SocialResource, IN2: City;
 
 
 helper context SocialResource!Post def: isInDistrict(d : City!District) : Boolean =
-	if d.coordBx < self.place.coordinates.coordx and d.coordEx > self.place.coordinates.coordx
-		and d.coordBy < self.place.coordinates.coordy and d.coordEy > self.place.coordinates.coordy
+	if d.coordBx <= self.place.coordinates.coordx and d.coordEx > self.place.coordinates.coordx
+		and d.coordBy <= self.place.coordinates.coordy and d.coordEy > self.place.coordinates.coordy
 	then
 		true
 	else
@@ -26,7 +26,15 @@ helper context SocialResource!Post def: isInPlace(d : City!Place) : Boolean =
 		false
 	endif;
 
-helper context SocialResource!Post def: hasCoordinates(): Boolean =
+helper context SocialResource!Post def: hasText() : Boolean =
+	if not self.text.oclIsUndefined()
+	then
+		true
+	else
+		false
+	endif;
+
+helper context SocialResource!Post def: hasCoordinates() : Boolean =
 	if not self.place.coordinates.oclIsUndefined()
 	then
 		true
@@ -55,7 +63,7 @@ helper context City!District def: countPostsDistrict(mr : SocialResource!SocialM
 		mr.posts -> select(p | p.hasCoordinates())
 	in let
 		tp : OrderedSet(SocialResource!Post) = 
-		mr.posts -> select(p | not p.hasCoordinates() and p.text.tags.notEmpty()) 
+		mr.posts -> select(p | not p.hasCoordinates() and p.hasText()) -> select(p | p.text.tags.notEmpty()) 
 	in
 		lp -> select(e | e.isInDistrict(self)).union(tp -> select(w | w.text.tags.text = self.name)).size();
 		
@@ -128,13 +136,13 @@ rule City2MonitoredCity {
 	to 
 		t: CitySensing!MonitoredCity (
 			name <- s.name,
-			districts <- s.districts,
+			districts <- s.districts
 			
 				--- LEO: Crea nuove rule che si chiamano come quelle nella sequence e operano a livello di city
 				--- tipo: lazy rule Post2NumPostsCity{ from... to... }
 				--- praticamente copia gli equivalenti a livello district e cambia le condizioni qua e là
 				
-			stats <- Sequence{thisModule.Post2NumPostsCity(s, p)} --- Parti da questa
+			--- stats <- Sequence{thisModule.Post2NumPostsCity(s, p)} --- Parti da questa
 			---		, thisModule.Post2NumPhotoCity(s, p), thisModule.Post2NumPostLangCity(s, p),
 			---	thisModule.Post2NumPostTimeSlotCity(s, p)}
 		)
