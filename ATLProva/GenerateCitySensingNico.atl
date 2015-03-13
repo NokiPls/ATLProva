@@ -177,25 +177,12 @@ rule Place2MonitoredPlace {
 		
 	to
 		t: CitySensing!Place (
-			name <- s.name,
-			categories <- s.categories
+			name <- s.name
 	---		stats <- Sequence{thisModule.Post2NumPostsPlace(s, p), thisModule.Post2NumPhotoPlace(s, p), thisModule.Post2NumPostLangPlace(s, p)
 				--- thisModule.Post2MorningPostDist()
 			---	}
 		)
 	
-}
-
-rule Category2MonitoredCategory {
-	
-	from
-		s: City!Category
-		
-	to
-		t: CitySensing!Category (
-			type <- s.type
-		)
-		
 }
 
 lazy rule Post2NumPostsDist {
