@@ -96,7 +96,6 @@ helper context City!District def: countPicturesDistrict(mr : SocialResource!Soci
 
 helper context City!Place def: countPicturesPlace(mr : SocialResource!SocialMediaResource) : Real =
 	mr.posts -> select(p | p.hasPlace()) -> select(p | p.hasPicture() and p.hasLocation()) -> select(e | e.isInLocation(self)).size();
-
 		
 helper context City!District def : countPostLangDistrict(mr : SocialResource!SocialMediaResource, l : SocialResource!Languages) : Integer =
 	let lp : OrderedSet(SocialResource!Post) = 
@@ -105,6 +104,11 @@ helper context City!District def : countPostLangDistrict(mr : SocialResource!Soc
 		lp -> select(e | e.isInDistrict(self))
 	in
 		dp -> select(e | e.language.toString() = l.literal.toString()).size();
+
+helper context City!Place def : countPostLangPlace(mr : SocialResource!SocialMediaResource, l : SocialResource!Languages) : Integer =
+	mr.posts -> select(p | p.hasPlace()) -> select(p | p.hasLocation())
+		-> select(e | e.isInLocation(self))
+		-> select(e | e.language.toString() = l.literal.toString()).size();
 		
 helper context City!District def : countPostTimeSlotDistrict(mr : SocialResource!SocialMediaResource, l : CitySensing!TimeSlots) : Integer =
 	let lp : OrderedSet(SocialResource!Post) = 
@@ -127,7 +131,30 @@ helper context City!District def : countPostTimeSlotDistrict(mr : SocialResource
 		endif
 		endif
 		endif
-		;
+;
+
+---AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+helper context City!Place def : countPostTimeSlotPlace(mr : SocialResource!SocialMediaResource, l : CitySensing!TimeSlots) : Integer =
+	let dp : OrderedSet(SocialResource!Post) = 
+		mr.posts -> select(p | p.hasPlace() and p.hasTime()) -> select(p | p.hasLocation()) ->
+		select(p | p.isInLocation(self))
+	in
+	--- Qui resta hardcoded..
+		if l.literal.toString() = 'Morning' then
+			dp -> select(e | 4 <= e.time.getHours() and 12 > e.time.getHours()).size()
+		else if l.literal.toString() = 'Afternoon' then
+			dp -> select(e | 12 <= e.time.getHours() and 18 > e.time.getHours()).size()
+		else if l.literal.toString() = 'Evening' then
+			dp -> select(e | 18 <= e.time.getHours() and 22 > e.time.getHours()).size()
+		else if l.literal.toString() = 'Night' then
+			dp -> select(e | 22 <= e.time.getHours() and 24 > e.time.getHours() or 
+				0 <= e.time.getHours() and 4 > e.time.getHours()).size()
+		else 0 --- Sarebbe un errore
+		endif
+		endif
+		endif
+		endif
+;
 		
 
 rule City2MonitoredCity {
@@ -181,9 +208,8 @@ rule Place2MonitoredPlace {
 	to
 		t: CitySensing!Place (
 			name <- s.name,
-			stats <- Sequence{thisModule.Post2NumPostsPlace(s, p), thisModule.Post2NumPhotoPlace(s, p)}---, thisModule.Post2NumPostLangPlace(s, p)
-				--- thisModule.Post2MorningPostDist()
-			---	}
+			stats <- Sequence{ thisModule.Post2NumPostsPlace(s, p), thisModule.Post2NumPhotoPlace(s, p), 
+					thisModule.Post2NumPostLangPlace(s, p), thisModule.Post2NumPostTimeSlotPlace(s, p) }
 		)
 	
 }
@@ -254,6 +280,20 @@ lazy rule Post2NumPostTimeSlotDist {
 			
 }
 
+lazy rule Post2NumPostTimeSlotPlace {
+	
+	from
+		s: City!Place,
+		p: SocialResource!SocialMediaResource
+	to
+		t: CitySensing!NumPostTimeSlot (
+			name <- '#Posts per time slot',
+			postsPerTimeSlot <- CitySensing!TimeSlots.eLiterals 
+								-> collect(l | thisModule.Post2MapPostTimeSlotPlace(s, p, l))
+		)
+			
+}
+
 lazy rule Post2MapPostTimeSlotDistrict {
 	
 	from
@@ -264,6 +304,20 @@ lazy rule Post2MapPostTimeSlotDistrict {
 		t: CitySensing!MapPostTimeSlot (
 				key <- l,
 				value <- s.countPostTimeSlotDistrict(p, l)
+		)
+	
+}
+
+lazy rule Post2MapPostTimeSlotPlace {
+	
+	from
+		s: City!Place,
+		p: SocialResource!SocialMediaResource,
+		l: CitySensing!TimeSlots
+	to
+		t: CitySensing!MapPostTimeSlot (
+				key <- l,
+				value <- s.countPostTimeSlotPlace(p, l)
 		)
 	
 }
@@ -282,6 +336,20 @@ lazy rule Post2NumPostLangDist {
 			
 }
 
+lazy rule Post2NumPostLangPlace {
+	
+	from
+		s: City!Place,
+		p: SocialResource!SocialMediaResource
+	to
+		t: CitySensing!NumPostLang (
+			name <- '#Posts per language',
+			langNumber <- SocialResource!Languages.eLiterals 
+						-> collect(l | thisModule.Post2MapPostLangPlace(s, p, l))
+		)
+			
+}
+
 lazy rule Post2MapPostLangDistrict {
 	
 	from
@@ -292,6 +360,20 @@ lazy rule Post2MapPostLangDistrict {
 		t: CitySensing!MapPostLang (
 				key <- l,
 				value <- s.countPostLangDistrict(p, l)
+		)
+	
+}
+
+lazy rule Post2MapPostLangPlace {
+	
+	from
+		s: City!Place,
+		p: SocialResource!SocialMediaResource,
+		l: SocialResource!Languages
+	to
+		t: CitySensing!MapPostLang (
+				key <- l,
+				value <- s.countPostLangPlace(p, l)
 		)
 	
 }
