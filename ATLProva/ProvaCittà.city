@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cs:CityModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:cs="http://city/1.0">
-  <cities name="Milano">
+  <cities name="Milano" coordEx="3" coordEy="3">
     <districts name="SudOvest" coordEx="1" coordEy="1">
       <places name="Gelateria Finocchi"/>
     </districts>
