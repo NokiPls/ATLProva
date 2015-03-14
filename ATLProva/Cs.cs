@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cs="http://cs/1.0">
-  <cs:MonitoredCity name="Milano"/>
+  <cs:MonitoredCity name="Milano">
+    <stats xsi:type="cs:NumPost" name="#Posts"/>
+    <stats xsi:type="cs:NumPhoto" name="#Pictures"/>
+    <stats xsi:type="cs:NumPostLang" name="#Posts per language">
+      <langNumber value="0"/>
+      <langNumber key="English" value="0"/>
+      <langNumber key="LassaSta" value="0"/>
+    </stats>
+    <stats xsi:type="cs:NumPostTimeSlot" name="#Posts per time slot">
+      <postsPerTimeSlot value="0"/>
+      <postsPerTimeSlot key="Afternoon" value="0"/>
+      <postsPerTimeSlot key="Evening" value="0"/>
+      <postsPerTimeSlot key="Night" value="0"/>
+    </stats>
+  </cs:MonitoredCity>
   <cs:District name="SudOvest" coordEx="1.0" coordEy="1.0">
     <stats xsi:type="cs:NumPost" name="#Posts" metric="2"/>
     <stats xsi:type="cs:NumPhoto" name="#Pictures" metric="1"/>
@@ -139,5 +153,16 @@
   <cs:Place name="Gelateria Finocchi">
     <stats xsi:type="cs:NumPost" name="#Posts"/>
     <stats xsi:type="cs:NumPhoto" name="#Pictures"/>
+    <stats xsi:type="cs:NumPostLang" name="#Posts per language">
+      <langNumber value="0"/>
+      <langNumber key="English" value="0"/>
+      <langNumber key="LassaSta" value="0"/>
+    </stats>
+    <stats xsi:type="cs:NumPostTimeSlot" name="#Posts per time slot">
+      <postsPerTimeSlot value="0"/>
+      <postsPerTimeSlot key="Afternoon" value="0"/>
+      <postsPerTimeSlot key="Evening" value="0"/>
+      <postsPerTimeSlot key="Night" value="0"/>
+    </stats>
   </cs:Place>
 </xmi:XMI>
