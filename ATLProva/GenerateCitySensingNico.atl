@@ -217,8 +217,9 @@ rule City2MonitoredCity {
 		t: CitySensing!MonitoredCity (
 			name <- s.name,
 			districts <- s.districts,
-			stats <- Sequence{thisModule.Post2NumPostsCity(s, p), thisModule.Post2NumPhotoCity(s, p), 
-				thisModule.Post2NumPostLangCity(s, p), thisModule.Post2NumPostTimeSlotCity(s, p)}
+			stats <- Sequence{ thisModule.Post2NumPostsCity(s, p), thisModule.Post2NumPhotoCity(s, p), 
+				thisModule.Post2NumPostLangCity(s, p), thisModule.Post2NumPostTimeSlotCity(s, p),
+				thisModule.Post2CategoriesCount(s, p) }
 		)
 	
 }
@@ -503,6 +504,8 @@ lazy rule Post2MapPostLangPlace {
 		)
 	
 }
+
+--- lazy rule Post2CategoriesCount
 
 
 
