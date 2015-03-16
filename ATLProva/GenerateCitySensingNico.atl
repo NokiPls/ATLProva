@@ -138,6 +138,23 @@ helper context SocialResource!SocialMediaResource def : postsInPlace(place : Cit
 	in
 		np -> select(e | e.isInPlaceName(place)).union(tp -> select(e | e.text.tags.text = place.name))
 ;
+		
+helper context CitySensing!TimeSlots def : postsInTimeSlot(dp : OrderedSet(SocialResource!Post)) : Integer =
+	if self.literal.toString() = 'Morning' then
+		dp -> select(e | 4 <= e.time.getHours() and 12 > e.time.getHours()).size()
+	else if self.literal.toString() = 'Afternoon' then
+		dp -> select(e | 12 <= e.time.getHours() and 18 > e.time.getHours()).size()
+	else if self.literal.toString() = 'Evening' then
+		dp -> select(e | 18 <= e.time.getHours() and 22 > e.time.getHours()).size()
+	else if self.literal.toString() = 'Night' then
+		dp -> select(e | 22 <= e.time.getHours() and 24 > e.time.getHours() or 
+			0 <= e.time.getHours() and 4 > e.time.getHours()).size()
+	else 0 --- Sarebbe un errore
+	endif
+	endif
+	endif
+	endif
+;
 
 helper context City!City def: countPostsCity(mr : SocialResource!SocialMediaResource) : Real =
 	mr.postsInCity(self).size();
@@ -172,64 +189,21 @@ helper context City!City def : countPostTimeSlotCity(mr : SocialResource!SocialM
 	let dp : OrderedSet(SocialResource!Post) = 
 		mr.postsInCity(self) -> select(p | p.hasTime())
 	in
-	--- Qui resta hardcoded..
-		if l.literal.toString() = 'Morning' then
-			dp -> select(e | 4 <= e.time.getHours() and 12 > e.time.getHours()).size()
-		else if l.literal.toString() = 'Afternoon' then
-			dp -> select(e | 12 <= e.time.getHours() and 18 > e.time.getHours()).size()
-		else if l.literal.toString() = 'Evening' then
-			dp -> select(e | 18 <= e.time.getHours() and 22 > e.time.getHours()).size()
-		else if l.literal.toString() = 'Night' then
-			dp -> select(e | 22 <= e.time.getHours() and 24 > e.time.getHours() or 
-				0 <= e.time.getHours() and 4 > e.time.getHours()).size()
-		else 0 --- Sarebbe un errore
-		endif
-		endif
-		endif
-		endif
+		l.postsInTimeSlot(dp)
 ;
 
 helper context City!District def : countPostTimeSlotDistrict(mr : SocialResource!SocialMediaResource, l : CitySensing!TimeSlots) : Integer =
 	let dp : OrderedSet(SocialResource!Post) = 
 		mr.postsInDistrict(self) -> select(p | p.hasTime())
 	in
-	--- Qui resta hardcoded..
-		if l.literal.toString() = 'Morning' then
-			dp -> select(e | 4 <= e.time.getHours() and 12 > e.time.getHours()).size()
-		else if l.literal.toString() = 'Afternoon' then
-			dp -> select(e | 12 <= e.time.getHours() and 18 > e.time.getHours()).size()
-		else if l.literal.toString() = 'Evening' then
-			dp -> select(e | 18 <= e.time.getHours() and 22 > e.time.getHours()).size()
-		else if l.literal.toString() = 'Night' then
-			dp -> select(e | 22 <= e.time.getHours() and 24 > e.time.getHours() or 
-				0 <= e.time.getHours() and 4 > e.time.getHours()).size()
-		else 0 --- Sarebbe un errore
-		endif
-		endif
-		endif
-		endif
+		l.postsInTimeSlot(dp)
 ;
 
 helper context City!Place def : countPostTimeSlotPlace(mr : SocialResource!SocialMediaResource, l : CitySensing!TimeSlots) : Integer =
 	let dp : OrderedSet(SocialResource!Post) = 
-		mr.posts -> select(p | p.hasLocation() and p.hasTime()) -> select(p | p.hasPlace()) ->
-		select(p | p.isInPlaceName(self))
+		mr.postsInPlace(self) -> select(p | p.hasTime())
 	in
-	--- Qui resta hardcoded..
-		if l.literal.toString() = 'Morning' then
-			dp -> select(e | 4 <= e.time.getHours() and 12 > e.time.getHours()).size()
-		else if l.literal.toString() = 'Afternoon' then
-			dp -> select(e | 12 <= e.time.getHours() and 18 > e.time.getHours()).size()
-		else if l.literal.toString() = 'Evening' then
-			dp -> select(e | 18 <= e.time.getHours() and 22 > e.time.getHours()).size()
-		else if l.literal.toString() = 'Night' then
-			dp -> select(e | 22 <= e.time.getHours() and 24 > e.time.getHours() or 
-				0 <= e.time.getHours() and 4 > e.time.getHours()).size()
-		else 0 --- Sarebbe un errore
-		endif
-		endif
-		endif
-		endif
+		l.postsInTimeSlot(dp)
 ;
 		
 
