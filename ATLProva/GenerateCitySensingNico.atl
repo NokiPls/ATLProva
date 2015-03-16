@@ -6,27 +6,43 @@ module GenerateCitySensingNico;
 create OUT: CitySensing from IN: SocialResource, IN2: City;
 
 
-helper context SocialResource!Post def: isInCity(d : City!City) : Boolean =
-	if d.coordBx <= self.place.coordinates.coordx and d.coordEx > self.place.coordinates.coordx
-		and d.coordBy <= self.place.coordinates.coordy and d.coordEy > self.place.coordinates.coordy
+helper context SocialResource!Post def: isInCityCoords(d : City!City) : Boolean =
+	if d.coordBx <= self.location.coordinates.coordx and d.coordEx > self.location.coordinates.coordx
+		and d.coordBy <= self.location.coordinates.coordy and d.coordEy > self.location.coordinates.coordy
 	then
 		true
 	else
 		false
 	endif;
 
-helper context SocialResource!Post def: isInDistrict(d : City!District) : Boolean =
-	if d.coordBx <= self.place.coordinates.coordx and d.coordEx > self.place.coordinates.coordx
-		and d.coordBy <= self.place.coordinates.coordy and d.coordEy > self.place.coordinates.coordy
+helper context SocialResource!Post def: isInDistrictCoords(d : City!District) : Boolean =
+	if d.coordBx <= self.location.coordinates.coordx and d.coordEx > self.location.coordinates.coordx
+		and d.coordBy <= self.location.coordinates.coordy and d.coordEy > self.location.coordinates.coordy
 	then
 		true
 	else
 		false
 	endif;
 
-helper context SocialResource!Post def: isInLocation(d : City!Place) : Boolean =
+helper context SocialResource!Post def: hasCityName() : Boolean =
+	if not self.location.city.oclIsUndefined()
+	then
+		true
+	else
+		false
+	endif;
+
+helper context SocialResource!Post def: hasDistrictName() : Boolean =
+	if not self.location.district.oclIsUndefined()
+	then
+		true
+	else
+		false
+	endif;
+
+helper context SocialResource!Post def: isInPlaceName(d : City!Place) : Boolean =
 	--- If the place's name is in the location or it's in the tags
-	if self.place.location.name = d.name or self.text.tags -> select(p | p.text = d.name).size() > 0
+	if self.location.place.name = d.name or self.text.tags -> select(p | p.text = d.name).size() > 0
 	then
 		true
 	else
@@ -57,45 +73,55 @@ helper context SocialResource!Post def: hasTime(): Boolean =
 		false
 	endif;
 
-helper context SocialResource!Post def: hasLocation(): Boolean =
-	if not self.place.location.oclIsUndefined()
-	then
-		true
-	else
-		false
-	endif;
-
 helper context SocialResource!Post def: hasPlace(): Boolean =
-	if not self.place.oclIsUndefined()
+	if not self.location.place.oclIsUndefined()
 	then
 		true
 	else
 		false
 	endif;
 
----Mancano i post che hanno come place il nome della città
+helper context SocialResource!Post def: hasLocation(): Boolean =
+	if not self.location.oclIsUndefined()
+	then
+		true
+	else
+		false
+	endif;
+
 helper context City!City def: countPostsCity(mr : SocialResource!SocialMediaResource) : Real =
+	--- Posts with coordinates
 	let lp : OrderedSet(SocialResource!Post) = 
-		mr.posts -> select(p | p.hasCoordinates())
-	in let
-		tp : OrderedSet(SocialResource!Post) = 
-		mr.posts -> select(p | not p.hasCoordinates() and p.hasText()) -> select(p | p.text.tags.notEmpty()) 
+		mr.posts -> select(p | p.hasCoordinates())	
+	in 
+	--- Posts with tags
+	let	tp : OrderedSet(SocialResource!Post) = 
+		mr.posts -> select(p | p.hasText()) -> select(p | p.text.tags.notEmpty())
+	in 
+	--- Posts with city name
+	let cp : OrderedSet(SocialResource!Post) = 
+		mr.posts -> select(p | p.hasCityName())
 	in
-		lp -> select(e | e.isInCity(self)).union(tp -> select(w | w.text.tags.text = self.name)).size();
+	--- Magari mettere che un tag contiene il nome di una città
+		lp -> select(e | e.isInCityCoords(self)).union(tp -> select(w | w.text.tags.text = self.name))
+		.union(cp -> select(k | k.location.city = self.name)).size();
 				
----Mancano i post che hanno come place il nome del distretto
 helper context City!District def: countPostsDistrict(mr : SocialResource!SocialMediaResource) : Real =
 	let lp : OrderedSet(SocialResource!Post) = 
 		mr.posts -> select(p | p.hasCoordinates())
-	in let
-		tp : OrderedSet(SocialResource!Post) = 
-		mr.posts -> select(p | not p.hasCoordinates() and p.hasText()) -> select(p | p.text.tags.notEmpty()) 
+	in 
+	let tp : OrderedSet(SocialResource!Post) = 
+		mr.posts -> select(p | p.hasText()) -> select(p | p.text.tags.notEmpty()) 
 	in
-		lp -> select(e | e.isInDistrict(self)).union(tp -> select(w | w.text.tags.text = self.name)).size();
+	let cp : OrderedSet(SocialResource!Post) = 
+		mr.posts -> select(p | p.hasDistrictName())
+	in
+		lp -> select(e | e.isInDistrictCoords(self)).union(tp -> select(w | w.text.tags.text = self.name))
+		.union(cp -> select(k | k.location.district = self.name)).size();
 		
 helper context City!Place def: countPostsPlace(mr : SocialResource!SocialMediaResource) : Real =
-	mr.posts -> select(p | p.hasPlace()) -> select(p | p.hasLocation())
-		-> select(e | e.isInLocation(self)).size();
+	mr.posts -> select(p | p.hasLocation()) -> select(p | p.hasPlace())
+		-> select(e | e.isInPlaceName(self)).size();
 
 helper context SocialResource!Post def: hasPicture(): Boolean =
 	if self.pictures -> size() > 0
@@ -110,24 +136,24 @@ helper context City!City def: countPicturesCity(mr : SocialResource!SocialMediaR
 	let pp : OrderedSet(SocialResource!Post) = 
 		mr.posts -> select(p | p.hasPicture() and p.hasCoordinates()) --- OR p.place.name = self.name
 	in
-		pp -> select(e | e.isInCity(self)).size();
+		pp -> select(e | e.isInCityCoords(self)).size();
 
 --- Actually, it's posts with at least 1 picture, not total of pictures
 helper context City!District def: countPicturesDistrict(mr : SocialResource!SocialMediaResource) : Real =
 	let pp : OrderedSet(SocialResource!Post) = 
 		mr.posts -> select(p | p.hasPicture() and p.hasCoordinates())
 	in
-		pp -> select(e | e.isInDistrict(self)).size();
+		pp -> select(e | e.isInDistrictCoords(self)).size();
 
 --- Same here
 helper context City!Place def: countPicturesPlace(mr : SocialResource!SocialMediaResource) : Real =
-	mr.posts -> select(p | p.hasPlace()) -> select(p | p.hasPicture() and p.hasLocation()) -> select(e | e.isInLocation(self)).size();
+	mr.posts -> select(p | p.hasLocation()) -> select(p | p.hasPicture() and p.hasPlace()) -> select(e | e.isInPlaceName(self)).size();
 		
 helper context City!City def : countPostLangCity(mr : SocialResource!SocialMediaResource, l : SocialResource!Languages) : Integer =
 	let lp : OrderedSet(SocialResource!Post) = 
 		mr.posts -> select(p | p.hasCoordinates())
 	in let dp : OrderedSet(SocialResource!Post) = 
-		lp -> select(e | e.isInCity(self))
+		lp -> select(e | e.isInCityCoords(self))
 	in
 		dp -> select(e | e.language.toString() = l.literal.toString()).size();
 
@@ -135,20 +161,20 @@ helper context City!District def : countPostLangDistrict(mr : SocialResource!Soc
 	let lp : OrderedSet(SocialResource!Post) = 
 		mr.posts -> select(p | p.hasCoordinates())
 	in let dp : OrderedSet(SocialResource!Post) = 
-		lp -> select(e | e.isInDistrict(self))
+		lp -> select(e | e.isInDistrictCoords(self))
 	in
 		dp -> select(e | e.language.toString() = l.literal.toString()).size();
 
 helper context City!Place def : countPostLangPlace(mr : SocialResource!SocialMediaResource, l : SocialResource!Languages) : Integer =
-	mr.posts -> select(p | p.hasPlace()) -> select(p | p.hasLocation())
-		-> select(e | e.isInLocation(self))
+	mr.posts -> select(p | p.hasLocation()) -> select(p | p.hasPlace())
+		-> select(e | e.isInPlaceName(self))
 		-> select(e | e.language.toString() = l.literal.toString()).size();
 
 helper context City!City def : countPostTimeSlotCity(mr : SocialResource!SocialMediaResource, l : CitySensing!TimeSlots) : Integer =
 	let lp : OrderedSet(SocialResource!Post) = 
 		mr.posts -> select(p | p.hasCoordinates() and p.hasTime())
 	in let dp : OrderedSet(SocialResource!Post) = 
-		lp -> select(e | e.isInCity(self))
+		lp -> select(e | e.isInCityCoords(self))
 	in
 	--- Qui resta hardcoded..
 		if l.literal.toString() = 'Morning' then
@@ -171,7 +197,7 @@ helper context City!District def : countPostTimeSlotDistrict(mr : SocialResource
 	let lp : OrderedSet(SocialResource!Post) = 
 		mr.posts -> select(p | p.hasCoordinates() and p.hasTime())
 	in let dp : OrderedSet(SocialResource!Post) = 
-		lp -> select(e | e.isInDistrict(self))
+		lp -> select(e | e.isInDistrictCoords(self))
 	in
 	--- Qui resta hardcoded..
 		if l.literal.toString() = 'Morning' then
@@ -192,8 +218,8 @@ helper context City!District def : countPostTimeSlotDistrict(mr : SocialResource
 
 helper context City!Place def : countPostTimeSlotPlace(mr : SocialResource!SocialMediaResource, l : CitySensing!TimeSlots) : Integer =
 	let dp : OrderedSet(SocialResource!Post) = 
-		mr.posts -> select(p | p.hasPlace() and p.hasTime()) -> select(p | p.hasLocation()) ->
-		select(p | p.isInLocation(self))
+		mr.posts -> select(p | p.hasLocation() and p.hasTime()) -> select(p | p.hasPlace()) ->
+		select(p | p.isInPlaceName(self))
 	in
 	--- Qui resta hardcoded..
 		if l.literal.toString() = 'Morning' then

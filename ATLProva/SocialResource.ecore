@@ -10,7 +10,7 @@
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourcesn" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="place" eType="#//Place"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="location" eType="#//Location"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="text" eType="#//Text" containment="true">
       <eAnnotations source="gmf.compartment"/>
@@ -28,16 +28,17 @@
         eType="#//Author" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" eType="#//Languages"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Place">
+  <eClassifiers xsi:type="ecore:EClass" name="Location">
     <eAnnotations source="gmf.node">
       <details key="label" value="city"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="city" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="address" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="location" eType="#//Location"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="place" eType="#//Place"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="coordinates" eType="#//Coordinates"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="district" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Text">
     <eAnnotations source="gmf.node">
@@ -59,7 +60,7 @@
         containment="true">
       <eAnnotations source="gmf.compartment"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="place" eType="#//Place"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="place" eType="#//Location"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Author">
     <eAnnotations source="gmf.node">
@@ -82,7 +83,7 @@
     <eLiterals name="Food" value="2" literal="Food"/>
     <eLiterals name="Fun" value="3" literal="Fun"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Location">
+  <eClassifiers xsi:type="ecore:EClass" name="Place">
     <eAnnotations source="gmf.node">
       <details key="label" value="name"/>
     </eAnnotations>
