@@ -89,22 +89,26 @@ helper context SocialResource!Post def: hasLocation(): Boolean =
 		false
 	endif;
 
-helper context City!City def: countPostsCity(mr : SocialResource!SocialMediaResource) : Real =
+helper context SocialResource!SocialMediaResource def : postsInCity(city : City!City) : OrderedSet(SocialResource!Post) =
 	--- Posts with coordinates
 	let lp : OrderedSet(SocialResource!Post) = 
-		mr.posts -> select(p | p.hasCoordinates())	
+		self.posts -> select(p | p.hasCoordinates())	
 	in 
 	--- Posts with tags
 	let	tp : OrderedSet(SocialResource!Post) = 
-		mr.posts -> select(p | p.hasText()) -> select(p | p.text.tags.notEmpty())
+		self.posts -> select(p | p.hasText()) -> select(p | p.text.tags.notEmpty())
 	in 
 	--- Posts with city name
 	let cp : OrderedSet(SocialResource!Post) = 
-		mr.posts -> select(p | p.hasCityName())
+		self.posts -> select(p | p.hasCityName())
 	in
 	--- Magari mettere che un tag contiene il nome di una città
-		lp -> select(e | e.isInCityCoords(self)).union(tp -> select(w | w.text.tags.text = self.name))
-		.union(cp -> select(k | k.location.city = self.name)).size();
+		lp -> select(e | e.isInCityCoords(city)).union(tp -> select(w | w.text.tags.text = city.name))
+		.union(cp -> select(k | k.location.city = city.name))
+;
+
+helper context City!City def: countPostsCity(mr : SocialResource!SocialMediaResource) : Real =
+	mr.postsInCity(self).size();
 				
 helper context City!District def: countPostsDistrict(mr : SocialResource!SocialMediaResource) : Real =
 	let lp : OrderedSet(SocialResource!Post) = 
@@ -120,8 +124,13 @@ helper context City!District def: countPostsDistrict(mr : SocialResource!SocialM
 		.union(cp -> select(k | k.location.district = self.name)).size();
 		
 helper context City!Place def: countPostsPlace(mr : SocialResource!SocialMediaResource) : Real =
-	mr.posts -> select(p | p.hasLocation()) -> select(p | p.hasPlace())
-		-> select(e | e.isInPlaceName(self)).size();
+	let np : OrderedSet(SocialResource!Post) =
+		mr.posts -> select(p | p.hasLocation()) -> select(p | p.hasPlace())
+	in 
+	let tp : OrderedSet(SocialResource!Post) =
+		mr.posts -> select(p | p.hasText()) -> select(p | p.text.tags.notEmpty())
+	in
+		np -> select(e | e.isInPlaceName(self)).union(tp -> select(e | e.text.tags.text = self.name)).size();
 
 helper context SocialResource!Post def: hasPicture(): Boolean =
 	if self.pictures -> size() > 0
@@ -131,12 +140,8 @@ helper context SocialResource!Post def: hasPicture(): Boolean =
 		false
 	endif;
 
---- Actually, it's posts with at least 1 picture, not total of pictures
 helper context City!City def: countPicturesCity(mr : SocialResource!SocialMediaResource) : Real =
-	let pp : OrderedSet(SocialResource!Post) = 
-		mr.posts -> select(p | p.hasPicture() and p.hasCoordinates()) --- OR p.place.name = self.name
-	in
-		pp -> select(e | e.isInCityCoords(self)).size();
+	mr.postsInCity(self) -> select(p | p.hasPicture()).pictures.size();
 
 --- Actually, it's posts with at least 1 picture, not total of pictures
 helper context City!District def: countPicturesDistrict(mr : SocialResource!SocialMediaResource) : Real =
@@ -171,10 +176,8 @@ helper context City!Place def : countPostLangPlace(mr : SocialResource!SocialMed
 		-> select(e | e.language.toString() = l.literal.toString()).size();
 
 helper context City!City def : countPostTimeSlotCity(mr : SocialResource!SocialMediaResource, l : CitySensing!TimeSlots) : Integer =
-	let lp : OrderedSet(SocialResource!Post) = 
-		mr.posts -> select(p | p.hasCoordinates() and p.hasTime())
-	in let dp : OrderedSet(SocialResource!Post) = 
-		lp -> select(e | e.isInCityCoords(self))
+	let dp : OrderedSet(SocialResource!Post) = 
+		mr.postsInCity(self) -> select(p | p.hasTime())
 	in
 	--- Qui resta hardcoded..
 		if l.literal.toString() = 'Morning' then
