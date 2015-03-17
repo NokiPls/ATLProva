@@ -66,7 +66,7 @@ helper context SocialResource!Post def: hasText() : Boolean =
 	endif;
 
 helper context SocialResource!Post def: hasCoordinates() : Boolean =
-	if not self.place.coordinates.oclIsUndefined()
+	if not self.location.coordinates.oclIsUndefined()
 	then
 		true
 	else
@@ -174,15 +174,15 @@ helper context City!Place def: countPostsPlace(mr : SocialResource!SocialMediaRe
 	mr.postsInPlace(self).size();
 
 helper context City!City def: countPicturesCity(mr : SocialResource!SocialMediaResource) : Real =
-	mr.postsInCity(self) -> select(p | p.hasPicture()).pictures.size();
+	mr.postsInCity(self) -> select(p | p.hasPicture()) -> collect(p | p.pictures).size();
 
 --- Actually, it's posts with at least 1 picture, not total of pictures
 helper context City!District def: countPicturesDistrict(mr : SocialResource!SocialMediaResource) : Real =
-	mr.postsInDistrict(self) -> select(p | p.hasPicture()).pictures.size();
+	mr.postsInDistrict(self) -> select(p | p.hasPicture()) -> collect(p | p.pictures).size();
 
 --- Same here
 helper context City!Place def: countPicturesPlace(mr : SocialResource!SocialMediaResource) : Real =
-	mr.postsInPlace(self) -> select(p | p.hasPicture()).pictures.size();
+	mr.postsInPlace(self) -> select(p | p.hasPicture()) -> collect(p | p.pictures).size();
 		
 helper context City!City def : countPostLangCity(mr : SocialResource!SocialMediaResource, l : SocialResource!Languages) : Integer =
 	mr.postsInCity(self) -> select(e | e.language.toString() = l.literal.toString()).size();
