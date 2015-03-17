@@ -32,6 +32,14 @@ helper context SocialResource!Post def: hasCityName() : Boolean =
 		false
 	endif;
 
+helper context SocialResource!Post def : hasCategory() : Boolean =
+	if not self.categories.oclIsUndefined()
+	then
+		true
+	else
+		false
+	endif;
+
 helper context SocialResource!Post def: hasDistrictName() : Boolean =
 	if not self.location.district.oclIsUndefined()
 	then
@@ -206,7 +214,17 @@ helper context City!Place def : countPostTimeSlotPlace(mr : SocialResource!Socia
 		l.postsInTimeSlot(dp)
 ;
 
----countPostCategoryCity
+helper context City!City def : countPostCategoryCity(mr : SocialResource!SocialMediaResource, l : CitySensing!Categories) : Integer =
+		mr.postsInCity(self) -> select(p | p.hasCategory()) -> select(p | p.categories.type.toString() = l.literal.toString()).size()
+;
+
+helper context City!District def : countPostCategoryDistrict(mr : SocialResource!SocialMediaResource, l : CitySensing!Categories) : Integer =
+		mr.postsInDistrict(self) -> select(p | p.hasCategory()) -> select(p | p.categories.type.toString() = l.literal.toString()).size()
+;
+
+helper context City!Place def : countPostCategoryPlace(mr : SocialResource!SocialMediaResource, l : CitySensing!Categories) : Integer =
+		mr.postsInPlace(self) -> select(p | p.hasCategory()) -> select(p | p.categories.type.toString() = l.literal.toString()).size()
+;
 
 rule City2MonitoredCity {
 	
@@ -515,12 +533,40 @@ lazy rule Post2CategoriesCountCity {
 		t: CitySensing!CategoriesCount (
 			name <- '#Posts per Category',
 			catNumber <- CitySensing!Categories.eLiterals 
-								-> collect(l | thisModule.Post2MapCategories(s, p, l))
+								-> collect(l | thisModule.Post2MapCategoriesCity(s, p, l))
 		)
 	
 }
 
-lazy rule Post2MapCategories {
+lazy rule Post2CategoriesCountDistrict {
+	
+	from
+		s: City!District,
+		p: SocialResource!SocialMediaResource
+	to
+		t: CitySensing!CategoriesCount (
+			name <- '#Posts per Category',
+			catNumber <- CitySensing!Categories.eLiterals 
+								-> collect(l | thisModule.Post2MapCategoriesDistrict(s, p, l))
+		)
+	
+}
+
+lazy rule Post2CategoriesCountPlace {
+	
+	from
+		s: City!Place,
+		p: SocialResource!SocialMediaResource
+	to
+		t: CitySensing!CategoriesCount (
+			name <- '#Posts per Category',
+			catNumber <- CitySensing!Categories.eLiterals 
+								-> collect(l | thisModule.Post2MapCategoriesPlace(s, p, l))
+		)
+	
+}
+
+lazy rule Post2MapCategoriesCity {
 	
 	from
 		s: City!City,
@@ -534,7 +580,33 @@ lazy rule Post2MapCategories {
 	
 }
 
+lazy rule Post2MapCategoriesDistrict {
+	
+	from
+		s: City!District,
+		p: SocialResource!SocialMediaResource,
+		l: SocialResource!Categories
+	to
+		t: CitySensing!MapCategories (
+				key <- l,
+				value <- s.countPostCategoryDistrict(p, l)
+		)
+	
+}
 
+lazy rule Post2MapCategoriesPlace {
+	
+	from
+		s: City!Place,
+		p: SocialResource!SocialMediaResource,
+		l: SocialResource!Categories
+	to
+		t: CitySensing!MapCategories (
+				key <- l,
+				value <- s.countPostCategoryPlace(p, l)
+		)
+	
+}
 
 
 
