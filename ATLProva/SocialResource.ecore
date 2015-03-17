@@ -60,7 +60,8 @@
         containment="true">
       <eAnnotations source="gmf.compartment"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="place" eType="#//Location"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="place" eType="#//Location"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Author">
     <eAnnotations source="gmf.node">

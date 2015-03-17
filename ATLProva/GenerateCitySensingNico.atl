@@ -205,7 +205,8 @@ helper context City!Place def : countPostTimeSlotPlace(mr : SocialResource!Socia
 	in
 		l.postsInTimeSlot(dp)
 ;
-		
+
+---countPostCategoryCity
 
 rule City2MonitoredCity {
 	
@@ -219,7 +220,7 @@ rule City2MonitoredCity {
 			districts <- s.districts,
 			stats <- Sequence{ thisModule.Post2NumPostsCity(s, p), thisModule.Post2NumPhotoCity(s, p), 
 				thisModule.Post2NumPostLangCity(s, p), thisModule.Post2NumPostTimeSlotCity(s, p),
-				thisModule.Post2CategoriesCount(s, p) }
+				thisModule.Post2CategoriesCountCity(s, p) }
 		)
 	
 }
@@ -505,7 +506,33 @@ lazy rule Post2MapPostLangPlace {
 	
 }
 
---- lazy rule Post2CategoriesCount
+lazy rule Post2CategoriesCountCity {
+	
+	from
+		s: City!City,
+		p: SocialResource!SocialMediaResource
+	to
+		t: CitySensing!CategoriesCount (
+			name <- '#Posts per Category',
+			catNumber <- CitySensing!Categories.eLiterals 
+								-> collect(l | thisModule.Post2MapCategories(s, p, l))
+		)
+	
+}
+
+lazy rule Post2MapCategories {
+	
+	from
+		s: City!City,
+		p: SocialResource!SocialMediaResource,
+		l: SocialResource!Categories
+	to
+		t: CitySensing!MapCategories (
+				key <- l,
+				value <- s.countPostCategoryCity(p, l)
+		)
+	
+}
 
 
 
