@@ -4,13 +4,13 @@
     <location city="Milano" address="Via Giovanni da Procida" district="NordCentro">
       <place name="McDonalds"/>
     </location>
-    <text name="" text="BLABLABLABLABLA">
+    <text text="BLABLABLABLABLA">
       <tags text="@GiovannonaCosciaLunga"/>
       <tags xsi:type="smr:Hashtag" text="#$m€raldina"/>
     </text>
     <pictures name="02908498983dsc">
       <place>
-        <coordinates name="" coordx="1.5" coordy="2.3"/>
+        <coordinates  coordx="1.5" coordy="2.3"/>
       </place>
     </pictures>
     <pictures name="4507278475789478dsc">
@@ -31,7 +31,7 @@
     <author name="Jon Doe" language="English" currentCity="Terni"/>
   </posts>
   <posts id="2" sourcesn="Twitter" time="2015-06-04T01:12:30.000+0200">
-    <text name="" text="BLABLABLABLABLA">
+    <text  text="BLABLABLABLABLA">
       <tags text="@HollyMichaels"/>
       <tags xsi:type="smr:Hashtag" text="#Partyyyyy!!!"/>
       <tags text="@KessidyBanks"/>
@@ -39,19 +39,19 @@
     </text>
     <pictures name="3953973275dsc">
       <place>
-        <coordinates name="" coordx="2.1" coordy="1.6"/>
+        <coordinates  coordx="2.1" coordy="1.6"/>
       </place>
     </pictures>
     <categories type="Fun"/>
     <author name="Mario Lopez" currentCity="Cremona"/>
   </posts>
   <posts id="3" sourcesn="Facebook" time="2012-10-11T11:24:00.000+0200" language="English">
-    <text name="" text="BLABLABLABLABLA"/>
+    <text  text="BLABLABLABLABLA"/>
     <categories type="Food"/>
     <author name="Gianmarco Marcello" language="English" currentCity="Milano"/>
   </posts>
   <posts id="4" sourcesn="Facebook" time="2012-10-11T11:24:00.000+0200" language="English">
-    <text name="" text="BLABLABLABLABLA"/>
+    <text  text="BLABLABLABLABLA"/>
     <categories/>
     <author name="Totò Riina" language="Spanish" currentCity="Milano"/>
   </posts>
@@ -64,7 +64,7 @@
     <author name="Matteo Renzi" language="English" currentCity="Firenze"/>
   </posts>
   <posts id="6" sourcesn="Instagram" time="2013-08-10T10:17:12.000+0200" language="English">
-    <text name="" text="BLABLABLABLABLA">
+    <text  text="BLABLABLABLABLA">
       <tags xsi:type="smr:Hashtag" text="#Milano"/>
       <tags xsi:type="smr:Hashtag" text="#Amici"/>
       <tags xsi:type="smr:Hashtag" text="#Estate"/>
@@ -74,12 +74,12 @@
     <author name="Andrea Besazzi" language="English" currentCity="Milano"/>
   </posts>
   <posts id="7" sourcesn="Twitter" time="2015-11-17T23:00:30.000+0100">
-    <text name="" text="BLABLABLABLABLA">
+    <text  text="BLABLABLABLABLA">
       <tags xsi:type="smr:Hashtag" text="#CatOnTheTable"/>
     </text>
     <pictures name="3953973275dsc">
       <place>
-        <coordinates name="" coordx="1.4" coordy="0.6"/>
+        <coordinates  coordx="1.4" coordy="0.6"/>
       </place>
     </pictures>
     <categories type="Fun"/>
@@ -87,7 +87,7 @@
   </posts>
   <posts id="100" sourcesn="Facebook" time="2014-03-16T06:11:58.012+0100" language="English">
     <location city="Milano" address="Viale Famagosta" district="SudOvest"/>
-    <text name="" text="Gnam gnam che buono!">
+    <text  text="Gnam gnam che buono!">
       <tags text="SudOvest"/>
       <tags xsi:type="smr:Hashtag" text="#pizza #with #friends"/>
       <tags xsi:type="smr:Mention" text="@Pierino"/>
@@ -101,7 +101,7 @@
     <author name="Osvaldo Paniccia" language="English" currentCity="Reggio Calabria"/>
   </posts>
   <posts id="101" sourcesn="Twitter" time="2014-01-14T15:21:33.758+0100" language="English">
-    <text name="" text="Eccomi">
+    <text  text="Eccomi">
       <tags text="SudCentro"/>
       <tags xsi:type="smr:Hashtag" text="#spaccotutto"/>
     </text>
@@ -121,7 +121,7 @@
   </posts>
   <posts id="103" sourcesn="Twitter" time="2015-02-01T20:00:52.000+0100" language="LassaSta">
     <location city="Milano">
-      <coordinates name="" coordx="0.5" coordy="0.5"/>
+      <coordinates  coordx="0.5" coordy="0.5"/>
     </location>
     <pictures name="IMG_02030405">
       <tags xsi:type="smr:Hashtag" text="#pettinero"/>
@@ -167,7 +167,7 @@
     <author name="Giancarlo Magalli" language="LassaSta" currentCity="San Martino Siccomario"/>
   </posts>
   <posts id="109" sourcesn="Facebook" time="2014-06-01T13:06:48.000+0200" language="English">
-    <text name="" text="Girls just wanna have fun!">
+    <text  text="Girls just wanna have fun!">
       <tags xsi:type="smr:Hashtag" text="#fun #girls"/>
       <tags xsi:type="smr:Mention" text="@ChristaMiller @ElliotReid"/>
     </text>

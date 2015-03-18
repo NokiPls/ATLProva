@@ -49,8 +49,8 @@ helper context SocialResource!Post def: hasDistrictName() : Boolean =
 	endif;
 
 helper context SocialResource!Post def: isInPlaceName(d : City!Place) : Boolean =
-	--- If the place's name is in the location or it's in the tags
-	if self.location.place.name = d.name or self.text.tags -> select(p | p.text = d.name).size() > 0
+	--- If the place's name is in the location 
+	if self.location.place.name = d.name
 	then
 		true
 	else
@@ -108,7 +108,7 @@ helper context SocialResource!Post def: hasPicture(): Boolean =
 helper context SocialResource!SocialMediaResource def : postsInCity(city : City!City) : OrderedSet(SocialResource!Post) =
 	--- Posts with coordinates
 	let lp : OrderedSet(SocialResource!Post) = 
-		self.posts -> select(p | p.hasCoordinates())	
+		self.posts -> select(p | p.hasLocation()) -> select(p | p.hasCoordinates())	
 	in 
 	--- Posts with tags
 	let	tp : OrderedSet(SocialResource!Post) = 
@@ -116,24 +116,24 @@ helper context SocialResource!SocialMediaResource def : postsInCity(city : City!
 	in 
 	--- Posts with city name
 	let cp : OrderedSet(SocialResource!Post) = 
-		self.posts -> select(p | p.hasCityName())
+		self.posts -> select(p | p.hasLocation()) -> select(p | p.hasCityName())
 	in
 	--- Magari mettere che un tag contiene il nome di una città
-		lp -> select(e | e.isInCityCoords(city)).union(tp -> select(w | w.text.tags.text = city.name))
+		lp -> select(e | e.isInCityCoords(city)).union(tp -> select(w | w.text.tags -> select(t | t.text = city.name).size() > 0))
 		.union(cp -> select(k | k.location.city = city.name))
 ;
 
 helper context SocialResource!SocialMediaResource def : postsInDistrict(district : City!District) : OrderedSet(SocialResource!Post) =
 	let lp : OrderedSet(SocialResource!Post) = 
-		self.posts -> select(p | p.hasCoordinates())
+		self.posts -> select(p | p.hasLocation()) -> select(p | p.hasCoordinates())
 	in 
 	let tp : OrderedSet(SocialResource!Post) = 
 		self.posts -> select(p | p.hasText()) -> select(p | p.text.tags.notEmpty()) 
 	in
 	let cp : OrderedSet(SocialResource!Post) = 
-		self.posts -> select(p | p.hasDistrictName())
+		self.posts -> select(p | p.hasLocation()) -> select(p | p.hasDistrictName())
 	in
-		lp -> select(e | e.isInDistrictCoords(district)).union(tp -> select(w | w.text.tags.text = district.name))
+		lp -> select(e | e.isInDistrictCoords(district)).union(tp -> select(w | w.text.tags -> select(t | t.text = district.name).size() > 0))
 		.union(cp -> select(k | k.location.district = district.name))
 ;
 		
@@ -144,7 +144,7 @@ helper context SocialResource!SocialMediaResource def : postsInPlace(place : Cit
 	let tp : OrderedSet(SocialResource!Post) =
 		self.posts -> select(p | p.hasText()) -> select(p | p.text.tags.notEmpty())
 	in
-		np -> select(e | e.isInPlaceName(place)).union(tp -> select(e | e.text.tags.text = place.name))
+		np -> select(e | e.isInPlaceName(place)).union(tp -> select(w | w.text.tags -> select(t | t.text = place.name).size() > 0))
 ;
 		
 helper context SocialResource!Post def : isInTimeSlot(l : CitySensing!TimeSlots) : Boolean =
