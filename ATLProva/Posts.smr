@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smr:SocialMediaResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smr="http://smr/1.0">
+  <posts sourcesn="Facebook" time="2013-04-24T01:13:00.000+0200">
+    <location city="Milano" address="Via Giovanni da Procida" district="NordCentro">
+      <place name="McDonalds"/>
+    </location>
+    <text name="" text="BLABLABLABLABLA">
+      <tags text="@GiovannonaCosciaLunga"/>
+      <tags xsi:type="smr:Hashtag" text="#$m€raldina"/>
+    </text>
+    <pictures name="02908498983dsc">
+      <place>
+        <coordinates name="" coordx="1.5" coordy="2.3"/>
+      </place>
+    </pictures>
+    <pictures name="4507278475789478dsc">
+      <place>
+        <coordinates coordx="1.5" coordy="2.3"/>
+      </place>
+    </pictures>
+    <categories/>
+    <categories type="Food"/>
+    <author name="Giovanni Muciaccia" currentCity="Reggio di Calabria"/>
+  </posts>
+  <posts id="1" sourcesn="4Square" time="1999-12-24T00:16:00.000+0100" language="English">
+    <location city="Milano" address="Via Previati" district="">
+      <place name="Duomo"/>
+      <coordinates coordx="2.3" coordy="2.4"/>
+    </location>
+    <categories/>
+    <author name="Jon Doe" language="English" currentCity="Terni"/>
+  </posts>
+  <posts id="2" sourcesn="Twitter" time="2015-06-04T01:12:30.000+0200">
+    <text name="" text="BLABLABLABLABLA">
+      <tags text="@HollyMichaels"/>
+      <tags xsi:type="smr:Hashtag" text="#Partyyyyy!!!"/>
+      <tags text="@KessidyBanks"/>
+      <tags xsi:type="smr:Hashtag" text="#Milano"/>
+    </text>
+    <pictures name="3953973275dsc">
+      <place>
+        <coordinates name="" coordx="2.1" coordy="1.6"/>
+      </place>
+    </pictures>
+    <categories type="Fun"/>
+    <author name="Mario Lopez" currentCity="Cremona"/>
+  </posts>
+  <posts id="3" sourcesn="Facebook" time="2012-10-11T11:24:00.000+0200" language="English">
+    <text name="" text="BLABLABLABLABLA"/>
+    <categories type="Food"/>
+    <author name="Gianmarco Marcello" language="English" currentCity="Milano"/>
+  </posts>
+  <posts id="4" sourcesn="Facebook" time="2012-10-11T11:24:00.000+0200" language="English">
+    <text name="" text="BLABLABLABLABLA"/>
+    <categories/>
+    <author name="Totò Riina" language="Spanish" currentCity="Milano"/>
+  </posts>
+  <posts id="5" sourcesn="4Square" time="2014-07-24T01:16:45.000+0200" language="English">
+    <location city="Milano" address="Via Arnaboldi" district="CentroOvest">
+      <place name="Feltrinelli"/>
+      <coordinates coordx="0.7" coordy="1.6"/>
+    </location>
+    <categories/>
+    <author name="Matteo Renzi" language="English" currentCity="Firenze"/>
+  </posts>
+  <posts id="6" sourcesn="Instagram" time="2013-08-10T10:17:12.000+0200" language="English">
+    <text name="" text="BLABLABLABLABLA">
+      <tags xsi:type="smr:Hashtag" text="#Milano"/>
+      <tags xsi:type="smr:Hashtag" text="#Amici"/>
+      <tags xsi:type="smr:Hashtag" text="#Estate"/>
+    </text>
+    <pictures name="28964164376dsc"/>
+    <categories type="Fun"/>
+    <author name="Andrea Besazzi" language="English" currentCity="Milano"/>
+  </posts>
+  <posts id="7" sourcesn="Twitter" time="2015-11-17T23:00:30.000+0100">
+    <text name="" text="BLABLABLABLABLA">
+      <tags xsi:type="smr:Hashtag" text="#CatOnTheTable"/>
+    </text>
+    <pictures name="3953973275dsc">
+      <place>
+        <coordinates name="" coordx="1.4" coordy="0.6"/>
+      </place>
+    </pictures>
+    <categories type="Fun"/>
+    <author name="Bruce Lee" currentCity="Bari"/>
+  </posts>
+  <posts id="100" sourcesn="Facebook" time="2014-03-16T06:11:58.012+0100" language="English">
+    <location city="Milano" address="Viale Famagosta" district="SudOvest"/>
+    <text name="" text="Gnam gnam che buono!">
+      <tags text="SudOvest"/>
+      <tags xsi:type="smr:Hashtag" text="#pizza #with #friends"/>
+      <tags xsi:type="smr:Mention" text="@Pierino"/>
+    </text>
+    <pictures name="DCIM_034529">
+      <place city="Milano" address="Viale Famagosta" district="SudOvest">
+        <place name="Forno Ambrosiano"/>
+      </place>
+    </pictures>
+    <categories type="Food"/>
+    <author name="Osvaldo Paniccia" language="English" currentCity="Reggio Calabria"/>
+  </posts>
+  <posts id="101" sourcesn="Twitter" time="2014-01-14T15:21:33.758+0100" language="English">
+    <text name="" text="Eccomi">
+      <tags text="SudCentro"/>
+      <tags xsi:type="smr:Hashtag" text="#spaccotutto"/>
+    </text>
+    <pictures name="DCIM_854745">
+      <place>
+        <coordinates coordx="1.5" coordy="2.5"/>
+      </place>
+    </pictures>
+    <categories type="Fun"/>
+    <author name="Rocco Siffredi" language="English" currentCity="Ortona"/>
+  </posts>
+  <posts id="102" sourcesn="Facebook" time="2014-03-10T22:24:21.000+0100" language="English">
+    <text text="Duomo is cool">
+      <tags text="CentroCentro"/>
+    </text>
+    <author name="Shaquille O'Neal" language="English" currentCity="Atlanta"/>
+  </posts>
+  <posts id="103" sourcesn="Twitter" time="2015-02-01T20:00:52.000+0100" language="LassaSta">
+    <location city="Milano">
+      <coordinates name="" coordx="0.5" coordy="0.5"/>
+    </location>
+    <pictures name="IMG_02030405">
+      <tags xsi:type="smr:Hashtag" text="#pettinero"/>
+    </pictures>
+    <author name="Gato Lopez" currentCity=""/>
+  </posts>
+  <posts id="104" sourcesn="Foursquare" time="2015-01-20T03:48:31.000+0100">
+    <location city="Milano" address="Piazza Leonardo da Vinci" district="NordEst">
+      <place name="Politecnico di Milano"/>
+      <coordinates coordx="2.5" coordy="2.5"/>
+    </location>
+    <author name="Giovanni Azzone" language="English"/>
+  </posts>
+  <posts id="105" sourcesn="Instagram" time="2014-12-10T03:23:25.000+0100" language="English">
+    <pictures name="INST_8588588">
+      <tags xsi:type="smr:Hashtag" text="#luca #toni #numero #uno"/>
+      <tags xsi:type="smr:Mention" text=" @LucaToni"/>
+    </pictures>
+    <categories/>
+    <author name="Matze Knop"/>
+  </posts>
+  <posts id="106" sourcesn="Facebook" time="2014-06-21T12:03:35.000+0200" language="English">
+    <location district="">
+      <coordinates coordx="2.5" coordy="2.5"/>
+    </location>
+    <text text="Si a Valsoia!">
+      <tags xsi:type="smr:Hashtag" text="#cibosano"/>
+    </text>
+    <categories type="Food"/>
+    <author name="Fernando Alonso" currentCity="Bilbao"/>
+  </posts>
+  <posts id="107" sourcesn="Foursquare" time="2014-08-25T12:16:13.000+0200">
+    <location city="Milano" address="Piazza Duomo" district="CentroCentro"/>
+    <author name="Carlo Cracco" language="English" currentCity="Milano"/>
+  </posts>
+  <posts id="108" sourcesn="Twitter" time="2014-05-24T11:52:25.000+0200" language="LassaSta">
+    <text text="Take it easy"/>
+    <pictures name="DSC_12579642">
+      <tags text="NordEst"/>
+      <tags xsi:type="smr:Mention" text="@GrandePuffo"/>
+    </pictures>
+    <categories/>
+    <author name="Giancarlo Magalli" language="LassaSta" currentCity="San Martino Siccomario"/>
+  </posts>
+  <posts id="109" sourcesn="Facebook" time="2014-06-01T13:06:48.000+0200" language="English">
+    <text name="" text="Girls just wanna have fun!">
+      <tags xsi:type="smr:Hashtag" text="#fun #girls"/>
+      <tags xsi:type="smr:Mention" text="@ChristaMiller @ElliotReid"/>
+    </text>
+    <categories type="Fun"/>
+    <author name="Molly Clock" language="English" currentCity="Los Angeles"/>
+  </posts>
+  <posts id="110" sourcesn="Foursquare" time="2015-02-13T21:36:54.000+0100">
+    <location city="Milano" address="Via Valtellina" district="NordCentro">
+      <place name="Alcatraz"/>
+    </location>
+    <author name="David Guetta" language="English"/>
+  </posts>
+</smr:SocialMediaResource>
