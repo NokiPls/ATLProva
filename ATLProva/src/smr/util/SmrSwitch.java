@@ -72,9 +72,9 @@ public class SmrSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SmrPackage.PLACE: {
-				Place place = (Place)theEObject;
-				T result = casePlace(place);
+			case SmrPackage.LOCATION: {
+				Location location = (Location)theEObject;
+				T result = caseLocation(location);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -102,9 +102,9 @@ public class SmrSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SmrPackage.LOCATION: {
-				Location location = (Location)theEObject;
-				T result = caseLocation(location);
+			case SmrPackage.PLACE: {
+				Place place = (Place)theEObject;
+				T result = casePlace(place);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

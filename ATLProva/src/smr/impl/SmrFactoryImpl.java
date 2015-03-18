@@ -58,12 +58,12 @@ public class SmrFactoryImpl extends EFactoryImpl implements SmrFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case SmrPackage.POST: return createPost();
-			case SmrPackage.PLACE: return createPlace();
+			case SmrPackage.LOCATION: return createLocation();
 			case SmrPackage.TEXT: return createText();
 			case SmrPackage.PICTURE: return createPicture();
 			case SmrPackage.AUTHOR: return createAuthor();
 			case SmrPackage.CATEGORY: return createCategory();
-			case SmrPackage.LOCATION: return createLocation();
+			case SmrPackage.PLACE: return createPlace();
 			case SmrPackage.COORDINATES: return createCoordinates();
 			case SmrPackage.HASHTAG: return createHashtag();
 			case SmrPackage.TAG: return createTag();

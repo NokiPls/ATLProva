@@ -19,16 +19,14 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum Categories implements Enumerator {
 	/**
-	 * The '<em><b>Fun</b></em>' literal object.
+	 * The '<em><b>Culture</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FUN_VALUE
+	 * @see #CULTURE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FUN(0, "Fun", "Fun"),
-
-	/**
+	CULTURE(1, "Culture", "Culture"), /**
 	 * The '<em><b>Food</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -36,22 +34,30 @@ public enum Categories implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FOOD(1, "Food", "Food");
-
-	/**
-	 * The '<em><b>Fun</b></em>' literal value.
+	FOOD(2, "Food", "Food"), /**
+	 * The '<em><b>Fun</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Fun</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FUN
-	 * @model name="Fun"
+	 * @see #FUN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FUN_VALUE = 0;
+	FUN(3, "Fun", "Fun");
+
+	/**
+	 * The '<em><b>Culture</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Culture</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CULTURE
+	 * @model name="Culture"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CULTURE_VALUE = 1;
 
 	/**
 	 * The '<em><b>Food</b></em>' literal value.
@@ -66,7 +72,22 @@ public enum Categories implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FOOD_VALUE = 1;
+	public static final int FOOD_VALUE = 2;
+
+	/**
+	 * The '<em><b>Fun</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Fun</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FUN
+	 * @model name="Fun"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FUN_VALUE = 3;
 
 	/**
 	 * An array of all the '<em><b>Categories</b></em>' enumerators.
@@ -76,8 +97,9 @@ public enum Categories implements Enumerator {
 	 */
 	private static final Categories[] VALUES_ARRAY =
 		new Categories[] {
-			FUN,
+			CULTURE,
 			FOOD,
+			FUN,
 		};
 
 	/**
@@ -128,8 +150,9 @@ public enum Categories implements Enumerator {
 	 */
 	public static Categories get(int value) {
 		switch (value) {
-			case FUN_VALUE: return FUN;
+			case CULTURE_VALUE: return CULTURE;
 			case FOOD_VALUE: return FOOD;
+			case FUN_VALUE: return FUN;
 		}
 		return null;
 	}

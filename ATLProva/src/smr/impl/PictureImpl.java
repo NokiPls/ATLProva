@@ -3,23 +3,17 @@
 package smr.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
+import smr.Location;
 import smr.Picture;
-import smr.Place;
 import smr.SmrPackage;
 import smr.Tag;
 
@@ -70,14 +64,14 @@ public class PictureImpl extends MinimalEObjectImpl.Container implements Picture
 	protected EList<Tag> tags;
 
 	/**
-	 * The cached value of the '{@link #getPlace() <em>Place</em>}' reference.
+	 * The cached value of the '{@link #getPlace() <em>Place</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPlace()
 	 * @generated
 	 * @ordered
 	 */
-	protected Place place;
+	protected Location place;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -136,15 +130,7 @@ public class PictureImpl extends MinimalEObjectImpl.Container implements Picture
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Place getPlace() {
-		if (place != null && place.eIsProxy()) {
-			InternalEObject oldPlace = (InternalEObject)place;
-			place = (Place)eResolveProxy(oldPlace);
-			if (place != oldPlace) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SmrPackage.PICTURE__PLACE, oldPlace, place));
-			}
-		}
+	public Location getPlace() {
 		return place;
 	}
 
@@ -153,20 +139,33 @@ public class PictureImpl extends MinimalEObjectImpl.Container implements Picture
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Place basicGetPlace() {
-		return place;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPlace(Place newPlace) {
-		Place oldPlace = place;
+	public NotificationChain basicSetPlace(Location newPlace, NotificationChain msgs) {
+		Location oldPlace = place;
 		place = newPlace;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SmrPackage.PICTURE__PLACE, oldPlace, place));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SmrPackage.PICTURE__PLACE, oldPlace, newPlace);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPlace(Location newPlace) {
+		if (newPlace != place) {
+			NotificationChain msgs = null;
+			if (place != null)
+				msgs = ((InternalEObject)place).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SmrPackage.PICTURE__PLACE, null, msgs);
+			if (newPlace != null)
+				msgs = ((InternalEObject)newPlace).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SmrPackage.PICTURE__PLACE, null, msgs);
+			msgs = basicSetPlace(newPlace, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SmrPackage.PICTURE__PLACE, newPlace, newPlace));
 	}
 
 	/**
@@ -179,6 +178,8 @@ public class PictureImpl extends MinimalEObjectImpl.Container implements Picture
 		switch (featureID) {
 			case SmrPackage.PICTURE__TAGS:
 				return ((InternalEList<?>)getTags()).basicRemove(otherEnd, msgs);
+			case SmrPackage.PICTURE__PLACE:
+				return basicSetPlace(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -196,8 +197,7 @@ public class PictureImpl extends MinimalEObjectImpl.Container implements Picture
 			case SmrPackage.PICTURE__TAGS:
 				return getTags();
 			case SmrPackage.PICTURE__PLACE:
-				if (resolve) return getPlace();
-				return basicGetPlace();
+				return getPlace();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -219,7 +219,7 @@ public class PictureImpl extends MinimalEObjectImpl.Container implements Picture
 				getTags().addAll((Collection<? extends Tag>)newValue);
 				return;
 			case SmrPackage.PICTURE__PLACE:
-				setPlace((Place)newValue);
+				setPlace((Location)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -240,7 +240,7 @@ public class PictureImpl extends MinimalEObjectImpl.Container implements Picture
 				getTags().clear();
 				return;
 			case SmrPackage.PICTURE__PLACE:
-				setPlace((Place)null);
+				setPlace((Location)null);
 				return;
 		}
 		super.eUnset(featureID);

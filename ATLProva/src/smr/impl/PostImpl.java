@@ -4,26 +4,20 @@ package smr.impl;
 
 import java.util.Collection;
 import java.util.Date;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import smr.Author;
 import smr.Category;
 import smr.Languages;
+import smr.Location;
 import smr.Picture;
-import smr.Place;
 import smr.Post;
 import smr.SmrPackage;
 import smr.Text;
@@ -37,7 +31,7 @@ import smr.Text;
  * <ul>
  *   <li>{@link smr.impl.PostImpl#getId <em>Id</em>}</li>
  *   <li>{@link smr.impl.PostImpl#getSourcesn <em>Sourcesn</em>}</li>
- *   <li>{@link smr.impl.PostImpl#getPlace <em>Place</em>}</li>
+ *   <li>{@link smr.impl.PostImpl#getLocation <em>Location</em>}</li>
  *   <li>{@link smr.impl.PostImpl#getText <em>Text</em>}</li>
  *   <li>{@link smr.impl.PostImpl#getPictures <em>Pictures</em>}</li>
  *   <li>{@link smr.impl.PostImpl#getCategories <em>Categories</em>}</li>
@@ -91,14 +85,14 @@ public class PostImpl extends MinimalEObjectImpl.Container implements Post {
 	protected String sourcesn = SOURCESN_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getPlace() <em>Place</em>}' containment reference.
+	 * The cached value of the '{@link #getLocation() <em>Location</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPlace()
+	 * @see #getLocation()
 	 * @generated
 	 * @ordered
 	 */
-	protected Place place;
+	protected Location location;
 
 	/**
 	 * The cached value of the '{@link #getText() <em>Text</em>}' containment reference.
@@ -168,7 +162,7 @@ public class PostImpl extends MinimalEObjectImpl.Container implements Post {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Languages LANGUAGE_EDEFAULT = Languages.ENGLISH;
+	protected static final Languages LANGUAGE_EDEFAULT = Languages.SPANISH;
 
 	/**
 	 * The cached value of the '{@link #getLanguage() <em>Language</em>}' attribute.
@@ -246,8 +240,8 @@ public class PostImpl extends MinimalEObjectImpl.Container implements Post {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Place getPlace() {
-		return place;
+	public Location getLocation() {
+		return location;
 	}
 
 	/**
@@ -255,11 +249,11 @@ public class PostImpl extends MinimalEObjectImpl.Container implements Post {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPlace(Place newPlace, NotificationChain msgs) {
-		Place oldPlace = place;
-		place = newPlace;
+	public NotificationChain basicSetLocation(Location newLocation, NotificationChain msgs) {
+		Location oldLocation = location;
+		location = newLocation;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SmrPackage.POST__PLACE, oldPlace, newPlace);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SmrPackage.POST__LOCATION, oldLocation, newLocation);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -270,18 +264,18 @@ public class PostImpl extends MinimalEObjectImpl.Container implements Post {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPlace(Place newPlace) {
-		if (newPlace != place) {
+	public void setLocation(Location newLocation) {
+		if (newLocation != location) {
 			NotificationChain msgs = null;
-			if (place != null)
-				msgs = ((InternalEObject)place).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SmrPackage.POST__PLACE, null, msgs);
-			if (newPlace != null)
-				msgs = ((InternalEObject)newPlace).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SmrPackage.POST__PLACE, null, msgs);
-			msgs = basicSetPlace(newPlace, msgs);
+			if (location != null)
+				msgs = ((InternalEObject)location).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SmrPackage.POST__LOCATION, null, msgs);
+			if (newLocation != null)
+				msgs = ((InternalEObject)newLocation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SmrPackage.POST__LOCATION, null, msgs);
+			msgs = basicSetLocation(newLocation, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SmrPackage.POST__PLACE, newPlace, newPlace));
+			eNotify(new ENotificationImpl(this, Notification.SET, SmrPackage.POST__LOCATION, newLocation, newLocation));
 	}
 
 	/**
@@ -444,8 +438,8 @@ public class PostImpl extends MinimalEObjectImpl.Container implements Post {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SmrPackage.POST__PLACE:
-				return basicSetPlace(null, msgs);
+			case SmrPackage.POST__LOCATION:
+				return basicSetLocation(null, msgs);
 			case SmrPackage.POST__TEXT:
 				return basicSetText(null, msgs);
 			case SmrPackage.POST__PICTURES:
@@ -470,8 +464,8 @@ public class PostImpl extends MinimalEObjectImpl.Container implements Post {
 				return getId();
 			case SmrPackage.POST__SOURCESN:
 				return getSourcesn();
-			case SmrPackage.POST__PLACE:
-				return getPlace();
+			case SmrPackage.POST__LOCATION:
+				return getLocation();
 			case SmrPackage.POST__TEXT:
 				return getText();
 			case SmrPackage.POST__PICTURES:
@@ -503,8 +497,8 @@ public class PostImpl extends MinimalEObjectImpl.Container implements Post {
 			case SmrPackage.POST__SOURCESN:
 				setSourcesn((String)newValue);
 				return;
-			case SmrPackage.POST__PLACE:
-				setPlace((Place)newValue);
+			case SmrPackage.POST__LOCATION:
+				setLocation((Location)newValue);
 				return;
 			case SmrPackage.POST__TEXT:
 				setText((Text)newValue);
@@ -544,8 +538,8 @@ public class PostImpl extends MinimalEObjectImpl.Container implements Post {
 			case SmrPackage.POST__SOURCESN:
 				setSourcesn(SOURCESN_EDEFAULT);
 				return;
-			case SmrPackage.POST__PLACE:
-				setPlace((Place)null);
+			case SmrPackage.POST__LOCATION:
+				setLocation((Location)null);
 				return;
 			case SmrPackage.POST__TEXT:
 				setText((Text)null);
@@ -581,8 +575,8 @@ public class PostImpl extends MinimalEObjectImpl.Container implements Post {
 				return id != ID_EDEFAULT;
 			case SmrPackage.POST__SOURCESN:
 				return SOURCESN_EDEFAULT == null ? sourcesn != null : !SOURCESN_EDEFAULT.equals(sourcesn);
-			case SmrPackage.POST__PLACE:
-				return place != null;
+			case SmrPackage.POST__LOCATION:
+				return location != null;
 			case SmrPackage.POST__TEXT:
 				return text != null;
 			case SmrPackage.POST__PICTURES:

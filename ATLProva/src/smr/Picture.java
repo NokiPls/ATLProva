@@ -68,29 +68,29 @@ public interface Picture extends EObject {
 	EList<Tag> getTags();
 
 	/**
-	 * Returns the value of the '<em><b>Place</b></em>' reference.
+	 * Returns the value of the '<em><b>Place</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Place</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Place</em>' reference.
-	 * @see #setPlace(Place)
+	 * @return the value of the '<em>Place</em>' containment reference.
+	 * @see #setPlace(Location)
 	 * @see smr.SmrPackage#getPicture_Place()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
-	Place getPlace();
+	Location getPlace();
 
 	/**
-	 * Sets the value of the '{@link smr.Picture#getPlace <em>Place</em>}' reference.
+	 * Sets the value of the '{@link smr.Picture#getPlace <em>Place</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Place</em>' reference.
+	 * @param value the new value of the '<em>Place</em>' containment reference.
 	 * @see #getPlace()
 	 * @generated
 	 */
-	void setPlace(Place value);
+	void setPlace(Location value);
 
 } // Picture

@@ -225,7 +225,7 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPost_Place() {
+	public EReference getPost_Location() {
 		return (EReference)postEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -297,35 +297,8 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlace_City() {
+	public EAttribute getPlace_Name() {
 		return (EAttribute)placeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getPlace_Address() {
-		return (EAttribute)placeEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPlace_Location() {
-		return (EReference)placeEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPlace_Coordinates() {
-		return (EReference)placeEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -450,17 +423,8 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getCategory_Name() {
-		return (EAttribute)categoryEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getCategory_Type() {
-		return (EAttribute)categoryEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)categoryEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -477,8 +441,44 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLocation_Name() {
+	public EAttribute getLocation_City() {
 		return (EAttribute)locationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLocation_Address() {
+		return (EAttribute)locationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLocation_Place() {
+		return (EReference)locationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLocation_Coordinates() {
+		return (EReference)locationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLocation_District() {
+		return (EAttribute)locationEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -629,7 +629,7 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 		postEClass = createEClass(POST);
 		createEAttribute(postEClass, POST__ID);
 		createEAttribute(postEClass, POST__SOURCESN);
-		createEReference(postEClass, POST__PLACE);
+		createEReference(postEClass, POST__LOCATION);
 		createEReference(postEClass, POST__TEXT);
 		createEReference(postEClass, POST__PICTURES);
 		createEReference(postEClass, POST__CATEGORIES);
@@ -637,11 +637,12 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 		createEReference(postEClass, POST__AUTHOR);
 		createEAttribute(postEClass, POST__LANGUAGE);
 
-		placeEClass = createEClass(PLACE);
-		createEAttribute(placeEClass, PLACE__CITY);
-		createEAttribute(placeEClass, PLACE__ADDRESS);
-		createEReference(placeEClass, PLACE__LOCATION);
-		createEReference(placeEClass, PLACE__COORDINATES);
+		locationEClass = createEClass(LOCATION);
+		createEAttribute(locationEClass, LOCATION__CITY);
+		createEAttribute(locationEClass, LOCATION__ADDRESS);
+		createEReference(locationEClass, LOCATION__PLACE);
+		createEReference(locationEClass, LOCATION__COORDINATES);
+		createEAttribute(locationEClass, LOCATION__DISTRICT);
 
 		textEClass = createEClass(TEXT);
 		createEAttribute(textEClass, TEXT__NAME);
@@ -659,11 +660,10 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 		createEAttribute(authorEClass, AUTHOR__CURRENT_CITY);
 
 		categoryEClass = createEClass(CATEGORY);
-		createEAttribute(categoryEClass, CATEGORY__NAME);
 		createEAttribute(categoryEClass, CATEGORY__TYPE);
 
-		locationEClass = createEClass(LOCATION);
-		createEAttribute(locationEClass, LOCATION__NAME);
+		placeEClass = createEClass(PLACE);
+		createEAttribute(placeEClass, PLACE__NAME);
 
 		coordinatesEClass = createEClass(COORDINATES);
 		createEAttribute(coordinatesEClass, COORDINATES__NAME);
@@ -721,19 +721,20 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 		initEClass(postEClass, Post.class, "Post", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPost_Id(), ecorePackage.getELong(), "id", null, 1, 1, Post.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPost_Sourcesn(), ecorePackage.getEString(), "sourcesn", null, 1, 1, Post.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPost_Place(), this.getPlace(), null, "place", null, 0, 1, Post.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPost_Location(), this.getLocation(), null, "location", null, 0, 1, Post.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPost_Text(), this.getText(), null, "text", null, 0, 1, Post.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPost_Pictures(), this.getPicture(), null, "pictures", null, 0, -1, Post.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPost_Categories(), this.getCategory(), null, "categories", null, 1, -1, Post.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPost_Categories(), this.getCategory(), null, "categories", null, 0, -1, Post.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPost_Time(), ecorePackage.getEDate(), "time", null, 0, 1, Post.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPost_Author(), this.getAuthor(), null, "author", null, 1, 1, Post.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPost_Language(), this.getLanguages(), "language", null, 0, 1, Post.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(placeEClass, Place.class, "Place", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPlace_City(), ecorePackage.getEString(), "city", null, 0, 1, Place.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPlace_Address(), ecorePackage.getEString(), "address", null, 0, 1, Place.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPlace_Location(), this.getLocation(), null, "location", null, 0, 1, Place.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPlace_Coordinates(), this.getCoordinates(), null, "coordinates", null, 0, 1, Place.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(locationEClass, Location.class, "Location", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLocation_City(), ecorePackage.getEString(), "city", null, 0, 1, Location.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLocation_Address(), ecorePackage.getEString(), "address", null, 0, 1, Location.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLocation_Place(), this.getPlace(), null, "place", null, 0, 1, Location.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLocation_Coordinates(), this.getCoordinates(), null, "coordinates", null, 0, 1, Location.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLocation_District(), ecorePackage.getEString(), "district", null, 0, 1, Location.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(textEClass, Text.class, "Text", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getText_Name(), ecorePackage.getEString(), "name", null, 0, 1, Text.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -743,7 +744,7 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 		initEClass(pictureEClass, Picture.class, "Picture", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPicture_Name(), ecorePackage.getEString(), "name", null, 0, 1, Picture.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPicture_Tags(), this.getTag(), null, "tags", null, 0, -1, Picture.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPicture_Place(), this.getPlace(), null, "place", null, 0, 1, Picture.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPicture_Place(), this.getLocation(), null, "place", null, 0, 1, Picture.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(authorEClass, Author.class, "Author", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAuthor_Name(), ecorePackage.getEString(), "name", null, 0, 1, Author.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -751,11 +752,10 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 		initEAttribute(getAuthor_CurrentCity(), ecorePackage.getEString(), "currentCity", null, 0, 1, Author.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(categoryEClass, Category.class, "Category", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCategory_Name(), ecorePackage.getEString(), "name", null, 0, 1, Category.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCategory_Type(), this.getCategories(), "type", null, 1, 1, Category.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(locationEClass, Location.class, "Location", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLocation_Name(), ecorePackage.getEString(), "name", null, 1, 1, Location.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(placeEClass, Place.class, "Place", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPlace_Name(), ecorePackage.getEString(), "name", null, 1, 1, Place.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(coordinatesEClass, Coordinates.class, "Coordinates", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCoordinates_Name(), ecorePackage.getEString(), "name", null, 0, 1, Coordinates.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -775,12 +775,13 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 
 		// Initialize enums and add enum literals
 		initEEnum(categoriesEEnum, Categories.class, "Categories");
-		addEEnumLiteral(categoriesEEnum, Categories.FUN);
+		addEEnumLiteral(categoriesEEnum, Categories.CULTURE);
 		addEEnumLiteral(categoriesEEnum, Categories.FOOD);
+		addEEnumLiteral(categoriesEEnum, Categories.FUN);
 
 		initEEnum(languagesEEnum, Languages.class, "Languages");
-		addEEnumLiteral(languagesEEnum, Languages.ENGLISH);
 		addEEnumLiteral(languagesEEnum, Languages.SPANISH);
+		addEEnumLiteral(languagesEEnum, Languages.ENGLISH);
 		addEEnumLiteral(languagesEEnum, Languages.LASSA_STA);
 
 		// Create resource
@@ -827,7 +828,7 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 			 "label", "name"
 		   });	
 		addAnnotation
-		  (placeEClass, 
+		  (locationEClass, 
 		   source, 
 		   new String[] {
 			 "label", "city"
@@ -857,7 +858,7 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 			 "label", "type"
 		   });	
 		addAnnotation
-		  (locationEClass, 
+		  (placeEClass, 
 		   source, 
 		   new String[] {
 			 "label", "name"

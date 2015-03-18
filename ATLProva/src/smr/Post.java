@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link smr.Post#getId <em>Id</em>}</li>
  *   <li>{@link smr.Post#getSourcesn <em>Sourcesn</em>}</li>
- *   <li>{@link smr.Post#getPlace <em>Place</em>}</li>
+ *   <li>{@link smr.Post#getLocation <em>Location</em>}</li>
  *   <li>{@link smr.Post#getText <em>Text</em>}</li>
  *   <li>{@link smr.Post#getPictures <em>Pictures</em>}</li>
  *   <li>{@link smr.Post#getCategories <em>Categories</em>}</li>
@@ -86,30 +86,30 @@ public interface Post extends EObject {
 	void setSourcesn(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Place</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Location</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Place</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Location</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Place</em>' containment reference.
-	 * @see #setPlace(Place)
-	 * @see smr.SmrPackage#getPost_Place()
+	 * @return the value of the '<em>Location</em>' containment reference.
+	 * @see #setLocation(Location)
+	 * @see smr.SmrPackage#getPost_Location()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Place getPlace();
+	Location getLocation();
 
 	/**
-	 * Sets the value of the '{@link smr.Post#getPlace <em>Place</em>}' containment reference.
+	 * Sets the value of the '{@link smr.Post#getLocation <em>Location</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Place</em>' containment reference.
-	 * @see #getPlace()
+	 * @param value the new value of the '<em>Location</em>' containment reference.
+	 * @see #getLocation()
 	 * @generated
 	 */
-	void setPlace(Place value);
+	void setLocation(Location value);
 
 	/**
 	 * Returns the value of the '<em><b>Text</b></em>' containment reference.
@@ -164,7 +164,7 @@ public interface Post extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Categories</em>' containment reference list.
 	 * @see smr.SmrPackage#getPost_Categories()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Category> getCategories();

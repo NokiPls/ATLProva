@@ -86,13 +86,13 @@ public interface SmrPackage extends EPackage {
 	int POST__SOURCESN = 1;
 
 	/**
-	 * The feature id for the '<em><b>Place</b></em>' containment reference.
+	 * The feature id for the '<em><b>Location</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POST__PLACE = 2;
+	int POST__LOCATION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Text</b></em>' containment reference.
@@ -174,61 +174,7 @@ public interface SmrPackage extends EPackage {
 	 * @see smr.impl.SmrPackageImpl#getPlace()
 	 * @generated
 	 */
-	int PLACE = 1;
-
-	/**
-	 * The feature id for the '<em><b>City</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLACE__CITY = 0;
-
-	/**
-	 * The feature id for the '<em><b>Address</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLACE__ADDRESS = 1;
-
-	/**
-	 * The feature id for the '<em><b>Location</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLACE__LOCATION = 2;
-
-	/**
-	 * The feature id for the '<em><b>Coordinates</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLACE__COORDINATES = 3;
-
-	/**
-	 * The number of structural features of the '<em>Place</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLACE_FEATURE_COUNT = 4;
-
-	/**
-	 * The number of operations of the '<em>Place</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLACE_OPERATION_COUNT = 0;
+	int PLACE = 6;
 
 	/**
 	 * The meta object id for the '{@link smr.impl.TextImpl <em>Text</em>}' class.
@@ -239,6 +185,109 @@ public interface SmrPackage extends EPackage {
 	 * @generated
 	 */
 	int TEXT = 2;
+
+	/**
+	 * The meta object id for the '{@link smr.impl.PictureImpl <em>Picture</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see smr.impl.PictureImpl
+	 * @see smr.impl.SmrPackageImpl#getPicture()
+	 * @generated
+	 */
+	int PICTURE = 3;
+
+	/**
+	 * The meta object id for the '{@link smr.impl.AuthorImpl <em>Author</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see smr.impl.AuthorImpl
+	 * @see smr.impl.SmrPackageImpl#getAuthor()
+	 * @generated
+	 */
+	int AUTHOR = 4;
+
+	/**
+	 * The meta object id for the '{@link smr.impl.CategoryImpl <em>Category</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see smr.impl.CategoryImpl
+	 * @see smr.impl.SmrPackageImpl#getCategory()
+	 * @generated
+	 */
+	int CATEGORY = 5;
+
+	/**
+	 * The meta object id for the '{@link smr.impl.LocationImpl <em>Location</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see smr.impl.LocationImpl
+	 * @see smr.impl.SmrPackageImpl#getLocation()
+	 * @generated
+	 */
+	int LOCATION = 1;
+
+	/**
+	 * The feature id for the '<em><b>City</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCATION__CITY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Address</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCATION__ADDRESS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Place</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCATION__PLACE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Coordinates</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCATION__COORDINATES = 3;
+
+	/**
+	 * The feature id for the '<em><b>District</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCATION__DISTRICT = 4;
+
+	/**
+	 * The number of structural features of the '<em>Location</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCATION_FEATURE_COUNT = 5;
+
+	/**
+	 * The number of operations of the '<em>Location</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCATION_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -286,16 +335,6 @@ public interface SmrPackage extends EPackage {
 	int TEXT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link smr.impl.PictureImpl <em>Picture</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see smr.impl.PictureImpl
-	 * @see smr.impl.SmrPackageImpl#getPicture()
-	 * @generated
-	 */
-	int PICTURE = 3;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -314,7 +353,7 @@ public interface SmrPackage extends EPackage {
 	int PICTURE__TAGS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Place</b></em>' reference.
+	 * The feature id for the '<em><b>Place</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -339,16 +378,6 @@ public interface SmrPackage extends EPackage {
 	 * @ordered
 	 */
 	int PICTURE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link smr.impl.AuthorImpl <em>Author</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see smr.impl.AuthorImpl
-	 * @see smr.impl.SmrPackageImpl#getAuthor()
-	 * @generated
-	 */
-	int AUTHOR = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -396,32 +425,13 @@ public interface SmrPackage extends EPackage {
 	int AUTHOR_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link smr.impl.CategoryImpl <em>Category</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see smr.impl.CategoryImpl
-	 * @see smr.impl.SmrPackageImpl#getCategory()
-	 * @generated
-	 */
-	int CATEGORY = 5;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CATEGORY__NAME = 0;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CATEGORY__TYPE = 1;
+	int CATEGORY__TYPE = 0;
 
 	/**
 	 * The number of structural features of the '<em>Category</em>' class.
@@ -430,7 +440,7 @@ public interface SmrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CATEGORY_FEATURE_COUNT = 2;
+	int CATEGORY_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Category</em>' class.
@@ -442,41 +452,31 @@ public interface SmrPackage extends EPackage {
 	int CATEGORY_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link smr.impl.LocationImpl <em>Location</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see smr.impl.LocationImpl
-	 * @see smr.impl.SmrPackageImpl#getLocation()
-	 * @generated
-	 */
-	int LOCATION = 6;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOCATION__NAME = 0;
+	int PLACE__NAME = 0;
 
 	/**
-	 * The number of structural features of the '<em>Location</em>' class.
+	 * The number of structural features of the '<em>Place</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOCATION_FEATURE_COUNT = 1;
+	int PLACE_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of operations of the '<em>Location</em>' class.
+	 * The number of operations of the '<em>Place</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOCATION_OPERATION_COUNT = 0;
+	int PLACE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link smr.impl.CoordinatesImpl <em>Coordinates</em>}' class.
@@ -744,15 +744,15 @@ public interface SmrPackage extends EPackage {
 	EAttribute getPost_Sourcesn();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link smr.Post#getPlace <em>Place</em>}'.
+	 * Returns the meta object for the containment reference '{@link smr.Post#getLocation <em>Location</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Place</em>'.
-	 * @see smr.Post#getPlace()
+	 * @return the meta object for the containment reference '<em>Location</em>'.
+	 * @see smr.Post#getLocation()
 	 * @see #getPost()
 	 * @generated
 	 */
-	EReference getPost_Place();
+	EReference getPost_Location();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link smr.Post#getText <em>Text</em>}'.
@@ -831,48 +831,15 @@ public interface SmrPackage extends EPackage {
 	EClass getPlace();
 
 	/**
-	 * Returns the meta object for the attribute '{@link smr.Place#getCity <em>City</em>}'.
+	 * Returns the meta object for the attribute '{@link smr.Place#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>City</em>'.
-	 * @see smr.Place#getCity()
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see smr.Place#getName()
 	 * @see #getPlace()
 	 * @generated
 	 */
-	EAttribute getPlace_City();
-
-	/**
-	 * Returns the meta object for the attribute '{@link smr.Place#getAddress <em>Address</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Address</em>'.
-	 * @see smr.Place#getAddress()
-	 * @see #getPlace()
-	 * @generated
-	 */
-	EAttribute getPlace_Address();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link smr.Place#getLocation <em>Location</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Location</em>'.
-	 * @see smr.Place#getLocation()
-	 * @see #getPlace()
-	 * @generated
-	 */
-	EReference getPlace_Location();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link smr.Place#getCoordinates <em>Coordinates</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Coordinates</em>'.
-	 * @see smr.Place#getCoordinates()
-	 * @see #getPlace()
-	 * @generated
-	 */
-	EReference getPlace_Coordinates();
+	EAttribute getPlace_Name();
 
 	/**
 	 * Returns the meta object for class '{@link smr.Text <em>Text</em>}'.
@@ -950,10 +917,10 @@ public interface SmrPackage extends EPackage {
 	EReference getPicture_Tags();
 
 	/**
-	 * Returns the meta object for the reference '{@link smr.Picture#getPlace <em>Place</em>}'.
+	 * Returns the meta object for the containment reference '{@link smr.Picture#getPlace <em>Place</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Place</em>'.
+	 * @return the meta object for the containment reference '<em>Place</em>'.
 	 * @see smr.Picture#getPlace()
 	 * @see #getPicture()
 	 * @generated
@@ -1014,17 +981,6 @@ public interface SmrPackage extends EPackage {
 	EClass getCategory();
 
 	/**
-	 * Returns the meta object for the attribute '{@link smr.Category#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see smr.Category#getName()
-	 * @see #getCategory()
-	 * @generated
-	 */
-	EAttribute getCategory_Name();
-
-	/**
 	 * Returns the meta object for the attribute '{@link smr.Category#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1046,15 +1002,59 @@ public interface SmrPackage extends EPackage {
 	EClass getLocation();
 
 	/**
-	 * Returns the meta object for the attribute '{@link smr.Location#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link smr.Location#getCity <em>City</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see smr.Location#getName()
+	 * @return the meta object for the attribute '<em>City</em>'.
+	 * @see smr.Location#getCity()
 	 * @see #getLocation()
 	 * @generated
 	 */
-	EAttribute getLocation_Name();
+	EAttribute getLocation_City();
+
+	/**
+	 * Returns the meta object for the attribute '{@link smr.Location#getAddress <em>Address</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Address</em>'.
+	 * @see smr.Location#getAddress()
+	 * @see #getLocation()
+	 * @generated
+	 */
+	EAttribute getLocation_Address();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link smr.Location#getPlace <em>Place</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Place</em>'.
+	 * @see smr.Location#getPlace()
+	 * @see #getLocation()
+	 * @generated
+	 */
+	EReference getLocation_Place();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link smr.Location#getCoordinates <em>Coordinates</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Coordinates</em>'.
+	 * @see smr.Location#getCoordinates()
+	 * @see #getLocation()
+	 * @generated
+	 */
+	EReference getLocation_Coordinates();
+
+	/**
+	 * Returns the meta object for the attribute '{@link smr.Location#getDistrict <em>District</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>District</em>'.
+	 * @see smr.Location#getDistrict()
+	 * @see #getLocation()
+	 * @generated
+	 */
+	EAttribute getLocation_District();
 
 	/**
 	 * Returns the meta object for class '{@link smr.Coordinates <em>Coordinates</em>}'.
@@ -1242,12 +1242,12 @@ public interface SmrPackage extends EPackage {
 		EAttribute POST__SOURCESN = eINSTANCE.getPost_Sourcesn();
 
 		/**
-		 * The meta object literal for the '<em><b>Place</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Location</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference POST__PLACE = eINSTANCE.getPost_Place();
+		EReference POST__LOCATION = eINSTANCE.getPost_Location();
 
 		/**
 		 * The meta object literal for the '<em><b>Text</b></em>' containment reference feature.
@@ -1308,36 +1308,12 @@ public interface SmrPackage extends EPackage {
 		EClass PLACE = eINSTANCE.getPlace();
 
 		/**
-		 * The meta object literal for the '<em><b>City</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PLACE__CITY = eINSTANCE.getPlace_City();
-
-		/**
-		 * The meta object literal for the '<em><b>Address</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PLACE__ADDRESS = eINSTANCE.getPlace_Address();
-
-		/**
-		 * The meta object literal for the '<em><b>Location</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PLACE__LOCATION = eINSTANCE.getPlace_Location();
-
-		/**
-		 * The meta object literal for the '<em><b>Coordinates</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PLACE__COORDINATES = eINSTANCE.getPlace_Coordinates();
+		EAttribute PLACE__NAME = eINSTANCE.getPlace_Name();
 
 		/**
 		 * The meta object literal for the '{@link smr.impl.TextImpl <em>Text</em>}' class.
@@ -1400,7 +1376,7 @@ public interface SmrPackage extends EPackage {
 		EReference PICTURE__TAGS = eINSTANCE.getPicture_Tags();
 
 		/**
-		 * The meta object literal for the '<em><b>Place</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Place</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1452,14 +1428,6 @@ public interface SmrPackage extends EPackage {
 		EClass CATEGORY = eINSTANCE.getCategory();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CATEGORY__NAME = eINSTANCE.getCategory_Name();
-
-		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1478,12 +1446,44 @@ public interface SmrPackage extends EPackage {
 		EClass LOCATION = eINSTANCE.getLocation();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>City</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LOCATION__NAME = eINSTANCE.getLocation_Name();
+		EAttribute LOCATION__CITY = eINSTANCE.getLocation_City();
+
+		/**
+		 * The meta object literal for the '<em><b>Address</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LOCATION__ADDRESS = eINSTANCE.getLocation_Address();
+
+		/**
+		 * The meta object literal for the '<em><b>Place</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LOCATION__PLACE = eINSTANCE.getLocation_Place();
+
+		/**
+		 * The meta object literal for the '<em><b>Coordinates</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LOCATION__COORDINATES = eINSTANCE.getLocation_Coordinates();
+
+		/**
+		 * The meta object literal for the '<em><b>District</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LOCATION__DISTRICT = eINSTANCE.getLocation_District();
 
 		/**
 		 * The meta object literal for the '{@link smr.impl.CoordinatesImpl <em>Coordinates</em>}' class.

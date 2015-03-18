@@ -72,8 +72,8 @@ public class SmrAdapterFactory extends AdapterFactoryImpl {
 				return createPostAdapter();
 			}
 			@Override
-			public Adapter casePlace(Place object) {
-				return createPlaceAdapter();
+			public Adapter caseLocation(Location object) {
+				return createLocationAdapter();
 			}
 			@Override
 			public Adapter caseText(Text object) {
@@ -92,8 +92,8 @@ public class SmrAdapterFactory extends AdapterFactoryImpl {
 				return createCategoryAdapter();
 			}
 			@Override
-			public Adapter caseLocation(Location object) {
-				return createLocationAdapter();
+			public Adapter casePlace(Place object) {
+				return createPlaceAdapter();
 			}
 			@Override
 			public Adapter caseCoordinates(Coordinates object) {

@@ -20,7 +20,6 @@ import smr.SmrPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link smr.impl.CategoryImpl#getName <em>Name</em>}</li>
  *   <li>{@link smr.impl.CategoryImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
@@ -29,26 +28,6 @@ import smr.SmrPackage;
  */
 public class CategoryImpl extends MinimalEObjectImpl.Container implements Category {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,7 +35,7 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Categories TYPE_EDEFAULT = Categories.FUN;
+	protected static final Categories TYPE_EDEFAULT = Categories.CULTURE;
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -92,27 +71,6 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SmrPackage.CATEGORY__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Categories getType() {
 		return type;
 	}
@@ -137,8 +95,6 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SmrPackage.CATEGORY__NAME:
-				return getName();
 			case SmrPackage.CATEGORY__TYPE:
 				return getType();
 		}
@@ -153,9 +109,6 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SmrPackage.CATEGORY__NAME:
-				setName((String)newValue);
-				return;
 			case SmrPackage.CATEGORY__TYPE:
 				setType((Categories)newValue);
 				return;
@@ -171,9 +124,6 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SmrPackage.CATEGORY__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case SmrPackage.CATEGORY__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
@@ -189,8 +139,6 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SmrPackage.CATEGORY__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case SmrPackage.CATEGORY__TYPE:
 				return type != TYPE_EDEFAULT;
 		}
@@ -207,9 +155,7 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", type: ");
+		result.append(" (type: ");
 		result.append(type);
 		result.append(')');
 		return result.toString();

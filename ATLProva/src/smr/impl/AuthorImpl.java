@@ -57,7 +57,7 @@ public class AuthorImpl extends MinimalEObjectImpl.Container implements Author {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Languages LANGUAGE_EDEFAULT = Languages.ENGLISH;
+	protected static final Languages LANGUAGE_EDEFAULT = Languages.SPANISH;
 
 	/**
 	 * The cached value of the '{@link #getLanguage() <em>Language</em>}' attribute.

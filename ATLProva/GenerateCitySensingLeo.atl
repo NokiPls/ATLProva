@@ -1,10 +1,10 @@
--- @path CitySensing=/BramboProject2k15/model/CitySensing.ecore
--- @path SocialResource=/BramboProject2k15/model/SocialResource.ecore
--- @path City=/BramboProject2k15/model/City.ecore
+-- @path CitySensing=/ATLProva/CitySensing.ecore
+-- @path SocialResource=/ATLProva/SocialResource.ecore
+-- @path City=/ATLProva/City.ecore
 
 --- CAMBIARE MM PER NUMPOSTLANG E METTERE COME CONTENIMENTO LA METRICA. 
 
-module GenerateCitySensing;
+module GenerateCitySensingLeo;
 create OUT: CitySensing from IN: SocialResource, IN2: City;
 
 
