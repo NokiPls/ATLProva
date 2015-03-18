@@ -147,17 +147,17 @@ helper context SocialResource!SocialMediaResource def : postsInPlace(place : Cit
 		np -> select(e | e.isInPlaceName(place)).union(tp -> select(e | e.text.tags.text = place.name))
 ;
 		
-helper context CitySensing!TimeSlots def : postsInTimeSlot(dp : OrderedSet(SocialResource!Post)) : Integer =
-	if self.literal.toString() = 'Morning' then
-		dp -> select(e | 4 <= e.time.getHours() and 12 > e.time.getHours()).size()
-	else if self.literal.toString() = 'Afternoon' then
-		dp -> select(e | 12 <= e.time.getHours() and 18 > e.time.getHours()).size()
-	else if self.literal.toString() = 'Evening' then
-		dp -> select(e | 18 <= e.time.getHours() and 22 > e.time.getHours()).size()
-	else if self.literal.toString() = 'Night' then
-		dp -> select(e | 22 <= e.time.getHours() and 24 > e.time.getHours() or 
-			0 <= e.time.getHours() and 4 > e.time.getHours()).size()
-	else 0 --- Sarebbe un errore
+helper context SocialResource!Post def : isInTimeSlot(l : CitySensing!TimeSlots) : Boolean =
+	if l.literal.toString() = 'Morning' and 4 <= self.time.getHours() and 12 > self.time.getHours() then
+		true
+	else if l.literal.toString() = 'Afternoon' and 12 <= self.time.getHours() and 18 > self.time.getHours() then
+		true
+	else if l.literal.toString() = 'Evening' and 18 <= self.time.getHours() and 22 > self.time.getHours() then
+		true
+	else if l.literal.toString() = 'Night' and (22 <= self.time.getHours() and 24 > self.time.getHours() or 
+			0 <= self.time.getHours() and 4 > self.time.getHours())then
+		true
+	else false
 	endif
 	endif
 	endif
@@ -193,37 +193,38 @@ helper context City!District def : countPostLangDistrict(mr : SocialResource!Soc
 helper context City!Place def : countPostLangPlace(mr : SocialResource!SocialMediaResource, l : SocialResource!Languages) : Integer =
 	mr.postsInPlace(self) -> select(e | e.language.toString() = l.literal.toString()).size();
 
+---AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 helper context City!City def : countPostTimeSlotCity(mr : SocialResource!SocialMediaResource, l : CitySensing!TimeSlots) : Integer =
 	let dp : OrderedSet(SocialResource!Post) = 
 		mr.postsInCity(self) -> select(p | p.hasTime())
 	in
-		l.postsInTimeSlot(dp)
+		dp -> select(p | p.isInTimeSlot(l)).size()
 ;
 
 helper context City!District def : countPostTimeSlotDistrict(mr : SocialResource!SocialMediaResource, l : CitySensing!TimeSlots) : Integer =
 	let dp : OrderedSet(SocialResource!Post) = 
 		mr.postsInDistrict(self) -> select(p | p.hasTime())
 	in
-		l.postsInTimeSlot(dp)
+		dp -> select(p | p.isInTimeSlot(l)).size()
 ;
 
 helper context City!Place def : countPostTimeSlotPlace(mr : SocialResource!SocialMediaResource, l : CitySensing!TimeSlots) : Integer =
 	let dp : OrderedSet(SocialResource!Post) = 
 		mr.postsInPlace(self) -> select(p | p.hasTime())
 	in
-		l.postsInTimeSlot(dp)
+		dp -> select(p | p.isInTimeSlot(l)).size()
 ;
 
 helper context City!City def : countPostCategoryCity(mr : SocialResource!SocialMediaResource, l : CitySensing!Categories) : Integer =
-		mr.postsInCity(self) -> select(p | p.hasCategory()) -> select(p | p.categories.type.toString() = l.literal.toString()).size()
+		mr.postsInCity(self) -> select(p | p.hasCategory()) -> select(p | p.categories.includes(l)).size()
 ;
 
 helper context City!District def : countPostCategoryDistrict(mr : SocialResource!SocialMediaResource, l : CitySensing!Categories) : Integer =
-		mr.postsInDistrict(self) -> select(p | p.hasCategory()) -> select(p | p.categories.type.toString() = l.literal.toString()).size()
+		mr.postsInDistrict(self) -> select(p | p.hasCategory()) -> select(p | p.categories.includes(l)).size()
 ;
 
 helper context City!Place def : countPostCategoryPlace(mr : SocialResource!SocialMediaResource, l : CitySensing!Categories) : Integer =
-		mr.postsInPlace(self) -> select(p | p.hasCategory()) -> select(p | p.categories.type.toString() = l.literal.toString()).size()
+		mr.postsInPlace(self) -> select(p | p.hasCategory()) -> select(p | p.categories.includes(l)).size()
 ;
 
 rule City2MonitoredCity {
