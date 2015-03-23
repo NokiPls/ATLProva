@@ -2,6 +2,10 @@
 -- @path SocialResource=/ATLProva/SocialResource.ecore
 -- @path City=/ATLProva/City.ecore
 
+
+--- E' CORRETTA LA GENERAZIONE DEI CONTAINED?
+
+
 module GenerateCitySensingNico;
 create OUT: CitySensing from IN: SocialResource, IN2: City;
 
@@ -226,6 +230,18 @@ helper context City!District def : countPostCategoryDistrict(mr : SocialResource
 helper context City!Place def : countPostCategoryPlace(mr : SocialResource!SocialMediaResource, l : CitySensing!Categories) : Integer =
 		mr.postsInPlace(self) -> select(p | p.hasCategory()) -> select(p | p.categories.includes(l)).size()
 ;
+
+rule Cities2MonitoredCities {
+	
+	from
+		s: City!CityModel
+		
+	to
+		t: CitySensing!CitySensing (
+			cities <- s.cities	
+		)
+	
+}
 
 rule City2MonitoredCity {
 	
