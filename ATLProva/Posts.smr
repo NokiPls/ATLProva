@@ -119,7 +119,7 @@
     </text>
     <author name="Shaquille O'Neal" language="English" currentCity="Atlanta"/>
   </posts>
-  <posts id="103" sourcesn="Twitter" time="2015-02-01T20:00:52.000+0100" language="LassaSta">
+  <posts id="103" sourcesn="Twitter" time="2015-02-01T20:00:52.000+0100" language="Italian">
     <location city="Milano">
       <coordinates  coordx="0.5" coordy="0.5"/>
     </location>
@@ -157,14 +157,14 @@
     <location city="Milano" address="Piazza Duomo" district="CentroCentro"/>
     <author name="Carlo Cracco" language="English" currentCity="Milano"/>
   </posts>
-  <posts id="108" sourcesn="Twitter" time="2014-05-24T11:52:25.000+0200" language="LassaSta">
+  <posts id="108" sourcesn="Twitter" time="2014-05-24T11:52:25.000+0200" language="Italian">
     <text text="Take it easy"/>
     <pictures name="DSC_12579642">
       <tags text="NordEst"/>
       <tags xsi:type="smr:Mention" text="@GrandePuffo"/>
     </pictures>
     <categories/>
-    <author name="Giancarlo Magalli" language="LassaSta" currentCity="San Martino Siccomario"/>
+    <author name="Giancarlo Magalli" language="Italian" currentCity="San Martino Siccomario"/>
   </posts>
   <posts id="109" sourcesn="Facebook" time="2014-06-01T13:06:48.000+0200" language="English">
     <text  text="Girls just wanna have fun!">
