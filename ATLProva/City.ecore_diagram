@@ -15,7 +15,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_DEJdCdFCEeSw5eL0rAVduw"/>
     </children>
     <element xmi:type="ecore:EClass" href="City.ecore#//City"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DEI18dFCEeSw5eL0rAVduw" x="156" y="120"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DEI18dFCEeSw5eL0rAVduw" x="432" y="24"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_DEKEENFCEeSw5eL0rAVduw" type="2001" fontName="Ubuntu">
     <children xmi:type="notation:DecorationNode" xmi:id="_DEKEEtFCEeSw5eL0rAVduw" type="5001"/>
@@ -32,7 +32,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_DEKrKNFCEeSw5eL0rAVduw"/>
     </children>
     <element xmi:type="ecore:EClass" href="City.ecore#//Place"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DEKEEdFCEeSw5eL0rAVduw" x="156" y="468"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DEKEEdFCEeSw5eL0rAVduw" x="432" y="192"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_DELSMNFCEeSw5eL0rAVduw" type="2001" fontName="Ubuntu">
     <children xmi:type="notation:DecorationNode" xmi:id="_DELSMtFCEeSw5eL0rAVduw" type="5001"/>
@@ -49,7 +49,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_DEL5RdFCEeSw5eL0rAVduw"/>
     </children>
     <element xmi:type="ecore:EClass" href="City.ecore#//Category"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DELSMdFCEeSw5eL0rAVduw" x="156" y="576"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DELSMdFCEeSw5eL0rAVduw" x="168" y="264"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_DEL5RtFCEeSw5eL0rAVduw" type="2001" fontName="Ubuntu">
     <children xmi:type="notation:DecorationNode" xmi:id="_DEMgUNFCEeSw5eL0rAVduw" type="5001"/>
@@ -66,7 +66,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_DENHYtFCEeSw5eL0rAVduw"/>
     </children>
     <element xmi:type="ecore:EClass" href="City.ecore#//District"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DEL5R9FCEeSw5eL0rAVduw" x="156" y="300"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DEL5R9FCEeSw5eL0rAVduw" x="168" y="108"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_DENHY9FCEeSw5eL0rAVduw" type="2005" fontName="Ubuntu">
     <children xmi:type="notation:DecorationNode" xmi:id="_DENucNFCEeSw5eL0rAVduw" type="5005"/>
@@ -79,7 +79,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_DEOVgtFCEeSw5eL0rAVduw"/>
     </children>
     <element xmi:type="ecore:EEnum" href="City.ecore#//Categories"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DENHZNFCEeSw5eL0rAVduw" x="24" y="24"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DENHZNFCEeSw5eL0rAVduw" x="48" y="24"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_DEOVg9FCEeSw5eL0rAVduw" type="2001" fontName="Ubuntu">
     <children xmi:type="notation:DecorationNode" xmi:id="_DEO8kNFCEeSw5eL0rAVduw" type="5001"/>
@@ -109,7 +109,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_DEQKtdFCEeSw5eL0rAVduw"/>
     </children>
     <element xmi:type="ecore:EEnum" href="City.ecore#//Languages"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DEPjodFCEeSw5eL0rAVduw" x="24" y="120"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DEPjodFCEeSw5eL0rAVduw" x="48" y="120"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_DEQKttFCEeSw5eL0rAVduw" type="2003" fontName="Ubuntu">
     <children xmi:type="notation:DecorationNode" xmi:id="_DEQxwNFCEeSw5eL0rAVduw" type="5003"/>
@@ -118,8 +118,52 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_DEQxw9FCEeSw5eL0rAVduw"/>
     </children>
     <element xmi:type="ecore:EAnnotation" href="City.ecore#//%gmf%"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DEQKt9FCEeSw5eL0rAVduw" x="456" y="24"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DEQKt9FCEeSw5eL0rAVduw" x="888" y="84"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_DC78EdFCEeSw5eL0rAVduw"/>
   <element xmi:type="ecore:EPackage" href="City.ecore#/"/>
+  <edges xmi:type="notation:Connector" xmi:id="_K3-hsNFuEeSogpIjTCGPIA" type="4003" source="_DEI18NFCEeSw5eL0rAVduw" target="_DEL5RtFCEeSw5eL0rAVduw">
+    <children xmi:type="notation:DecorationNode" xmi:id="_K3-hs9FuEeSogpIjTCGPIA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_K3-htNFuEeSogpIjTCGPIA" x="-5" y="18"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_K3_IwNFuEeSogpIjTCGPIA" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_K3_IwdFuEeSogpIjTCGPIA" x="-6" y="13"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_K3-hsdFuEeSogpIjTCGPIA" fontName="Ubuntu"/>
+    <element xmi:type="ecore:EReference" href="City.ecore#//City/districts"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_K3-hstFuEeSogpIjTCGPIA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_K4EoUNFuEeSogpIjTCGPIA" type="4003" source="_DEKEENFCEeSw5eL0rAVduw" target="_DELSMNFCEeSw5eL0rAVduw">
+    <children xmi:type="notation:DecorationNode" xmi:id="_K4EoU9FuEeSogpIjTCGPIA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_K4FPYNFuEeSogpIjTCGPIA" x="4" y="13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_K4FPYdFuEeSogpIjTCGPIA" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_K4FPYtFuEeSogpIjTCGPIA" x="-1" y="13"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_K4EoUdFuEeSogpIjTCGPIA" fontName="Ubuntu"/>
+    <element xmi:type="ecore:EReference" href="City.ecore#//Place/categories"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_K4EoUtFuEeSogpIjTCGPIA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_K4Jg0NFuEeSogpIjTCGPIA" type="4003" source="_DEL5RtFCEeSw5eL0rAVduw" target="_DEKEENFCEeSw5eL0rAVduw">
+    <children xmi:type="notation:DecorationNode" xmi:id="_K4KH4tFuEeSogpIjTCGPIA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_K4KH49FuEeSogpIjTCGPIA" x="-8" y="-9"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_K4Ku8NFuEeSogpIjTCGPIA" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_K4Ku8dFuEeSogpIjTCGPIA" x="-7" y="-9"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_K4KH4NFuEeSogpIjTCGPIA" fontName="Ubuntu"/>
+    <element xmi:type="ecore:EReference" href="City.ecore#//District/places"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_K4KH4dFuEeSogpIjTCGPIA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_K4PncNFuEeSogpIjTCGPIA" type="4003" source="_DEOVg9FCEeSw5eL0rAVduw" target="_DEI18NFCEeSw5eL0rAVduw">
+    <children xmi:type="notation:DecorationNode" xmi:id="_K4Pnc9FuEeSogpIjTCGPIA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_K4QOgNFuEeSogpIjTCGPIA" x="1" y="-14"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_K4QOgdFuEeSogpIjTCGPIA" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_K4QOgtFuEeSogpIjTCGPIA" x="-5" y="-21"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_K4PncdFuEeSogpIjTCGPIA" fontName="Ubuntu"/>
+    <element xmi:type="ecore:EReference" href="City.ecore#//CityModel/cities"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_K4PnctFuEeSogpIjTCGPIA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
 </notation:Diagram>

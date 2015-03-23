@@ -101,6 +101,9 @@
     <eLiterals name="Italian" value="3" literal="Italian"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NumPostLang" eSuperTypes="#//Statistic">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="langNumber" upperBound="-1"
         eType="#//MapPostLang" containment="true"/>
   </eClassifiers>
