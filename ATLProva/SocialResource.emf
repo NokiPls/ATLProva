@@ -1,0 +1,103 @@
+@gmf
+@namespace(uri="http://smr/1.0", prefix="smr")
+package smr;
+
+@gmf.node(label="name")
+class Post {
+  id attr long[1] ~id;
+  attr String[1] sourcesn;
+  val Location location;
+
+  @gmf.compartment
+  val Text text;
+
+  @gmf.compartment
+  val Picture[*] pictures;
+
+  @gmf.compartment
+  val Category[*] categories;
+  attr EDate time;
+  val Author[1] author;
+  attr Languages language;
+}
+
+@gmf.node(label="city")
+class Location {
+  attr String city;
+  attr String address;
+  val Place place;
+  val Coordinates coordinates;
+  attr String district;
+}
+
+@gmf.node(label="name")
+class Text {
+  attr String text;
+
+  @gmf.compartment
+  val Tag[*] tags;
+}
+
+@gmf.node(label="name")
+class Picture {
+  attr String name;
+
+  @gmf.compartment
+  val Tag[*] tags;
+  val Location place;
+}
+
+@gmf.node(label="name")
+class Author {
+  attr String name;
+  unsettable attr Languages[1] language;
+  attr String currentCity;
+}
+
+@gmf.node(label="type")
+class Category {
+  attr Categories[1] type;
+}
+
+enum Categories {
+  Culture = 1;
+  Food = 2;
+  Fun = 3;
+}
+
+@gmf.node(label="name")
+class Place {
+  attr String[1] name;
+}
+
+@gmf.node(label="name")
+class Coordinates {
+  attr float[1] coordx;
+  attr float[1] coordy;
+}
+
+@gmf.node(label="name")
+class Hashtag extends Tag {
+}
+
+@gmf.node(label="name")
+class Tag {
+  attr String text;
+}
+
+@gmf.diagram
+class SocialMediaResource {
+  attr String name;
+  val Post[*] posts;
+}
+
+@gmf.node(label="name")
+class Mention extends Tag {
+}
+
+enum Languages {
+  Spanish = 1;
+  English = 2;
+  LassaSta = 3;
+}
+

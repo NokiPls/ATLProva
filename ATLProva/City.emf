@@ -1,0 +1,56 @@
+@gmf
+@namespace(uri="http://city/1.0", prefix="city")
+package city;
+
+@gmf.node(label="name")
+class City {
+  attr String[1] name;
+
+  @gmf.compartment
+  val District[+] districts;
+  attr float[1] coordBx;
+  attr float[1] coordBy;
+  attr float[1] coordEx;
+  attr float[1] coordEy;
+}
+
+@gmf.node(label="name")
+class Place {
+  attr String[1] name;
+  val Category[+] categories;
+}
+
+@gmf.node(label="type")
+class Category {
+  attr Categories type;
+}
+
+@gmf.node(label="name")
+class District {
+
+  @gmf.compartment
+  val Place[*] places;
+  attr String name;
+  attr float[1] coordBx;
+  attr float[1] coordBy;
+  attr float[1] coordEx;
+  attr float[1] coordEy;
+}
+
+enum Categories {
+  Culture = 1;
+  Food = 2;
+  Fun = 3;
+}
+
+@gmf.diagram
+class CityModel {
+  val City[+] cities;
+}
+
+enum Languages {
+  Spanish = 1;
+  English = 2;
+  LassaSta = 3;
+}
+

@@ -131,15 +131,6 @@ public interface CityPackage extends EPackage {
 	int CITY_FEATURE_COUNT = 6;
 
 	/**
-	 * The number of operations of the '<em>City</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CITY_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link city.impl.PlaceImpl <em>Place</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -177,15 +168,6 @@ public interface CityPackage extends EPackage {
 	int PLACE_FEATURE_COUNT = 2;
 
 	/**
-	 * The number of operations of the '<em>Place</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLACE_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link city.impl.CategoryImpl <em>Category</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -212,15 +194,6 @@ public interface CityPackage extends EPackage {
 	 * @ordered
 	 */
 	int CATEGORY_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Category</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CATEGORY_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link city.impl.DistrictImpl <em>District</em>}' class.
@@ -296,15 +269,6 @@ public interface CityPackage extends EPackage {
 	int DISTRICT_FEATURE_COUNT = 6;
 
 	/**
-	 * The number of operations of the '<em>District</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DISTRICT_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link city.impl.CityModelImpl <em>Model</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -331,15 +295,6 @@ public interface CityPackage extends EPackage {
 	 * @ordered
 	 */
 	int CITY_MODEL_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Model</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CITY_MODEL_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link city.Categories <em>Categories</em>}' enum.

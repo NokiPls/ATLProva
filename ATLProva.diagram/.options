@@ -1,0 +1,7 @@
+# Tracing options for the ATLProva.diagram plug-in
+
+# Common issues
+ATLProva.diagram/debug=false
+
+# Visual IDs
+ATLProva.diagram/debug/visualID=false
