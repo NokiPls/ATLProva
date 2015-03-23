@@ -9,7 +9,7 @@
 module GenerateCitySensingNico;
 create OUT: CitySensing from IN: SocialResource, IN2: City;
 
-
+--- Are the coordinates of the post inside the city?
 helper context SocialResource!Post def: isInCityCoords(d : City!City) : Boolean =
 	if d.coordBx <= self.location.coordinates.coordx and d.coordEx > self.location.coordinates.coordx
 		and d.coordBy <= self.location.coordinates.coordy and d.coordEy > self.location.coordinates.coordy
@@ -19,6 +19,7 @@ helper context SocialResource!Post def: isInCityCoords(d : City!City) : Boolean 
 		false
 	endif;
 
+--- Are the coordinates of the post inside the district?
 helper context SocialResource!Post def: isInDistrictCoords(d : City!District) : Boolean =
 	if d.coordBx <= self.location.coordinates.coordx and d.coordEx > self.location.coordinates.coordx
 		and d.coordBy <= self.location.coordinates.coordy and d.coordEy > self.location.coordinates.coordy
@@ -28,6 +29,7 @@ helper context SocialResource!Post def: isInDistrictCoords(d : City!District) : 
 		false
 	endif;
 
+--- Does the post have the name of the city?
 helper context SocialResource!Post def: hasCityName() : Boolean =
 	if not self.location.city.oclIsUndefined()
 	then
@@ -44,6 +46,7 @@ helper context SocialResource!Post def : hasCategory() : Boolean =
 		false
 	endif;
 
+
 helper context SocialResource!Post def: hasDistrictName() : Boolean =
 	if not self.location.district.oclIsUndefined()
 	then
@@ -53,7 +56,6 @@ helper context SocialResource!Post def: hasDistrictName() : Boolean =
 	endif;
 
 helper context SocialResource!Post def: isInPlaceName(d : City!Place) : Boolean =
-	--- If the place's name is in the location 
 	if self.location.place.name = d.name
 	then
 		true
@@ -109,48 +111,7 @@ helper context SocialResource!Post def: hasPicture(): Boolean =
 		false
 	endif;
 
-helper context SocialResource!SocialMediaResource def : postsInCity(city : City!City) : OrderedSet(SocialResource!Post) =
-	--- Posts with coordinates
-	let lp : OrderedSet(SocialResource!Post) = 
-		self.posts -> select(p | p.hasLocation()) -> select(p | p.hasCoordinates())	
-	in 
-	--- Posts with tags
-	let	tp : OrderedSet(SocialResource!Post) = 
-		self.posts -> select(p | p.hasText()) -> select(p | p.text.tags.notEmpty())
-	in 
-	--- Posts with city name
-	let cp : OrderedSet(SocialResource!Post) = 
-		self.posts -> select(p | p.hasLocation()) -> select(p | p.hasCityName())
-	in
-	--- Magari mettere che un tag contiene il nome di una città
-		lp -> select(e | e.isInCityCoords(city)).union(tp -> select(w | w.text.tags -> select(t | t.text = city.name).size() > 0))
-		.union(cp -> select(k | k.location.city = city.name))
-;
-
-helper context SocialResource!SocialMediaResource def : postsInDistrict(district : City!District) : OrderedSet(SocialResource!Post) =
-	let lp : OrderedSet(SocialResource!Post) = 
-		self.posts -> select(p | p.hasLocation()) -> select(p | p.hasCoordinates())
-	in 
-	let tp : OrderedSet(SocialResource!Post) = 
-		self.posts -> select(p | p.hasText()) -> select(p | p.text.tags.notEmpty()) 
-	in
-	let cp : OrderedSet(SocialResource!Post) = 
-		self.posts -> select(p | p.hasLocation()) -> select(p | p.hasDistrictName())
-	in
-		lp -> select(e | e.isInDistrictCoords(district)).union(tp -> select(w | w.text.tags -> select(t | t.text = district.name).size() > 0))
-		.union(cp -> select(k | k.location.district = district.name))
-;
-		
-helper context SocialResource!SocialMediaResource def : postsInPlace(place : City!Place) : OrderedSet(SocialResource!Post) =
-	let np : OrderedSet(SocialResource!Post) =
-		self.posts -> select(p | p.hasLocation()) -> select(p | p.hasPlace())
-	in 
-	let tp : OrderedSet(SocialResource!Post) =
-		self.posts -> select(p | p.hasText()) -> select(p | p.text.tags.notEmpty())
-	in
-		np -> select(e | e.isInPlaceName(place)).union(tp -> select(w | w.text.tags -> select(t | t.text = place.name).size() > 0))
-;
-		
+--- Check the time slot of a post
 helper context SocialResource!Post def : isInTimeSlot(l : CitySensing!TimeSlots) : Boolean =
 	if l.literal.toString() = 'Morning' and 4 <= self.time.getHours() and 12 > self.time.getHours() then
 		true
@@ -168,6 +129,58 @@ helper context SocialResource!Post def : isInTimeSlot(l : CitySensing!TimeSlots)
 	endif
 ;
 
+--- Get the posts in a city, using ordered sets to avoid duplicate posts
+helper context SocialResource!SocialMediaResource def : postsInCity(city : City!City) : OrderedSet(SocialResource!Post) =
+	--- Posts with coordinates
+	let lp : OrderedSet(SocialResource!Post) = 
+		self.posts -> select(p | p.hasLocation()) -> select(p | p.hasCoordinates())	
+	in 
+	--- Posts with tags
+	let	tp : OrderedSet(SocialResource!Post) = 
+		self.posts -> select(p | p.hasText()) -> select(p | p.text.tags.notEmpty())
+	in 
+	--- Posts with city name
+	let cp : OrderedSet(SocialResource!Post) = 
+		self.posts -> select(p | p.hasLocation()) -> select(p | p.hasCityName())
+	in
+	lp -> select(e | e.isInCityCoords(city))
+		.union(tp -> select(w | w.text.tags -> select(t | t.text = city.name).size() > 0))
+		.union(cp -> select(k | k.location.city = city.name))
+;
+
+--- Get the posts in a district, using ordered sets to avoid duplicate posts
+helper context SocialResource!SocialMediaResource def : postsInDistrict(district : City!District) : OrderedSet(SocialResource!Post) =
+	--- Posts with coordinates
+	let lp : OrderedSet(SocialResource!Post) = 
+		self.posts -> select(p | p.hasLocation()) -> select(p | p.hasCoordinates())
+	in 
+	--- Posts with tags
+	let tp : OrderedSet(SocialResource!Post) = 
+		self.posts -> select(p | p.hasText()) -> select(p | p.text.tags.notEmpty()) 
+	in
+	--- Posts with district name
+	let cp : OrderedSet(SocialResource!Post) = 
+		self.posts -> select(p | p.hasLocation()) -> select(p | p.hasDistrictName())
+	in
+		lp -> select(e | e.isInDistrictCoords(district))
+		.union(tp -> select(w | w.text.tags -> select(t | t.text = district.name).size() > 0))
+		.union(cp -> select(k | k.location.district = district.name))
+;
+
+--- Get the posts in a place, using ordered sets to avoid duplicate posts
+helper context SocialResource!SocialMediaResource def : postsInPlace(place : City!Place) : OrderedSet(SocialResource!Post) =
+	--- Posts with place name
+	let np : OrderedSet(SocialResource!Post) =
+		self.posts -> select(p | p.hasLocation()) -> select(p | p.hasPlace())
+	in 
+	--- Posts with tags
+	let tp : OrderedSet(SocialResource!Post) =
+		self.posts -> select(p | p.hasText()) -> select(p | p.text.tags.notEmpty())
+	in
+		np -> select(e | e.isInPlaceName(place))
+		.union(tp -> select(w | w.text.tags -> select(t | t.text = place.name).size() > 0))
+;
+		
 helper context City!City def: countPostsCity(mr : SocialResource!SocialMediaResource) : Real =
 	mr.postsInCity(self).size();
 				
@@ -177,17 +190,17 @@ helper context City!District def: countPostsDistrict(mr : SocialResource!SocialM
 helper context City!Place def: countPostsPlace(mr : SocialResource!SocialMediaResource) : Real =
 	mr.postsInPlace(self).size();
 
+--- The number of pictures in a city/district/place
 helper context City!City def: countPicturesCity(mr : SocialResource!SocialMediaResource) : Real =
 	mr.postsInCity(self) -> select(p | p.hasPicture()) -> collect(p | p.pictures).size();
 
---- Actually, it's posts with at least 1 picture, not total of pictures
 helper context City!District def: countPicturesDistrict(mr : SocialResource!SocialMediaResource) : Real =
 	mr.postsInDistrict(self) -> select(p | p.hasPicture()) -> collect(p | p.pictures).size();
 
---- Same here
 helper context City!Place def: countPicturesPlace(mr : SocialResource!SocialMediaResource) : Real =
 	mr.postsInPlace(self) -> select(p | p.hasPicture()) -> collect(p | p.pictures).size();
-		
+
+--- The number of posts of a given language in a city/district/place
 helper context City!City def : countPostLangCity(mr : SocialResource!SocialMediaResource, l : SocialResource!Languages) : Integer =
 	mr.postsInCity(self) -> select(e | e.language.toString() = l.literal.toString()).size();
 
@@ -197,7 +210,7 @@ helper context City!District def : countPostLangDistrict(mr : SocialResource!Soc
 helper context City!Place def : countPostLangPlace(mr : SocialResource!SocialMediaResource, l : SocialResource!Languages) : Integer =
 	mr.postsInPlace(self) -> select(e | e.language.toString() = l.literal.toString()).size();
 
----AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+--- The number of posts for a time slot in a city/district/place
 helper context City!City def : countPostTimeSlotCity(mr : SocialResource!SocialMediaResource, l : CitySensing!TimeSlots) : Integer =
 	let dp : OrderedSet(SocialResource!Post) = 
 		mr.postsInCity(self) -> select(p | p.hasTime())
@@ -219,6 +232,7 @@ helper context City!Place def : countPostTimeSlotPlace(mr : SocialResource!Socia
 		dp -> select(p | p.isInTimeSlot(l)).size()
 ;
 
+--- The posts per category in a city/district/place
 helper context City!City def : countPostCategoryCity(mr : SocialResource!SocialMediaResource, l : CitySensing!Categories) : Integer =
 		mr.postsInCity(self) -> select(p | p.hasCategory()) -> select(p | p.categories.includes(l)).size()
 ;
@@ -243,6 +257,7 @@ rule Cities2MonitoredCities {
 	
 }
 
+--- From the generic city/district/place to the same city/district/place with statistics attached
 rule City2MonitoredCity {
 	
 	from
@@ -294,6 +309,8 @@ rule Place2MonitoredPlace {
 		)
 	
 }
+
+--- Set of lazy rules to compute the statistics
 
 lazy rule Post2NumPostsCity {
 	
@@ -373,6 +390,9 @@ lazy rule Post2NumPhotoPlace {
 	
 }
 
+--- These rules iterate over an enumeration 
+--- to create elements of type map, inserted as the actual statistic
+
 lazy rule Post2NumPostTimeSlotCity {
 	
 	from
@@ -382,6 +402,7 @@ lazy rule Post2NumPostTimeSlotCity {
 		t: CitySensing!NumPostTimeSlot (
 			name <- '#Posts per time slot',
 			postsPerTimeSlot <- CitySensing!TimeSlots.eLiterals 
+								--- Iteration on the enum
 								-> collect(l | thisModule.Post2MapPostTimeSlotCity(s, p, l))
 		)
 			
@@ -415,6 +436,7 @@ lazy rule Post2NumPostTimeSlotPlace {
 			
 }
 
+--- The map, which represents the statistic
 lazy rule Post2MapPostTimeSlotCity {
 	
 	from
