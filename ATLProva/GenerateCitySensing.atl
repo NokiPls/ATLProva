@@ -2,15 +2,17 @@
 -- @path SocialResource=/ATLProva/SocialResource.ecore
 -- @path City=/ATLProva/City.ecore
 
-
---- E' CORRETTA LA GENERAZIONE DEI CONTAINED?
-
-
 module GenerateCitySensingNico;
 create OUT: CitySensing from IN: SocialResource, IN2: City;
 
+helper context City!CityModel def: getAllCities(): Set(City!City) = 
+	self.cities;
+
 helper context City!City def: getAllDistricts(): Set(City!District) = 
 	self.districts;
+
+helper context City!District def: getAllPlaces(): Set(City!Place) = 
+	self.places;
 
 --- Are the coordinates of the post inside the city?
 helper context SocialResource!Post def: isInCityCoords(d : City!City) : Boolean =
@@ -256,7 +258,7 @@ rule Cities2MonitoredCities {
 		
 	to
 		t: CitySensing!CitySensing (
-			cities <- s.cities	
+			cities <- s.getAllCities()	
 		)
 	
 }
@@ -294,7 +296,7 @@ rule District2MonitoredDistrict {
 			coordBy <- s.coordBy,
 			coordEx <- s.coordEx,
 			coordEy <- s.coordEy,
-			places <- s.places,
+			places <- s.getAllPlaces(),
 			stats <- Sequence{thisModule.Post2NumPostsDist(s), thisModule.Post2NumPhotoDist(s), 
 				thisModule.Post2NumPostLangDist(s), thisModule.Post2NumPostTimeSlotDist(s)}
 		)
