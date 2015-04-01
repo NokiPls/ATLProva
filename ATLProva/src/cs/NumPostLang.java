@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.EMap;
  * </p>
  *
  * @see cs.CsPackage#getNumPostLang()
- * @model
+ * @model annotation="gmf.node label='name'"
  * @generated
  */
 public interface NumPostLang extends Statistic {

@@ -9,6 +9,9 @@
 module GenerateCitySensingNico;
 create OUT: CitySensing from IN: SocialResource, IN2: City;
 
+helper context City!City def: getAllDistricts(): Set(City!District) = 
+	self.districts;
+
 --- Are the coordinates of the post inside the city?
 helper context SocialResource!Post def: isInCityCoords(d : City!City) : Boolean =
 	if d.coordBx <= self.location.coordinates.coordx and d.coordEx > self.location.coordinates.coordx
@@ -181,68 +184,69 @@ helper context SocialResource!SocialMediaResource def : postsInPlace(place : Cit
 		.union(tp -> select(w | w.text.tags -> select(t | t.text = place.name).size() > 0))
 ;
 		
-helper context City!City def: countPostsCity(mr : SocialResource!SocialMediaResource) : Real =
-	mr.postsInCity(self).size();
+helper context City!City def: countPostsCity() : Real =
+	SocialResource!SocialMediaResource.allInstances().first().postsInCity(self).size();
+	
 				
-helper context City!District def: countPostsDistrict(mr : SocialResource!SocialMediaResource) : Real =
-	mr.postsInDistrict(self).size();
+helper context City!District def: countPostsDistrict() : Real =
+	SocialResource!SocialMediaResource.allInstances().first().postsInDistrict(self).size();
 		
-helper context City!Place def: countPostsPlace(mr : SocialResource!SocialMediaResource) : Real =
-	mr.postsInPlace(self).size();
+helper context City!Place def: countPostsPlace() : Real =
+	SocialResource!SocialMediaResource.allInstances().first().postsInPlace(self).size();
 
 --- The number of pictures in a city/district/place
-helper context City!City def: countPicturesCity(mr : SocialResource!SocialMediaResource) : Real =
-	mr.postsInCity(self) -> select(p | p.hasPicture()) -> collect(p | p.pictures).size();
+helper context City!City def: countPicturesCity() : Real =
+	SocialResource!SocialMediaResource.allInstances().first().postsInCity(self) -> select(p | p.hasPicture()) -> collect(p | p.pictures).size();
 
-helper context City!District def: countPicturesDistrict(mr : SocialResource!SocialMediaResource) : Real =
-	mr.postsInDistrict(self) -> select(p | p.hasPicture()) -> collect(p | p.pictures).size();
+helper context City!District def: countPicturesDistrict() : Real =
+	SocialResource!SocialMediaResource.allInstances().first().postsInDistrict(self) -> select(p | p.hasPicture()) -> collect(p | p.pictures).size();
 
-helper context City!Place def: countPicturesPlace(mr : SocialResource!SocialMediaResource) : Real =
-	mr.postsInPlace(self) -> select(p | p.hasPicture()) -> collect(p | p.pictures).size();
+helper context City!Place def: countPicturesPlace() : Real =
+	SocialResource!SocialMediaResource.allInstances().first().postsInPlace(self) -> select(p | p.hasPicture()) -> collect(p | p.pictures).size();
 
 --- The number of posts of a given language in a city/district/place
-helper context City!City def : countPostLangCity(mr : SocialResource!SocialMediaResource, l : SocialResource!Languages) : Integer =
-	mr.postsInCity(self) -> select(e | e.language.toString() = l.literal.toString()).size();
+helper context City!City def : countPostLangCity(l : SocialResource!Languages) : Integer =
+	SocialResource!SocialMediaResource.allInstances().first().postsInCity(self) -> select(e | e.language.toString() = l.literal.toString()).size();
 
-helper context City!District def : countPostLangDistrict(mr : SocialResource!SocialMediaResource, l : SocialResource!Languages) : Integer =
-	mr.postsInDistrict(self) -> select(e | e.language.toString() = l.literal.toString()).size();
+helper context City!District def : countPostLangDistrict(l : SocialResource!Languages) : Integer =
+	SocialResource!SocialMediaResource.allInstances().first().postsInDistrict(self) -> select(e | e.language.toString() = l.literal.toString()).size();
 
-helper context City!Place def : countPostLangPlace(mr : SocialResource!SocialMediaResource, l : SocialResource!Languages) : Integer =
-	mr.postsInPlace(self) -> select(e | e.language.toString() = l.literal.toString()).size();
+helper context City!Place def : countPostLangPlace(l : SocialResource!Languages) : Integer =
+	SocialResource!SocialMediaResource.allInstances().first().postsInPlace(self) -> select(e | e.language.toString() = l.literal.toString()).size();
 
 --- The number of posts for a time slot in a city/district/place
-helper context City!City def : countPostTimeSlotCity(mr : SocialResource!SocialMediaResource, l : CitySensing!TimeSlots) : Integer =
+helper context City!City def : countPostTimeSlotCity(l : CitySensing!TimeSlots) : Integer =
 	let dp : OrderedSet(SocialResource!Post) = 
-		mr.postsInCity(self) -> select(p | p.hasTime())
+		SocialResource!SocialMediaResource.allInstances().first().postsInCity(self) -> select(p | p.hasTime())
 	in
 		dp -> select(p | p.isInTimeSlot(l)).size()
 ;
 
-helper context City!District def : countPostTimeSlotDistrict(mr : SocialResource!SocialMediaResource, l : CitySensing!TimeSlots) : Integer =
+helper context City!District def : countPostTimeSlotDistrict(l : CitySensing!TimeSlots) : Integer =
 	let dp : OrderedSet(SocialResource!Post) = 
-		mr.postsInDistrict(self) -> select(p | p.hasTime())
+		SocialResource!SocialMediaResource.allInstances().first().postsInDistrict(self) -> select(p | p.hasTime())
 	in
 		dp -> select(p | p.isInTimeSlot(l)).size()
 ;
 
-helper context City!Place def : countPostTimeSlotPlace(mr : SocialResource!SocialMediaResource, l : CitySensing!TimeSlots) : Integer =
+helper context City!Place def : countPostTimeSlotPlace(l : CitySensing!TimeSlots) : Integer =
 	let dp : OrderedSet(SocialResource!Post) = 
-		mr.postsInPlace(self) -> select(p | p.hasTime())
+		SocialResource!SocialMediaResource.allInstances().first().postsInPlace(self) -> select(p | p.hasTime())
 	in
 		dp -> select(p | p.isInTimeSlot(l)).size()
 ;
 
 --- The posts per category in a city/district/place
-helper context City!City def : countPostCategoryCity(mr : SocialResource!SocialMediaResource, l : CitySensing!Categories) : Integer =
-		mr.postsInCity(self) -> select(p | p.hasCategory()) -> select(p | p.categories.includes(l)).size()
+helper context City!City def : countPostCategoryCity(l : CitySensing!Categories) : Integer =
+		SocialResource!SocialMediaResource.allInstances().first().postsInCity(self) -> select(p | p.hasCategory()) -> select(p | p.categories.includes(l)).size()
 ;
 
-helper context City!District def : countPostCategoryDistrict(mr : SocialResource!SocialMediaResource, l : CitySensing!Categories) : Integer =
-		mr.postsInDistrict(self) -> select(p | p.hasCategory()) -> select(p | p.categories.includes(l)).size()
+helper context City!District def : countPostCategoryDistrict(l : CitySensing!Categories) : Integer =
+		SocialResource!SocialMediaResource.allInstances().first().postsInDistrict(self) -> select(p | p.hasCategory()) -> select(p | p.categories.includes(l)).size()
 ;
 
-helper context City!Place def : countPostCategoryPlace(mr : SocialResource!SocialMediaResource, l : CitySensing!Categories) : Integer =
-		mr.postsInPlace(self) -> select(p | p.hasCategory()) -> select(p | p.categories.includes(l)).size()
+helper context City!Place def : countPostCategoryPlace(l : CitySensing!Categories) : Integer =
+		SocialResource!SocialMediaResource.allInstances().first().postsInPlace(self) -> select(p | p.hasCategory()) -> select(p | p.categories.includes(l)).size()
 ;
 
 rule Cities2MonitoredCities {
@@ -261,16 +265,19 @@ rule Cities2MonitoredCities {
 rule City2MonitoredCity {
 	
 	from
-		s: City!City,
-		p: SocialResource!SocialMediaResource
+		s: City!City
 		
 	to 
 		t: CitySensing!MonitoredCity (
 			name <- s.name,
-			districts <- s.districts,
-			stats <- Sequence{ thisModule.Post2NumPostsCity(s, p), thisModule.Post2NumPhotoCity(s, p), 
-				thisModule.Post2NumPostLangCity(s, p), thisModule.Post2NumPostTimeSlotCity(s, p),
-				thisModule.Post2CategoriesCountCity(s, p) }
+			coordBx <- s.coordBx,
+			coordBy <- s.coordBy,
+			coordEx <- s.coordEx,
+			coordEy <- s.coordEy,
+			districts <- s.getAllDistricts(),
+			stats <- Sequence{ thisModule.Post2NumPostsCity(s), thisModule.Post2NumPhotoCity(s), 
+				thisModule.Post2NumPostLangCity(s), thisModule.Post2NumPostTimeSlotCity(s),
+				thisModule.Post2CategoriesCountCity(s) }
 		)
 	
 }
@@ -278,8 +285,7 @@ rule City2MonitoredCity {
 rule District2MonitoredDistrict {
 	
 	from
-		s: City!District,
-		p: SocialResource!SocialMediaResource
+		s: City!District
 		
 	to
 		t: CitySensing!District (
@@ -289,8 +295,8 @@ rule District2MonitoredDistrict {
 			coordEx <- s.coordEx,
 			coordEy <- s.coordEy,
 			places <- s.places,
-			stats <- Sequence{thisModule.Post2NumPostsDist(s, p), thisModule.Post2NumPhotoDist(s, p), 
-				thisModule.Post2NumPostLangDist(s, p), thisModule.Post2NumPostTimeSlotDist(s, p)}
+			stats <- Sequence{thisModule.Post2NumPostsDist(s), thisModule.Post2NumPhotoDist(s), 
+				thisModule.Post2NumPostLangDist(s), thisModule.Post2NumPostTimeSlotDist(s)}
 		)
 	
 }
@@ -298,14 +304,13 @@ rule District2MonitoredDistrict {
 rule Place2MonitoredPlace {
 	
 	from
-		s: City!Place,
-		p: SocialResource!SocialMediaResource
+		s: City!Place
 		
 	to
 		t: CitySensing!Place (
 			name <- s.name,
-			stats <- Sequence{ thisModule.Post2NumPostsPlace(s, p), thisModule.Post2NumPhotoPlace(s, p), 
-					thisModule.Post2NumPostLangPlace(s, p), thisModule.Post2NumPostTimeSlotPlace(s, p) }
+			stats <- Sequence{ thisModule.Post2NumPostsPlace(s), thisModule.Post2NumPhotoPlace(s), 
+					thisModule.Post2NumPostLangPlace(s), thisModule.Post2NumPostTimeSlotPlace(s) }
 		)
 	
 }
@@ -315,12 +320,11 @@ rule Place2MonitoredPlace {
 lazy rule Post2NumPostsCity {
 	
 	from
-		s: City!City,
-		p: SocialResource!SocialMediaResource
+		s: City!City
 	to
 		t: CitySensing!NumPost (
 			name <- '#Posts',
-			metric <- s.countPostsCity(p).longValue()
+			metric <- s.countPostsCity().longValue()
 		)
 	
 }
@@ -328,12 +332,12 @@ lazy rule Post2NumPostsCity {
 lazy rule Post2NumPostsDist {
 	
 	from
-		s: City!District,
-		p: SocialResource!SocialMediaResource
+		s: City!District
+		
 	to
 		t: CitySensing!NumPost (
 			name <- '#Posts',
-			metric <- s.countPostsDistrict(p).longValue()
+			metric <- s.countPostsDistrict().longValue()
 		)
 	
 }
@@ -341,12 +345,12 @@ lazy rule Post2NumPostsDist {
 lazy rule Post2NumPostsPlace {
 	
 	from
-		s: City!Place,
-		p: SocialResource!SocialMediaResource
+		s: City!Place
+
 	to
 		t: CitySensing!NumPost (
 			name <- '#Posts',
-			metric <- s.countPostsPlace(p).longValue()
+			metric <- s.countPostsPlace().longValue()
 		)
 	
 }
@@ -354,12 +358,12 @@ lazy rule Post2NumPostsPlace {
 lazy rule Post2NumPhotoCity {
 	
 	from
-		s: City!City,
-		p: SocialResource!SocialMediaResource
+		s: City!City
+
 	to
 		t: CitySensing!NumPhoto (
 			name <- '#Pictures',
-			metric <- s.countPicturesCity(p).longValue()
+			metric <- s.countPicturesCity().longValue()
 		)
 	
 }
@@ -367,12 +371,12 @@ lazy rule Post2NumPhotoCity {
 lazy rule Post2NumPhotoDist {
 	
 	from
-		s: City!District,
-		p: SocialResource!SocialMediaResource
+		s: City!District
+
 	to
 		t: CitySensing!NumPhoto (
 			name <- '#Pictures',
-			metric <- s.countPicturesDistrict(p).longValue()
+			metric <- s.countPicturesDistrict().longValue()
 		)
 	
 }
@@ -380,12 +384,12 @@ lazy rule Post2NumPhotoDist {
 lazy rule Post2NumPhotoPlace {
 	
 	from
-		s: City!Place,
-		p: SocialResource!SocialMediaResource
+		s: City!Place
+
 	to
 		t: CitySensing!NumPhoto (
 			name <- '#Pictures',
-			metric <- s.countPicturesPlace(p).longValue()
+			metric <- s.countPicturesPlace().longValue()
 		)
 	
 }
@@ -396,14 +400,14 @@ lazy rule Post2NumPhotoPlace {
 lazy rule Post2NumPostTimeSlotCity {
 	
 	from
-		s: City!City,
-		p: SocialResource!SocialMediaResource
+		s: City!City
+
 	to
 		t: CitySensing!NumPostTimeSlot (
 			name <- '#Posts per time slot',
 			postsPerTimeSlot <- CitySensing!TimeSlots.eLiterals 
 								--- Iteration on the enum
-								-> collect(l | thisModule.Post2MapPostTimeSlotCity(s, p, l))
+								-> collect(l | thisModule.Post2MapPostTimeSlotCity(s, l))
 		)
 			
 }
@@ -411,13 +415,13 @@ lazy rule Post2NumPostTimeSlotCity {
 lazy rule Post2NumPostTimeSlotDist {
 	
 	from
-		s: City!District,
-		p: SocialResource!SocialMediaResource
+		s: City!District
+
 	to
 		t: CitySensing!NumPostTimeSlot (
 			name <- '#Posts per time slot',
 			postsPerTimeSlot <- CitySensing!TimeSlots.eLiterals 
-								-> collect(l | thisModule.Post2MapPostTimeSlotDistrict(s, p, l))
+								-> collect(l | thisModule.Post2MapPostTimeSlotDistrict(s, l))
 		)
 			
 }
@@ -425,13 +429,13 @@ lazy rule Post2NumPostTimeSlotDist {
 lazy rule Post2NumPostTimeSlotPlace {
 	
 	from
-		s: City!Place,
-		p: SocialResource!SocialMediaResource
+		s: City!Place
+
 	to
 		t: CitySensing!NumPostTimeSlot (
 			name <- '#Posts per time slot',
 			postsPerTimeSlot <- CitySensing!TimeSlots.eLiterals 
-								-> collect(l | thisModule.Post2MapPostTimeSlotPlace(s, p, l))
+								-> collect(l | thisModule.Post2MapPostTimeSlotPlace(s, l))
 		)
 			
 }
@@ -441,12 +445,12 @@ lazy rule Post2MapPostTimeSlotCity {
 	
 	from
 		s: City!City,
-		p: SocialResource!SocialMediaResource,
 		l: CitySensing!TimeSlots
+		
 	to
 		t: CitySensing!MapPostTimeSlot (
 				key <- l,
-				value <- s.countPostTimeSlotCity(p, l)
+				value <- s.countPostTimeSlotCity(l)
 		)
 	
 }
@@ -455,12 +459,12 @@ lazy rule Post2MapPostTimeSlotDistrict {
 	
 	from
 		s: City!District,
-		p: SocialResource!SocialMediaResource,
 		l: CitySensing!TimeSlots
+		
 	to
 		t: CitySensing!MapPostTimeSlot (
 				key <- l,
-				value <- s.countPostTimeSlotDistrict(p, l)
+				value <- s.countPostTimeSlotDistrict(l)
 		)
 	
 }
@@ -469,12 +473,12 @@ lazy rule Post2MapPostTimeSlotPlace {
 	
 	from
 		s: City!Place,
-		p: SocialResource!SocialMediaResource,
 		l: CitySensing!TimeSlots
+		
 	to
 		t: CitySensing!MapPostTimeSlot (
 				key <- l,
-				value <- s.countPostTimeSlotPlace(p, l)
+				value <- s.countPostTimeSlotPlace(l)
 		)
 	
 }
@@ -482,13 +486,13 @@ lazy rule Post2MapPostTimeSlotPlace {
 lazy rule Post2NumPostLangCity {
 	
 	from
-		s: City!City,
-		p: SocialResource!SocialMediaResource
+		s: City!City
+
 	to
 		t: CitySensing!NumPostLang (
 			name <- '#Posts per language',
 			langNumber <- SocialResource!Languages.eLiterals 
-						-> collect(l | thisModule.Post2MapPostLangCity(s, p, l))
+						-> collect(l | thisModule.Post2MapPostLangCity(s, l))
 		)
 			
 }
@@ -496,13 +500,13 @@ lazy rule Post2NumPostLangCity {
 lazy rule Post2NumPostLangDist {
 	
 	from
-		s: City!District,
-		p: SocialResource!SocialMediaResource
+		s: City!District
+		
 	to
 		t: CitySensing!NumPostLang (
 			name <- '#Posts per language',
 			langNumber <- SocialResource!Languages.eLiterals 
-						-> collect(l | thisModule.Post2MapPostLangDistrict(s, p, l))
+						-> collect(l | thisModule.Post2MapPostLangDistrict(s, l))
 		)
 			
 }
@@ -510,13 +514,13 @@ lazy rule Post2NumPostLangDist {
 lazy rule Post2NumPostLangPlace {
 	
 	from
-		s: City!Place,
-		p: SocialResource!SocialMediaResource
+		s: City!Place
+		
 	to
 		t: CitySensing!NumPostLang (
 			name <- '#Posts per language',
 			langNumber <- SocialResource!Languages.eLiterals 
-						-> collect(l | thisModule.Post2MapPostLangPlace(s, p, l))
+						-> collect(l | thisModule.Post2MapPostLangPlace(s, l))
 		)
 			
 }
@@ -525,12 +529,12 @@ lazy rule Post2MapPostLangCity {
 	
 	from
 		s: City!City,
-		p: SocialResource!SocialMediaResource,
 		l: SocialResource!Languages
+		
 	to
 		t: CitySensing!MapPostLang (
 				key <- l,
-				value <- s.countPostLangCity(p, l)
+				value <- s.countPostLangCity(l)
 		)
 	
 }
@@ -539,12 +543,12 @@ lazy rule Post2MapPostLangDistrict {
 	
 	from
 		s: City!District,
-		p: SocialResource!SocialMediaResource,
 		l: SocialResource!Languages
+		
 	to
 		t: CitySensing!MapPostLang (
 				key <- l,
-				value <- s.countPostLangDistrict(p, l)
+				value <- s.countPostLangDistrict(l)
 		)
 	
 }
@@ -553,12 +557,12 @@ lazy rule Post2MapPostLangPlace {
 	
 	from
 		s: City!Place,
-		p: SocialResource!SocialMediaResource,
 		l: SocialResource!Languages
+		
 	to
 		t: CitySensing!MapPostLang (
 				key <- l,
-				value <- s.countPostLangPlace(p, l)
+				value <- s.countPostLangPlace(l)
 		)
 	
 }
@@ -566,13 +570,13 @@ lazy rule Post2MapPostLangPlace {
 lazy rule Post2CategoriesCountCity {
 	
 	from
-		s: City!City,
-		p: SocialResource!SocialMediaResource
+		s: City!City
+
 	to
 		t: CitySensing!CategoriesCount (
 			name <- '#Posts per Category',
 			catNumber <- CitySensing!Categories.eLiterals 
-								-> collect(l | thisModule.Post2MapCategoriesCity(s, p, l))
+								-> collect(l | thisModule.Post2MapCategoriesCity(s, l))
 		)
 	
 }
@@ -580,13 +584,13 @@ lazy rule Post2CategoriesCountCity {
 lazy rule Post2CategoriesCountDistrict {
 	
 	from
-		s: City!District,
-		p: SocialResource!SocialMediaResource
+		s: City!District
+		
 	to
 		t: CitySensing!CategoriesCount (
 			name <- '#Posts per Category',
 			catNumber <- CitySensing!Categories.eLiterals 
-								-> collect(l | thisModule.Post2MapCategoriesDistrict(s, p, l))
+								-> collect(l | thisModule.Post2MapCategoriesDistrict(s, l))
 		)
 	
 }
@@ -594,13 +598,13 @@ lazy rule Post2CategoriesCountDistrict {
 lazy rule Post2CategoriesCountPlace {
 	
 	from
-		s: City!Place,
-		p: SocialResource!SocialMediaResource
+		s: City!Place
+		
 	to
 		t: CitySensing!CategoriesCount (
 			name <- '#Posts per Category',
 			catNumber <- CitySensing!Categories.eLiterals 
-								-> collect(l | thisModule.Post2MapCategoriesPlace(s, p, l))
+								-> collect(l | thisModule.Post2MapCategoriesPlace(s, l))
 		)
 	
 }
@@ -609,12 +613,12 @@ lazy rule Post2MapCategoriesCity {
 	
 	from
 		s: City!City,
-		p: SocialResource!SocialMediaResource,
 		l: SocialResource!Categories
+		
 	to
 		t: CitySensing!MapCategories (
 				key <- l,
-				value <- s.countPostCategoryCity(p, l)
+				value <- s.countPostCategoryCity(l)
 		)
 	
 }
@@ -623,12 +627,12 @@ lazy rule Post2MapCategoriesDistrict {
 	
 	from
 		s: City!District,
-		p: SocialResource!SocialMediaResource,
 		l: SocialResource!Categories
+		
 	to
 		t: CitySensing!MapCategories (
 				key <- l,
-				value <- s.countPostCategoryDistrict(p, l)
+				value <- s.countPostCategoryDistrict(l)
 		)
 	
 }
@@ -637,12 +641,12 @@ lazy rule Post2MapCategoriesPlace {
 	
 	from
 		s: City!Place,
-		p: SocialResource!SocialMediaResource,
 		l: SocialResource!Categories
+		
 	to
 		t: CitySensing!MapCategories (
 				key <- l,
-				value <- s.countPostCategoryPlace(p, l)
+				value <- s.countPostCategoryPlace(l)
 		)
 	
 }

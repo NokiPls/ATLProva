@@ -790,7 +790,7 @@ public class CsPackageImpl extends EPackageImpl implements CsPackage {
 		initEEnum(languagesEEnum, Languages.class, "Languages");
 		addEEnumLiteral(languagesEEnum, Languages.SPANISH);
 		addEEnumLiteral(languagesEEnum, Languages.ENGLISH);
-		addEEnumLiteral(languagesEEnum, Languages.LASSA_STA);
+		addEEnumLiteral(languagesEEnum, Languages.ITALIAN);
 
 		initEEnum(timeSlotsEEnum, TimeSlots.class, "TimeSlots");
 		addEEnumLiteral(timeSlotsEEnum, TimeSlots.MORNING);
@@ -873,6 +873,12 @@ public class CsPackageImpl extends EPackageImpl implements CsPackage {
 		   });	
 		addAnnotation
 		  (numPostTimeSlotEClass, 
+		   source, 
+		   new String[] {
+			 "label", "name"
+		   });	
+		addAnnotation
+		  (numPostLangEClass, 
 		   source, 
 		   new String[] {
 			 "label", "name"

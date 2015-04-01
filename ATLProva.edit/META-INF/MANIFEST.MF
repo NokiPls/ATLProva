@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: ATLProva.edit;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: city.provider.CityEditPlugin$Implementation
+Bundle-Activator: cs.provider.CitySensingEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

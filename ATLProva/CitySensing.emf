@@ -78,9 +78,10 @@ class NumPostTimeSlot extends Statistic {
 enum Languages {
   Spanish = 1;
   English = 2;
-  LassaSta = 3;
+  Italian = 3;
 }
 
+@gmf.node(label="name")
 class NumPostLang extends Statistic {
   val MapPostLang[*] langNumber;
 }
