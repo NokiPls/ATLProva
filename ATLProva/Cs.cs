@@ -16,6 +16,11 @@
           <postsPerTimeSlot key="Evening" value="0"/>
           <postsPerTimeSlot key="Night" value="0"/>
         </stats>
+        <stats xsi:type="cs:CategoriesCount" name="#Posts per Category">
+          <catNumber value="0"/>
+          <catNumber key="Food" value="0"/>
+          <catNumber key="Fun" value="0"/>
+        </stats>
       </places>
       <stats xsi:type="cs:NumPost" name="#Posts" metric="3"/>
       <stats xsi:type="cs:NumPhoto" name="#Pictures" metric="3"/>
@@ -29,6 +34,11 @@
         <postsPerTimeSlot key="Afternoon" value="0"/>
         <postsPerTimeSlot key="Evening" value="1"/>
         <postsPerTimeSlot key="Night" value="0"/>
+      </stats>
+      <stats xsi:type="cs:CategoriesCount" name="#Posts per Category">
+        <catNumber value="0"/>
+        <catNumber key="Food" value="2"/>
+        <catNumber key="Fun" value="0"/>
       </stats>
     </districts>
     <districts name="SudCentro" coordBx="1.0" coordEx="2.0">
@@ -45,6 +55,11 @@
         <postsPerTimeSlot key="Evening" value="0"/>
         <postsPerTimeSlot key="Night" value="0"/>
       </stats>
+      <stats xsi:type="cs:CategoriesCount" name="#Posts per Category">
+        <catNumber value="0"/>
+        <catNumber key="Food" value="0"/>
+        <catNumber key="Fun" value="1"/>
+      </stats>
     </districts>
     <districts name="SudEst" coordBx="2.0" coordEx="3.0" coordEy="1.0">
       <stats xsi:type="cs:NumPost" name="#Posts"/>
@@ -59,6 +74,11 @@
         <postsPerTimeSlot key="Afternoon" value="0"/>
         <postsPerTimeSlot key="Evening" value="0"/>
         <postsPerTimeSlot key="Night" value="0"/>
+      </stats>
+      <stats xsi:type="cs:CategoriesCount" name="#Posts per Category">
+        <catNumber value="0"/>
+        <catNumber key="Food" value="0"/>
+        <catNumber key="Fun" value="0"/>
       </stats>
     </districts>
     <districts name="CentroOvest" coordBy="1.0" coordEx="1.0" coordEy="2.0">
@@ -75,6 +95,11 @@
         <postsPerTimeSlot key="Evening" value="0"/>
         <postsPerTimeSlot key="Night" value="2"/>
       </stats>
+      <stats xsi:type="cs:CategoriesCount" name="#Posts per Category">
+        <catNumber value="2"/>
+        <catNumber key="Food" value="0"/>
+        <catNumber key="Fun" value="0"/>
+      </stats>
     </districts>
     <districts name="CentroCentro" coordBx="1.0" coordBy="1.0" coordEx="2.0" coordEy="2.0">
       <stats xsi:type="cs:NumPost" name="#Posts" metric="2"/>
@@ -89,6 +114,11 @@
         <postsPerTimeSlot key="Afternoon" value="1"/>
         <postsPerTimeSlot key="Evening" value="0"/>
         <postsPerTimeSlot key="Night" value="0"/>
+      </stats>
+      <stats xsi:type="cs:CategoriesCount" name="#Posts per Category">
+        <catNumber value="0"/>
+        <catNumber key="Food" value="0"/>
+        <catNumber key="Fun" value="0"/>
       </stats>
     </districts>
     <districts name="CentroEst" coordBx="2.0" coordBy="1.0" coordEx="3.0" coordEy="2.0">
@@ -105,6 +135,11 @@
         <postsPerTimeSlot key="Evening" value="0"/>
         <postsPerTimeSlot key="Night" value="0"/>
       </stats>
+      <stats xsi:type="cs:CategoriesCount" name="#Posts per Category">
+        <catNumber value="0"/>
+        <catNumber key="Food" value="0"/>
+        <catNumber key="Fun" value="0"/>
+      </stats>
     </districts>
     <districts name="NordOvest" coordBy="2.0" coordEx="1.0" coordEy="3.0">
       <stats xsi:type="cs:NumPost" name="#Posts"/>
@@ -119,6 +154,11 @@
         <postsPerTimeSlot key="Afternoon" value="0"/>
         <postsPerTimeSlot key="Evening" value="0"/>
         <postsPerTimeSlot key="Night" value="0"/>
+      </stats>
+      <stats xsi:type="cs:CategoriesCount" name="#Posts per Category">
+        <catNumber value="0"/>
+        <catNumber key="Food" value="0"/>
+        <catNumber key="Fun" value="0"/>
       </stats>
     </districts>
     <districts name="NordCentro" coordBx="1.0" coordBy="2.0" coordEx="2.0" coordEy="3.0">
@@ -135,6 +175,11 @@
         <postsPerTimeSlot key="Evening" value="1"/>
         <postsPerTimeSlot key="Night" value="1"/>
       </stats>
+      <stats xsi:type="cs:CategoriesCount" name="#Posts per Category">
+        <catNumber value="1"/>
+        <catNumber key="Food" value="1"/>
+        <catNumber key="Fun" value="0"/>
+      </stats>
     </districts>
     <districts name="NordEst" coordBx="2.0" coordBy="2.0" coordEx="3.0" coordEy="3.0">
       <stats xsi:type="cs:NumPost" name="#Posts" metric="4"/>
@@ -149,6 +194,11 @@
         <postsPerTimeSlot key="Afternoon" value="1"/>
         <postsPerTimeSlot key="Evening" value="0"/>
         <postsPerTimeSlot key="Night" value="3"/>
+      </stats>
+      <stats xsi:type="cs:CategoriesCount" name="#Posts per Category">
+        <catNumber value="1"/>
+        <catNumber key="Food" value="1"/>
+        <catNumber key="Fun" value="0"/>
       </stats>
     </districts>
     <stats xsi:type="cs:NumPost" name="#Posts" metric="13"/>
@@ -165,8 +215,8 @@
       <postsPerTimeSlot key="Night" value="7"/>
     </stats>
     <stats xsi:type="cs:CategoriesCount" name="#Posts per Category">
-      <catNumber value="0"/>
-      <catNumber key="Food" value="0"/>
+      <catNumber value="5"/>
+      <catNumber key="Food" value="3"/>
       <catNumber key="Fun" value="0"/>
     </stats>
   </cities>

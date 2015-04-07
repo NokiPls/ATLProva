@@ -118,14 +118,17 @@ helper context SocialResource!Post def: hasPicture(): Boolean =
 
 --- Check the time slot of a post
 helper context SocialResource!Post def : isInTimeSlot(l : CitySensing!TimeSlots) : Boolean =
-	if l.literal.toString() = 'Morning' and 4 <= self.time.getHours() and 12 > self.time.getHours() then
+	if l.literal.toString() = 'Morning' and 4 <= self.time.getHours() 
+		and 12 > self.time.getHours() then
 		true
-	else if l.literal.toString() = 'Afternoon' and 12 <= self.time.getHours() and 18 > self.time.getHours() then
+	else if l.literal.toString() = 'Afternoon' and 12 <= self.time.getHours() 
+		and 18 > self.time.getHours() then
 		true
-	else if l.literal.toString() = 'Evening' and 18 <= self.time.getHours() and 22 > self.time.getHours() then
+	else if l.literal.toString() = 'Evening' and 18 <= self.time.getHours() 
+		and 22 > self.time.getHours() then
 		true
-	else if l.literal.toString() = 'Night' and (22 <= self.time.getHours() and 24 > self.time.getHours() or 
-			0 <= self.time.getHours() and 4 > self.time.getHours())then
+	else if l.literal.toString() = 'Night' and (22 <= self.time.getHours() 
+		and 24 > self.time.getHours() or 0 <= self.time.getHours() and 4 > self.time.getHours())then
 		true
 	else false
 	endif
@@ -135,7 +138,8 @@ helper context SocialResource!Post def : isInTimeSlot(l : CitySensing!TimeSlots)
 ;
 
 --- Get the posts in a city, using ordered sets to avoid duplicate posts
-helper context SocialResource!SocialMediaResource def : postsInCity(city : City!City) : OrderedSet(SocialResource!Post) =
+helper context SocialResource!SocialMediaResource 
+def : postsInCity(city : City!City) : OrderedSet(SocialResource!Post) =
 	--- Posts with coordinates
 	let lp : OrderedSet(SocialResource!Post) = 
 		self.posts -> select(p | p.hasLocation()) -> select(p | p.hasCoordinates())	
@@ -154,7 +158,8 @@ helper context SocialResource!SocialMediaResource def : postsInCity(city : City!
 ;
 
 --- Get the posts in a district, using ordered sets to avoid duplicate posts
-helper context SocialResource!SocialMediaResource def : postsInDistrict(district : City!District) : OrderedSet(SocialResource!Post) =
+helper context SocialResource!SocialMediaResource 
+def : postsInDistrict(district : City!District) : OrderedSet(SocialResource!Post) =
 	--- Posts with coordinates
 	let lp : OrderedSet(SocialResource!Post) = 
 		self.posts -> select(p | p.hasLocation()) -> select(p | p.hasCoordinates())
@@ -173,7 +178,8 @@ helper context SocialResource!SocialMediaResource def : postsInDistrict(district
 ;
 
 --- Get the posts in a place, using ordered sets to avoid duplicate posts
-helper context SocialResource!SocialMediaResource def : postsInPlace(place : City!Place) : OrderedSet(SocialResource!Post) =
+helper context SocialResource!SocialMediaResource 
+def : postsInPlace(place : City!Place) : OrderedSet(SocialResource!Post) =
 	--- Posts with place name
 	let np : OrderedSet(SocialResource!Post) =
 		self.posts -> select(p | p.hasLocation()) -> select(p | p.hasPlace())
@@ -198,59 +204,75 @@ helper context City!Place def: countPostsPlace() : Real =
 
 --- The number of pictures in a city/district/place
 helper context City!City def: countPicturesCity() : Real =
-	SocialResource!SocialMediaResource.allInstances().first().postsInCity(self) -> select(p | p.hasPicture()) -> collect(p | p.pictures).size();
+	SocialResource!SocialMediaResource.allInstances().first().postsInCity(self) 
+	-> select(p | p.hasPicture()) -> collect(p | p.pictures).size();
 
 helper context City!District def: countPicturesDistrict() : Real =
-	SocialResource!SocialMediaResource.allInstances().first().postsInDistrict(self) -> select(p | p.hasPicture()) -> collect(p | p.pictures).size();
+	SocialResource!SocialMediaResource.allInstances().first().postsInDistrict(self) 
+	-> select(p | p.hasPicture()) -> collect(p | p.pictures).size();
 
 helper context City!Place def: countPicturesPlace() : Real =
-	SocialResource!SocialMediaResource.allInstances().first().postsInPlace(self) -> select(p | p.hasPicture()) -> collect(p | p.pictures).size();
+	SocialResource!SocialMediaResource.allInstances().first().postsInPlace(self) 
+	-> select(p | p.hasPicture()) -> collect(p | p.pictures).size();
 
 --- The number of posts of a given language in a city/district/place
 helper context City!City def : countPostLangCity(l : SocialResource!Languages) : Integer =
-	SocialResource!SocialMediaResource.allInstances().first().postsInCity(self) -> select(e | e.language.toString() = l.literal.toString()).size();
+	SocialResource!SocialMediaResource.allInstances().first().postsInCity(self) 
+	-> select(e | e.language.toString() = l.literal.toString()).size();
 
 helper context City!District def : countPostLangDistrict(l : SocialResource!Languages) : Integer =
-	SocialResource!SocialMediaResource.allInstances().first().postsInDistrict(self) -> select(e | e.language.toString() = l.literal.toString()).size();
+	SocialResource!SocialMediaResource.allInstances().first().postsInDistrict(self) 
+	-> select(e | e.language.toString() = l.literal.toString()).size();
 
 helper context City!Place def : countPostLangPlace(l : SocialResource!Languages) : Integer =
-	SocialResource!SocialMediaResource.allInstances().first().postsInPlace(self) -> select(e | e.language.toString() = l.literal.toString()).size();
+	SocialResource!SocialMediaResource.allInstances().first().postsInPlace(self) 
+	-> select(e | e.language.toString() = l.literal.toString()).size();
 
 --- The number of posts for a time slot in a city/district/place
 helper context City!City def : countPostTimeSlotCity(l : CitySensing!TimeSlots) : Integer =
 	let dp : OrderedSet(SocialResource!Post) = 
-		SocialResource!SocialMediaResource.allInstances().first().postsInCity(self) -> select(p | p.hasTime())
+		SocialResource!SocialMediaResource.allInstances().first().postsInCity(self) 
+		-> select(p | p.hasTime())
 	in
 		dp -> select(p | p.isInTimeSlot(l)).size()
 ;
 
 helper context City!District def : countPostTimeSlotDistrict(l : CitySensing!TimeSlots) : Integer =
 	let dp : OrderedSet(SocialResource!Post) = 
-		SocialResource!SocialMediaResource.allInstances().first().postsInDistrict(self) -> select(p | p.hasTime())
+		SocialResource!SocialMediaResource.allInstances().first().postsInDistrict(self) 
+		-> select(p | p.hasTime())
 	in
 		dp -> select(p | p.isInTimeSlot(l)).size()
 ;
 
 helper context City!Place def : countPostTimeSlotPlace(l : CitySensing!TimeSlots) : Integer =
 	let dp : OrderedSet(SocialResource!Post) = 
-		SocialResource!SocialMediaResource.allInstances().first().postsInPlace(self) -> select(p | p.hasTime())
+		SocialResource!SocialMediaResource.allInstances().first().postsInPlace(self) 
+		-> select(p | p.hasTime())
 	in
 		dp -> select(p | p.isInTimeSlot(l)).size()
 ;
 
 --- The posts per category in a city/district/place
 helper context City!City def : countPostCategoryCity(l : CitySensing!Categories) : Integer =
-		SocialResource!SocialMediaResource.allInstances().first().postsInCity(self) -> select(p | p.hasCategory()) -> select(p | p.categories.includes(l)).size()
+		SocialResource!SocialMediaResource.allInstances().first().postsInCity(self)
+		-> select(p | p.hasCategory()) -> select(p | p.categories 
+			-> select(c | c.type.toString() = l.literal.toString()).size() > 0).size()
 ;
 
 helper context City!District def : countPostCategoryDistrict(l : CitySensing!Categories) : Integer =
-		SocialResource!SocialMediaResource.allInstances().first().postsInDistrict(self) -> select(p | p.hasCategory()) -> select(p | p.categories.includes(l)).size()
+		SocialResource!SocialMediaResource.allInstances().first().postsInDistrict(self) 
+		-> select(p | p.hasCategory()) -> select(p | p.categories 
+			-> select(c | c.type.toString() = l.literal.toString()).size() > 0).size()
 ;
 
 helper context City!Place def : countPostCategoryPlace(l : CitySensing!Categories) : Integer =
-		SocialResource!SocialMediaResource.allInstances().first().postsInPlace(self) -> select(p | p.hasCategory()) -> select(p | p.categories.includes(l)).size()
+		SocialResource!SocialMediaResource.allInstances().first().postsInPlace(self) 
+		-> select(p | p.hasCategory()) -> select(p | p.categories 
+			-> select(c | c.type.toString() = l.literal.toString()).size() > 0).size()
 ;
 
+--- Collect every city found
 rule Cities2MonitoredCities {
 	
 	from
@@ -298,7 +320,8 @@ rule District2MonitoredDistrict {
 			coordEy <- s.coordEy,
 			places <- s.getAllPlaces(),
 			stats <- Sequence{thisModule.Post2NumPostsDist(s), thisModule.Post2NumPhotoDist(s), 
-				thisModule.Post2NumPostLangDist(s), thisModule.Post2NumPostTimeSlotDist(s)}
+				thisModule.Post2NumPostLangDist(s), thisModule.Post2NumPostTimeSlotDist(s),
+				thisModule.Post2CategoriesCountDistrict(s) }
 		)
 	
 }
@@ -312,7 +335,8 @@ rule Place2MonitoredPlace {
 		t: CitySensing!Place (
 			name <- s.name,
 			stats <- Sequence{ thisModule.Post2NumPostsPlace(s), thisModule.Post2NumPhotoPlace(s), 
-					thisModule.Post2NumPostLangPlace(s), thisModule.Post2NumPostTimeSlotPlace(s) }
+					thisModule.Post2NumPostLangPlace(s), thisModule.Post2NumPostTimeSlotPlace(s),
+					thisModule.Post2CategoriesCountPlace(s) }
 		)
 	
 }
