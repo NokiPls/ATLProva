@@ -315,7 +315,7 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getText_Name() {
+	public EAttribute getText_Text() {
 		return (EAttribute)textEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -324,17 +324,8 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getText_Text() {
-		return (EAttribute)textEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getText_Tags() {
-		return (EReference)textEClass.getEStructuralFeatures().get(2);
+		return (EReference)textEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -495,7 +486,7 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getCoordinates_Name() {
+	public EAttribute getCoordinates_Coordx() {
 		return (EAttribute)coordinatesEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -504,17 +495,8 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getCoordinates_Coordx() {
-		return (EAttribute)coordinatesEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getCoordinates_Coordy() {
-		return (EAttribute)coordinatesEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)coordinatesEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -645,7 +627,6 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 		createEAttribute(locationEClass, LOCATION__DISTRICT);
 
 		textEClass = createEClass(TEXT);
-		createEAttribute(textEClass, TEXT__NAME);
 		createEAttribute(textEClass, TEXT__TEXT);
 		createEReference(textEClass, TEXT__TAGS);
 
@@ -666,7 +647,6 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 		createEAttribute(placeEClass, PLACE__NAME);
 
 		coordinatesEClass = createEClass(COORDINATES);
-		createEAttribute(coordinatesEClass, COORDINATES__NAME);
 		createEAttribute(coordinatesEClass, COORDINATES__COORDX);
 		createEAttribute(coordinatesEClass, COORDINATES__COORDY);
 
@@ -737,7 +717,6 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 		initEAttribute(getLocation_District(), ecorePackage.getEString(), "district", null, 0, 1, Location.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(textEClass, Text.class, "Text", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getText_Name(), ecorePackage.getEString(), "name", null, 0, 1, Text.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getText_Text(), ecorePackage.getEString(), "text", null, 0, 1, Text.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getText_Tags(), this.getTag(), null, "tags", null, 0, -1, Text.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -758,7 +737,6 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 		initEAttribute(getPlace_Name(), ecorePackage.getEString(), "name", null, 1, 1, Place.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(coordinatesEClass, Coordinates.class, "Coordinates", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCoordinates_Name(), ecorePackage.getEString(), "name", null, 0, 1, Coordinates.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCoordinates_Coordx(), ecorePackage.getEFloat(), "coordx", null, 1, 1, Coordinates.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCoordinates_Coordy(), ecorePackage.getEFloat(), "coordy", null, 1, 1, Coordinates.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -782,7 +760,7 @@ public class SmrPackageImpl extends EPackageImpl implements SmrPackage {
 		initEEnum(languagesEEnum, Languages.class, "Languages");
 		addEEnumLiteral(languagesEEnum, Languages.SPANISH);
 		addEEnumLiteral(languagesEEnum, Languages.ENGLISH);
-		addEEnumLiteral(languagesEEnum, Languages.LASSA_STA);
+		addEEnumLiteral(languagesEEnum, Languages.ITALIAN);
 
 		// Create resource
 		createResource(eNS_URI);

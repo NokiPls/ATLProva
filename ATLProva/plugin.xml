@@ -28,5 +28,24 @@
             class="cs.CsPackage"
             genModel="CitySensing.genmodel"/>
    </extension>
+   <extension
+         point="org.eclipse.epsilon.evl.emf.validation">
+      <constraintsBinding
+            compose="true"
+            constraints="SocialResource.evl"
+            namespaceURI="http://smr/1.0">
+      </constraintsBinding>
+   </extension>
+   <extension
+         point="org.eclipse.ui.ide.markerResolution">
+      <markerResolutionGenerator
+            class="org.eclipse.epsilon.evl.emf.validation.EvlMarkerResolutionGenerator"
+            markerType="org.eclipse.emf.ecore.diagnostic">
+      </markerResolutionGenerator>
+      <markerResolutionGenerator
+            class="aseproject.MarkerResolutionGenerator"
+            markerType="http://smr/1.0">
+      </markerResolutionGenerator>
+   </extension>
 
 </plugin>

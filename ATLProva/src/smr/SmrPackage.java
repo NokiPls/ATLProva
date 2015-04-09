@@ -290,22 +290,13 @@ public interface SmrPackage extends EPackage {
 	int LOCATION_OPERATION_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT__NAME = 0;
-
-	/**
 	 * The feature id for the '<em><b>Text</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT__TEXT = 1;
+	int TEXT__TEXT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Tags</b></em>' containment reference list.
@@ -314,7 +305,7 @@ public interface SmrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT__TAGS = 2;
+	int TEXT__TAGS = 1;
 
 	/**
 	 * The number of structural features of the '<em>Text</em>' class.
@@ -323,7 +314,7 @@ public interface SmrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_FEATURE_COUNT = 3;
+	int TEXT_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Text</em>' class.
@@ -489,22 +480,13 @@ public interface SmrPackage extends EPackage {
 	int COORDINATES = 7;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COORDINATES__NAME = 0;
-
-	/**
 	 * The feature id for the '<em><b>Coordx</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COORDINATES__COORDX = 1;
+	int COORDINATES__COORDX = 0;
 
 	/**
 	 * The feature id for the '<em><b>Coordy</b></em>' attribute.
@@ -513,7 +495,7 @@ public interface SmrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COORDINATES__COORDY = 2;
+	int COORDINATES__COORDY = 1;
 
 	/**
 	 * The number of structural features of the '<em>Coordinates</em>' class.
@@ -522,7 +504,7 @@ public interface SmrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COORDINATES_FEATURE_COUNT = 3;
+	int COORDINATES_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Coordinates</em>' class.
@@ -852,17 +834,6 @@ public interface SmrPackage extends EPackage {
 	EClass getText();
 
 	/**
-	 * Returns the meta object for the attribute '{@link smr.Text#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see smr.Text#getName()
-	 * @see #getText()
-	 * @generated
-	 */
-	EAttribute getText_Name();
-
-	/**
 	 * Returns the meta object for the attribute '{@link smr.Text#getText <em>Text</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1065,17 +1036,6 @@ public interface SmrPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getCoordinates();
-
-	/**
-	 * Returns the meta object for the attribute '{@link smr.Coordinates#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see smr.Coordinates#getName()
-	 * @see #getCoordinates()
-	 * @generated
-	 */
-	EAttribute getCoordinates_Name();
 
 	/**
 	 * Returns the meta object for the attribute '{@link smr.Coordinates#getCoordx <em>Coordx</em>}'.
@@ -1326,14 +1286,6 @@ public interface SmrPackage extends EPackage {
 		EClass TEXT = eINSTANCE.getText();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TEXT__NAME = eINSTANCE.getText_Name();
-
-		/**
 		 * The meta object literal for the '<em><b>Text</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1494,14 +1446,6 @@ public interface SmrPackage extends EPackage {
 		 * @generated
 		 */
 		EClass COORDINATES = eINSTANCE.getCoordinates();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COORDINATES__NAME = eINSTANCE.getCoordinates_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Coordx</b></em>' attribute feature.

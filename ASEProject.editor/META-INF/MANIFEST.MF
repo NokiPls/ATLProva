@@ -4,11 +4,11 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: ASEProject.editor;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: cs.presentation.CitySensingEditorPlugin$Implementation
+Bundle-Activator: smr.presentation.SocialResourceEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: cs.presentation
+Export-Package: smr.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
  ASEProject.edit;visibility:=reexport,

@@ -1,0 +1,70 @@
+context Post {
+	
+	constraint DuplicateCategory{
+	
+		check : self.categories -> collect(c | c.type) -> size() == self.categories -> collect(c | c.type) -> asOrderedSet() -> size()
+		
+		message : 'Duplicate category found.'
+	
+		fix {
+		
+			title : 'Eliminate duplicates.'
+			
+			do {
+				var oldCateg = self.categories;
+				var newCateg = Set{self.categories -> asOrderedSet() -> first()};
+				for(c in oldCateg){
+					if(not (newCateg -> collect(cat | cat.type) -> includes(c.type))){
+						newCateg -> union(Set{c});
+					}
+				}
+				self.categories = newCateg;
+			}
+		}
+	}
+	
+}
+
+context Hashtag {
+
+	constraint BeginWithHash {
+		
+		guard : self.name.isDefined()
+		
+		check : forAll(h | h.StartsWith('#'))
+		
+		message : 'Hashtag must begin with # symbol'
+		
+		fix {
+			
+			title : 'Adding # symbol'
+			
+			do {
+				
+				self.name = '#'.concat(self.name);
+			}
+		}
+	}
+}
+
+context Mention {
+
+	constraint BeginWithAt {
+		
+		guard : self.name.isDefined()
+		
+		check : forAll(h | h.StartsWith('@'))
+		
+		message : 'Mention must begin with @ symbol'
+		
+		fix {
+			
+			title : 'Adding @ symbol'
+			
+			do {
+				
+				self.name = '@'.concat(self.name);
+			}
+		}
+	}
+}

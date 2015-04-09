@@ -29,7 +29,6 @@ import smr.Text;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link smr.impl.TextImpl#getName <em>Name</em>}</li>
  *   <li>{@link smr.impl.TextImpl#getText <em>Text</em>}</li>
  *   <li>{@link smr.impl.TextImpl#getTags <em>Tags</em>}</li>
  * </ul>
@@ -38,26 +37,6 @@ import smr.Text;
  * @generated
  */
 public class TextImpl extends MinimalEObjectImpl.Container implements Text {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getText() <em>Text</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -105,27 +84,6 @@ public class TextImpl extends MinimalEObjectImpl.Container implements Text {
 	@Override
 	protected EClass eStaticClass() {
 		return SmrPackage.Literals.TEXT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SmrPackage.TEXT__NAME, oldName, name));
 	}
 
 	/**
@@ -183,8 +141,6 @@ public class TextImpl extends MinimalEObjectImpl.Container implements Text {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SmrPackage.TEXT__NAME:
-				return getName();
 			case SmrPackage.TEXT__TEXT:
 				return getText();
 			case SmrPackage.TEXT__TAGS:
@@ -202,9 +158,6 @@ public class TextImpl extends MinimalEObjectImpl.Container implements Text {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SmrPackage.TEXT__NAME:
-				setName((String)newValue);
-				return;
 			case SmrPackage.TEXT__TEXT:
 				setText((String)newValue);
 				return;
@@ -224,9 +177,6 @@ public class TextImpl extends MinimalEObjectImpl.Container implements Text {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SmrPackage.TEXT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case SmrPackage.TEXT__TEXT:
 				setText(TEXT_EDEFAULT);
 				return;
@@ -245,8 +195,6 @@ public class TextImpl extends MinimalEObjectImpl.Container implements Text {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SmrPackage.TEXT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case SmrPackage.TEXT__TEXT:
 				return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
 			case SmrPackage.TEXT__TAGS:
@@ -265,9 +213,7 @@ public class TextImpl extends MinimalEObjectImpl.Container implements Text {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", text: ");
+		result.append(" (text: ");
 		result.append(text);
 		result.append(')');
 		return result.toString();

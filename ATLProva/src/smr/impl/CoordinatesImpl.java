@@ -19,7 +19,6 @@ import smr.SmrPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link smr.impl.CoordinatesImpl#getName <em>Name</em>}</li>
  *   <li>{@link smr.impl.CoordinatesImpl#getCoordx <em>Coordx</em>}</li>
  *   <li>{@link smr.impl.CoordinatesImpl#getCoordy <em>Coordy</em>}</li>
  * </ul>
@@ -28,26 +27,6 @@ import smr.SmrPackage;
  * @generated
  */
 public class CoordinatesImpl extends MinimalEObjectImpl.Container implements Coordinates {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getCoordx() <em>Coordx</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -112,27 +91,6 @@ public class CoordinatesImpl extends MinimalEObjectImpl.Container implements Coo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SmrPackage.COORDINATES__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public float getCoordx() {
 		return coordx;
 	}
@@ -178,8 +136,6 @@ public class CoordinatesImpl extends MinimalEObjectImpl.Container implements Coo
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SmrPackage.COORDINATES__NAME:
-				return getName();
 			case SmrPackage.COORDINATES__COORDX:
 				return getCoordx();
 			case SmrPackage.COORDINATES__COORDY:
@@ -196,9 +152,6 @@ public class CoordinatesImpl extends MinimalEObjectImpl.Container implements Coo
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SmrPackage.COORDINATES__NAME:
-				setName((String)newValue);
-				return;
 			case SmrPackage.COORDINATES__COORDX:
 				setCoordx((Float)newValue);
 				return;
@@ -217,9 +170,6 @@ public class CoordinatesImpl extends MinimalEObjectImpl.Container implements Coo
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SmrPackage.COORDINATES__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case SmrPackage.COORDINATES__COORDX:
 				setCoordx(COORDX_EDEFAULT);
 				return;
@@ -238,8 +188,6 @@ public class CoordinatesImpl extends MinimalEObjectImpl.Container implements Coo
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SmrPackage.COORDINATES__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case SmrPackage.COORDINATES__COORDX:
 				return coordx != COORDX_EDEFAULT;
 			case SmrPackage.COORDINATES__COORDY:
@@ -258,9 +206,7 @@ public class CoordinatesImpl extends MinimalEObjectImpl.Container implements Coo
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", coordx: ");
+		result.append(" (coordx: ");
 		result.append(coordx);
 		result.append(", coordy: ");
 		result.append(coordy);

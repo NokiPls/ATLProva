@@ -7,10 +7,10 @@
 <plugin>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <!-- @generated CitySensing -->
+      <!-- @generated SocialResource -->
       <factory
-            uri="http://cs/1.0"
-            class="cs.provider.CsItemProviderAdapterFactory"
+            uri="http://smr/1.0"
+            class="smr.provider.SmrItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

@@ -7,30 +7,30 @@
 <plugin>
 
    <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated CitySensing -->
+      <!-- @generated SocialResource -->
       <category
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="cs.presentation.CsModelWizardID"
-            name="%_UI_CsModelWizard_label"
-            class="cs.presentation.CsModelWizard"
+            id="smr.presentation.SmrModelWizardID"
+            name="%_UI_SmrModelWizard_label"
+            class="smr.presentation.SmrModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/CsModelFile.gif">
-         <description>%_UI_CsModelWizard_description</description>
+            icon="icons/full/obj16/SmrModelFile.gif">
+         <description>%_UI_SmrModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
    </extension>
 
    <extension point="org.eclipse.ui.editors">
-      <!-- @generated CitySensing -->
+      <!-- @generated SocialResource -->
       <editor
-            id="cs.presentation.CsEditorID"
-            name="%_UI_CsEditor_label"
-            icon="icons/full/obj16/CsModelFile.gif"
-            extensions="cs"
-            class="cs.presentation.CsEditor"
-            contributorClass="cs.presentation.CsActionBarContributor">
+            id="smr.presentation.SmrEditorID"
+            name="%_UI_SmrEditor_label"
+            icon="icons/full/obj16/SmrModelFile.gif"
+            extensions="smr"
+            class="smr.presentation.SmrEditor"
+            contributorClass="smr.presentation.SmrActionBarContributor">
       </editor>
    </extension>
 
