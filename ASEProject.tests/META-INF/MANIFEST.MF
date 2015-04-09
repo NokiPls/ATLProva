@@ -1,15 +1,13 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: ATLProva.tests;singleton:=true
+Bundle-SymbolicName: ASEProject.tests;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: smr.tests,
- city.tests,
- cs.tests
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: cs.tests
 Require-Bundle: org.eclipse.core.runtime,
  ASEProject;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
