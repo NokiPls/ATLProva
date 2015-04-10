@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cs:CityModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:cs="http://city/1.0">
-  <cities name="Milano" coordEx="3" coordEy="3">
-    <districts name="SudOvest" coordEx="1" coordEy="1">
-      <places name="IceCream4You"/>
-      <places name="Pizzeria"/>
+<city:CityModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:city="http://city/1.0">
+  <cities name="Milano" coordEx="3.0" coordEy="3.0">
+    <districts name="SouthWest" coordEx="1.0" coordEy="1.0">
+      <places name="IceCream4You">
+        <categories type="Food"/>
+        <categories type="Fun"/>
+      </places>
+      <places name="Pizzeria">
+        <categories type="Food"/>
+      </places>
     </districts>
-    <districts name="South" coordBx="1" coordEx="2"/>
-    <districts name="SouthEast" coordBx="2" coordEx="3" coordEy="1"/>
-    <districts name="West" coordBy="1" coordEx="1" coordEy="2"/>
-    <districts name="Middle" coordBx="1" coordBy="1" coordEx="2" coordEy="2"/>
-    <districts name="East" coordBx="2" coordBy="1" coordEx="3" coordEy="2"/>
-    <districts name="NorthWest" coordBy="2" coordEx="1" coordEy="3">
-   		<places name="Pizzeria"/>
-   	</districts>
-    <districts name="North" coordBx="1" coordBy="2" coordEx="2" coordEy="3"/>
-    <districts name="NorthEast" coordBx="2" coordBy="2" coordEx="3" coordEy="3"/>
+    <districts name="South" coordBx="1.0" coordEx="2.0" coordEy="1.0"/>
+    <districts name="SouthEast" coordBx="2.0" coordEx="3.0" coordEy="1.0"/>
+    <districts name="West" coordBy="1.0" coordEx="1.0" coordEy="2.0"/>
+    <districts name="Middle" coordBx="1.0" coordBy="1.0" coordEx="2.0" coordEy="2.0"/>
+    <districts name="East" coordBx="2.0" coordBy="1.0" coordEx="3.0" coordEy="2.0"/>
+    <districts name="NorthWest" coordBy="2.0" coordEx="1.0" coordEy="3.0">
+      <places name="Pizzeria2">
+        <categories type="Food"/>
+      </places>
+    </districts>
+    <districts name="North" coordBx="1.0" coordBy="2.0" coordEx="2.0" coordEy="3.0"/>
+    <districts name="NorthEast" coordBx="2.0" coordBy="2.0" coordEx="3.0" coordEy="3.0"/>
   </cities>
-</cs:CityModel>
+</city:CityModel>

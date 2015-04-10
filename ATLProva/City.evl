@@ -1,6 +1,25 @@
-context Post {
+context City {
+	// Check that districts are not geographically overlapping
+	constraint DistrictsOverlap {
 	
-	// A category may appear only once per post
+		guard : self.districts.isDefined()
+	
+		check : self.districts -> select(d1 | self.districts -> exists(d2 | d1 <> d2 
+				// A district begins within another one
+				and (d1.coordBx < d2.coordBx and d1.coordEx > d2.coordBx and d1.coordBy < d2.coordBy 
+				and d1.coordEy > d2.coordBy) 
+				// A districts ends within another one
+				or 	(d1.coordBx < d2.coordEx and d1.coordEx > d2.coordEx
+				and d1.coordBy < d2.coordEy and d1.coordEy > d2.coordEy))) -> size() == 0
+					
+		message : 'There are overlapping districts.'
+		
+	}
+
+}
+
+context Place {
+	// A category may appear only once per place
 	constraint DuplicateCategory{
 		
 		// Taking the number of all the categories
@@ -32,49 +51,5 @@ context Post {
 			}
 		}
 	}
-	
-}
 
-context Hashtag {
-
-	constraint BeginWithHash {
-	
-		guard : self.text.isDefined()
-				
-		check : self.text.substring(0,1) == '#'
-		
-		message : 'Hashtag must begin with # symbol.'
-		
-		fix {
-			
-			title : 'Adding # symbol.'
-			
-			do {
-				
-				self.text = '#'.concat(self.text);
-			}
-		}
-	}
-}
-
-context Mention {
-
-	constraint BeginWithAt {
-		
-		guard : self.text.isDefined()
-		
-		check : self.text.substring(0,1) == '@'
-		
-		message : 'Mention must begin with @ symbol.'
-		
-		fix {
-			
-			title : 'Adding @ symbol'
-			
-			do {
-				
-				self.text = '@'.concat(self.text);
-			}
-		}
-	}
 }

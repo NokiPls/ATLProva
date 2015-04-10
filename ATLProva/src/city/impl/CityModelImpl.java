@@ -5,19 +5,12 @@ package city.impl;
 import city.City;
 import city.CityModel;
 import city.CityPackage;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -34,7 +27,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class CityModelImpl extends EObjectImpl implements CityModel {
+public class CityModelImpl extends MinimalEObjectImpl.Container implements CityModel {
 	/**
 	 * The cached value of the '{@link #getCities() <em>Cities</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

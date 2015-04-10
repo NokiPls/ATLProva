@@ -34,4 +34,31 @@
       </editor>
    </extension>
 
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated City -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="city.presentation.CityModelWizardID"
+            name="%_UI_CityModelWizard_label"
+            class="city.presentation.CityModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/CityModelFile.gif">
+         <description>%_UI_CityModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated City -->
+      <editor
+            id="city.presentation.CityEditorID"
+            name="%_UI_CityEditor_label"
+            icon="icons/full/obj16/CityModelFile.gif"
+            extensions="city"
+            class="city.presentation.CityEditor"
+            contributorClass="city.presentation.CityActionBarContributor">
+      </editor>
+   </extension>
 </plugin>

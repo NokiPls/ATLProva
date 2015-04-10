@@ -18,7 +18,8 @@
       <!-- @generated City -->
       <package
             uri="http://city/1.0"
-            class="city.CityPackage"/>
+            class="city.CityPackage"
+            genModel="City.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
@@ -35,6 +36,11 @@
             constraints="SocialResource.evl"
             namespaceURI="http://smr/1.0">
       </constraintsBinding>
+      <constraintsBinding
+            compose="true"
+            constraints="City.evl"
+            namespaceURI="http://city/1.0">
+      </constraintsBinding>
    </extension>
    <extension
          point="org.eclipse.ui.ide.markerResolution">
@@ -45,6 +51,10 @@
       <markerResolutionGenerator
             class="aseproject.MarkerResolutionGenerator"
             markerType="http://smr/1.0">
+      </markerResolutionGenerator>
+      <markerResolutionGenerator
+            class="aseproject.MarkerResolutionGenerator"
+            markerType="http://city/1.0">
       </markerResolutionGenerator>
    </extension>
 
