@@ -130,7 +130,7 @@
   </posts>
   <posts id="104" sourcesn="Foursquare" time="2015-01-20T03:48:31.000+0100">
     <location city="Milano" address="Piazza Leonardo da Vinci" district="NordEst">
-      <place name="Politecnico di Milano"/>
+      <place name="Forno Ambrosiano"/>
       <coordinates coordx="2.5" coordy="2.5"/>
     </location>
     <author name="Giovanni Azzone" language="English"/>
@@ -145,6 +145,7 @@
   </posts>
   <posts id="106" sourcesn="Facebook" time="2014-06-21T12:03:35.000+0200" language="English">
     <location district="">
+      <place name="Forno Ambrosiano"/>
       <coordinates coordx="2.5" coordy="2.5"/>
     </location>
     <text text="Si a Valsoia!">

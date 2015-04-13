@@ -16,7 +16,7 @@
     <districts name="Middle" coordBx="1.0" coordBy="1.0" coordEx="2.0" coordEy="2.0"/>
     <districts name="East" coordBx="2.0" coordBy="1.0" coordEx="3.0" coordEy="2.0"/>
     <districts name="NorthWest" coordBy="2.0" coordEx="1.0" coordEy="3.0">
-      <places name="Pizzeria2">
+      <places name="Forno Ambrosiano">
         <categories type="Food"/>
       </places>
     </districts>
